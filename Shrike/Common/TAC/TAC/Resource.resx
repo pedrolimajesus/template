@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Application_Performance" xml:space="preserve">
+    <value>Application Performance</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Available_Memory" xml:space="preserve">
+    <value>Available Memory</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_CPU_Usage" xml:space="preserve">
+    <value>CPU Usage</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_System_Uptime__seconds_" xml:space="preserve">
+    <value>System Uptime (seconds)</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Locks_and_Thread_Contention" xml:space="preserve">
+    <value>Locks and Thread Contention</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Memory_Usage" xml:space="preserve">
+    <value>Memory Usage</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Network_Connections" xml:space="preserve">
+    <value>Network Connections</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Memory_Cleanup_Time__" xml:space="preserve">
+    <value>Memory Cleanup Time %</value>
+  </data>
+  <data name="StdPerfCounters_LoadCLRPerfCounters_Errors___sec" xml:space="preserve">
+    <value>Exceptions Thrown / sec</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Web_Performance" xml:space="preserve">
+    <value>Web Performance</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Error_Rate" xml:space="preserve">
+    <value>Web Site Error Rate</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Unhandled_Errors" xml:space="preserve">
+    <value>Unhandled Errors</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Logon_Failures" xml:space="preserve">
+    <value>Logon Failures</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Logon_Successes" xml:space="preserve">
+    <value>Logon Successes</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Bytes_Received" xml:space="preserve">
+    <value>Bytes Received</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Bytes_Sent" xml:space="preserve">
+    <value>Bytes Sent</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Request_Execution_Time" xml:space="preserve">
+    <value>Request Execution Time</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Disconnected_Requests" xml:space="preserve">
+    <value>Disconnected Requests</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Requests_in_Execution" xml:space="preserve">
+    <value>Requests in Execution</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Queued_Requests" xml:space="preserve">
+    <value>Queued Requests</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Rejected_Requests" xml:space="preserve">
+    <value>Rejected Requests</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Completed_Requests" xml:space="preserve">
+    <value>Completed Requests</value>
+  </data>
+  <data name="StdPerfCounters_LoadASPPerfCounters_Timed_Out_Requests" xml:space="preserve">
+    <value>Timed Out Requests</value>
+  </data>
+</root>

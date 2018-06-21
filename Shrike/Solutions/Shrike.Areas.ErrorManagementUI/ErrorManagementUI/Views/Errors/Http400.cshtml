@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Http400";
+
+    this.Layout = this.Context.Request.IsAuthenticated ? "~/Views/Shared/_ShrikePartialLayout.cshtml" : "~/Views/Shared/_ErrorPartialLayout.cshtml";
+}
+<div class="error">
+    <h2>
+        Error 400: Bad Request</h2>
+    <h4>
+        The request cannot be fulfilled due to bad syntax.</h4>
+</div>

@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3D3466A2-CB2C-4C01-9BC1-575717DB58E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppComponents</RootNamespace>
+    <AssemblyName>TAC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>False</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>False</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>False</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>False</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>False</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>False</CodeContractsRedundantAssumptions>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestEnsures>False</CodeContractsSuggestEnsures>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsDisjunctiveRequires>False</CodeContractsDisjunctiveRequires>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>False</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>False</CodeContractsCacheAnalysisResults>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Esent.Collections, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\ManagedEsent.1.6\lib\net20\Esent.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Esent.Interop, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\ManagedEsent.1.6\lib\net20\Esent.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Solutions\packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\..\..\Solutions\packages\LinqKit.1.0\lib\35\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Net4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.1\lib\net40\Microsoft.CompilerServices.AsyncTargetingPack.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\RavenDB.Client.2.5.2750\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Solutions\packages\RavenDB.Client.2.5.2750\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aspects\AccessAuthAspect.cs" />
+    <Compile Include="Aspects\HandleExceptionAspect.cs" />
+    <Compile Include="Aspects\TraceAspect.cs" />
+    <Compile Include="Aspects\ValidationAspect.cs" />
+    <Compile Include="Aspects\WhenTrueAspect.cs" />
+    <Compile Include="Configuration\AggregateConfiguration.cs" />
+    <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\AssemblyAttributeConfiguration.cs" />
+    <Compile Include="Configuration\DictionaryConfigurationBase.cs" />
+    <Compile Include="Configuration\FunctionConfiguration.cs" />
+    <Compile Include="Configuration\InMemoryConfiguration.cs" />
+    <Compile Include="Configuration\JsonConfiguration.cs" />
+    <Compile Include="Configuration\NullConfiguration.cs" />
+    <Compile Include="Configuration\ResourcesConfiguration.cs" />
+    <Compile Include="Configuration\XmlConfiguration.cs" />
+    <Compile Include="ControlFlow\AppEventLogApplicationAlert.cs" />
+    <Compile Include="ControlFlow\ApplicationTypeContextProvider.cs" />
+    <Compile Include="ControlFlow\Arguments.cs" />
+    <Compile Include="ControlFlow\ContextRegistry.cs" />
+    <Compile Include="ControlFlow\ContextualString.cs" />
+    <Compile Include="ControlFlow\CultureContextProvider.cs" />
+    <Compile Include="ControlFlow\DevolvedDistributedMutex.cs" />
+    <Compile Include="ControlFlow\FileLockDistributedMutex.cs" />
+    <Compile Include="ControlFlow\InMemoryJobScheduler.cs" />
+    <Compile Include="ControlFlow\JobWorker.cs" />
+    <Compile Include="ControlFlow\License.cs" />
+    <Compile Include="ControlFlow\MessageQueueApplicationAlert.cs" />
+    <Compile Include="ControlFlow\NestedAsyncHelper.cs" />
+    <Compile Include="ControlFlow\PrincipalContextProvider.cs" />
+    <Compile Include="ControlFlow\SdsClientJobScheduler.cs" />
+    <Compile Include="ControlFlow\SleepyWorkerEntryPoint.cs" />
+    <Compile Include="ControlFlow\StochasticRecurringWorker.cs" />
+    <Compile Include="ControlFlow\ThreadedRecurrence.cs" />
+    <Compile Include="ControlFlow\Trampoline.cs" />
+    <Compile Include="Data\BlobDataSpooler.cs" />
+    <Compile Include="Data\DataDocument.cs" />
+    <Compile Include="Data\EsentBlobContainer.cs" />
+    <Compile Include="Data\FilePersistentStore.cs" />
+    <Compile Include="Data\GenericPageBookmark.cs" />
+    <Compile Include="Data\ImmStack.cs" />
+    <Compile Include="Data\ImmTree.cs" />
+    <Compile Include="Data\IniFile.cs" />
+    <Compile Include="Data\InMemoryDataRepositoryService.cs" />
+    <Compile Include="Data\InMemoryDataSpooler.cs" />
+    <Compile Include="Data\InMemoryWorkspace.cs" />
+    <Compile Include="Data\MemoryPersistentStore.cs" />
+    <Compile Include="Data\ObjectPool.cs" />
+    <Compile Include="Data\PersistentHashTable.cs" />
+    <Compile Include="Data\PersistentStoreBase.cs" />
+    <Compile Include="Data\ReadOnlyPersistentStore.cs" />
+    <Compile Include="Data\SdsClientDataRepositoryService.cs" />
+    <Compile Include="Data\SdsClientWorkspace.cs" />
+    <Compile Include="Data\StructuredDataClient.cs" />
+    <Compile Include="Data\StructuredDataServer.cs" />
+    <Compile Include="Data\StructuredDataStorage.cs" />
+    <Compile Include="Data\WebsiteToImage.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\ComparerExtensions.cs" />
+    <Compile Include="Extensions\EnumerableEx.cs" />
+    <Compile Include="Extensions\FileExtensions.cs" />
+    <Compile Include="Files\BlobContainerImageStorage.cs" />
+    <Compile Include="Files\CentralFileMirror.cs" />
+    <Compile Include="Files\CompressedDataStorage.cs" />
+    <Compile Include="Files\FileStoreBlobContainer.cs" />
+    <Compile Include="Files\FtpBlobContainer.cs" />
+    <Compile Include="Files\InterProcessLockedMemoryMappedFileStream.cs" />
+    <Compile Include="Interfaces\IBlobContainer.cs" />
+    <Compile Include="Interfaces\IRecurrence.cs" />
+    <Compile Include="Interfaces\Messaging.cs" />
+    <Compile Include="Interfaces\StructuredData.cs" />
+    <Compile Include="Messaging\AMQPDeclarations.cs" />
+    <Compile Include="Messaging\BufferedPublisher.cs" />
+    <Compile Include="Messaging\DirectoryFileMessageBus.cs" />
+    <Compile Include="Messaging\IPCMessageBus.cs" />
+    <Compile Include="Messaging\MemoryMappedTransferPipe.cs" />
+    <Compile Include="Messaging\MemoryMappedTransferQueue.cs" />
+    <Compile Include="Files\PageLockedMemoryMappedFileStream.cs" />
+    <Compile Include="Interfaces\IApplicationTopology.cs" />
+    <Compile Include="Interfaces\IStructuredDataStorage.cs" />
+    <Compile Include="Interfaces\MessageQueue.cs" />
+    <Compile Include="Messaging\MemoryMessageBus.cs" />
+    <Compile Include="Messaging\MessageFile.cs" />
+    <Compile Include="Messaging\PassiveListener.cs" />
+    <Compile Include="Primitives\ActionBuffer.cs" />
+    <Compile Include="Primitives\ApplicationPrincipal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Primitives\AuthorizationCode.cs" />
+    <Compile Include="Data\InMemoryCachedData.cs" />
+    <Compile Include="Data\DataRepositoryPlugins.cs" />
+    <Compile Include="DependencyInjection\NewInstanceFactory.cs" />
+    <Compile Include="DependencyInjection\AssemblerInstancePoolFactory.cs" />
+    <Compile Include="DependencyInjection\FactoryContexts.cs" />
+    <Compile Include="DependencyInjection\InstanceCacheFactory.cs" />
+    <Compile Include="DependencyInjection\Catalog.cs" />
+    <Compile Include="Configuration\CommonConfiguration.cs" />
+    <Compile Include="Configuration\ConstructConfiguration.cs" />
+    <Compile Include="DependencyInjection\InstanceAssemblerRegistration.cs" />
+    <Compile Include="DependencyInjection\InstanceAssemblerAssemble.cs" />
+    <Compile Include="DependencyInjection\CreateInstanceDelegateFactory.cs" />
+    <Compile Include="DependencyInjection\ObjectAssemblyConfigurationScanner.cs" />
+    <Compile Include="DependencyInjection\IObjectAssemblySpecifier.cs" />
+    <Compile Include="DependencyInjection\ISpecifyCreationStrategy.cs" />
+    <Compile Include="DependencyInjection\IInstanceCreationStrategy.cs" />
+    <Compile Include="DependencyInjection\InstanceAssembler.cs" />
+    <Compile Include="DependencyInjection\IObjectAssemblySpecification.cs" />
+    <Compile Include="DependencyInjection\IObjectAssemblerRegistrationKey.cs" />
+    <Compile Include="DependencyInjection\IObjectAssemblyRegistry.cs" />
+    <Compile Include="DependencyInjection\IAssembleObject.cs" />
+    <Compile Include="DependencyInjection\NamedObjectAssemblerRegistrationKey.cs" />
+    <Compile Include="DependencyInjection\NamelessObjectAssemblerRegistrationKey.cs" />
+    <Compile Include="DependencyInjection\ObjectAssemblySpecification.cs" />
+    <Compile Include="DependencyInjection\ObjectAssemblyRegistry.cs" />
+    <Compile Include="DependencyInjection\ObjectCreationExtensions.cs" />
+    <Compile Include="DependencyInjection\Registrations.cs" />
+    <Compile Include="DependencyInjection\ThreadLocalStorageInstanceFactory.cs" />
+    <Compile Include="Diagnostics\ClassLogging.cs" />
+    <Compile Include="Diagnostics\LogLevelManager.cs" />
+    <Compile Include="Extensions\Aggregate.cs" />
+    <Compile Include="Extensions\AggregationOrDefault.cs" />
+    <Compile Include="Extensions\AlphaNumComparator.cs" />
+    <Compile Include="Extensions\AsNullable.cs" />
+    <Compile Include="Extensions\Buffered.cs" />
+    <Compile Include="Extensions\ContainsAtLeast.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DictionaryMethods.cs" />
+    <Compile Include="Messaging\DataCenterHostEnvironment.cs" />
+    <Compile Include="Primitives\AnonymousDisposable.cs" />
+    <Compile Include="Extensions\Distinct.cs" />
+    <Compile Include="Extensions\EmptyIfNull.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Extensions\FirstOrFallback.cs" />
+    <Compile Include="Extensions\QuerySpecificationExtensions.cs" />
+    <Compile Include="Extensions\SerializationExtensions.cs" />
+    <Compile Include="Extensions\GroupEvery.cs" />
+    <Compile Include="Extensions\In.cs" />
+    <Compile Include="Extensions\IndicesMethods.cs" />
+    <Compile Include="Extensions\Intersect.cs" />
+    <Compile Include="Extensions\LinqPartitionExtensions.cs" />
+    <Compile Include="Extensions\Normalize.cs" />
+    <Compile Include="Extensions\MetaNumeric.cs" />
+    <Compile Include="Extensions\OfOne.cs" />
+    <Compile Include="Extensions\PredicateExtensions.cs" />
+    <Compile Include="Extensions\RandomExtensions.cs" />
+    <Compile Include="Extensions\SelectMany.cs" />
+    <Compile Include="Extensions\AllTheSameAs.cs" />
+    <Compile Include="Extensions\Superset.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\Sum.cs" />
+    <Compile Include="Extensions\TakeEvery.cs" />
+    <Compile Include="Extensions\ToDictionary.cs" />
+    <Compile Include="Extensions\ZipEnumerable.cs" />
+    <Compile Include="Interfaces\IApplicationAlert.cs" />
+    <Compile Include="Interfaces\ICachedData.cs" />
+    <Compile Include="Interfaces\IConfig.cs" />
+    <Compile Include="Interfaces\IContextRegistry.cs" />
+    <Compile Include="Interfaces\IDataSpooler.cs" />
+    <Compile Include="Interfaces\IDistributedMutex.cs" />
+    <Compile Include="Interfaces\IHostEnvironment.cs" />
+    <Compile Include="Interfaces\IImageStorage.cs" />
+    <Compile Include="Interfaces\ILocalFileMirror.cs" />
+    <Compile Include="Interfaces\IWorkspace.cs" />
+    <Compile Include="Interfaces\Scheduling.cs" />
+    <Compile Include="Interfaces\Worker.cs" />
+    <Compile Include="Messaging\HostEnvironment.cs" />
+    <Compile Include="Primitives\ConcurrentList.cs" />
+    <Compile Include="Primitives\EasyRun.cs" />
+    <Compile Include="Primitives\Encryption.cs" />
+    <Compile Include="Primitives\GifConverter.cs" />
+    <Compile Include="Primitives\GuidEncoder.cs" />
+    <Compile Include="Primitives\Hash.cs" />
+    <Compile Include="Primitives\IdValuePair.cs" />
+    <Compile Include="Interfaces\ImmutableContainers.cs" />
+    <Compile Include="Primitives\ImagePreparation.cs" />
+    <Compile Include="Primitives\SendEmail.cs" />
+    <Compile Include="Primitives\StringDistance.cs" />
+    <Compile Include="Primitives\StringResourcesCache.cs" />
+    <Compile Include="Primitives\TextCleaner.cs" />
+    <Compile Include="Primitives\TemporalId.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interfaces\IDataRepositoryService.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Statemachine\DestinationFunctionTriggerStrategy.cs" />
+    <Compile Include="Statemachine\IgnoredTriggerStrategy.cs" />
+    <Compile Include="Statemachine\ParameterPackager.cs" />
+    <Compile Include="Statemachine\StateSpecifier.cs" />
+    <Compile Include="Statemachine\StateMachine.cs" />
+    <Compile Include="Statemachine\StateRef.cs" />
+    <Compile Include="Statemachine\StateSpecification.cs" />
+    <Compile Include="Statemachine\StateTransition.cs" />
+    <Compile Include="Statemachine\StateTransitionTriggerStrategy.cs" />
+    <Compile Include="Statemachine\TriggerStrategy.cs" />
+    <Compile Include="Statemachine\ParameterizedTrigger.cs" />
+    <Compile Include="Topology\ApplicationAlertSink.cs" />
+    <Compile Include="Topology\ApplicationNodeRegistry.cs" />
+    <Compile Include="Topology\GathererBase.cs" />
+    <Compile Include="Topology\LogConfigConsumer.cs" />
+    <Compile Include="Topology\PerfCounterGatherer.cs" />
+    <Compile Include="Topology\PerformanceCounterNodeMetrics.cs" />
+    <Compile Include="Topology\StdPerfCounters.cs" />
+    <Compile Include="TypeProjection\AbstractShapeableExpando.cs" />
+    <Compile Include="TypeProjection\AbstractInterceptor.cs" />
+    <Compile Include="TypeProjection\AbstractLazyInterceptor.cs" />
+    <Compile Include="TypeProjection\AbstractShapeableSpecified.cs" />
+    <Compile Include="TypeProjection\AbstractTypeProjectionFactory.cs" />
+    <Compile Include="TypeProjection\AbstractTypeProjectionProxy.cs" />
+    <Compile Include="TypeProjection\Aspect.cs" />
+    <Compile Include="TypeProjection\AspectInterceptor.cs" />
+    <Compile Include="TypeProjection\AspectProvider.cs" />
+    <Compile Include="TypeProjection\AspectWeaver.cs" />
+    <Compile Include="TypeProjection\BinderHashGenerator.cs" />
+    <Compile Include="TypeProjection\Builder.cs" />
+    <Compile Include="TypeProjection\BuildProxy.cs" />
+    <Compile Include="TypeProjection\Curry.cs" />
+    <Compile Include="TypeProjection\DelegatesForMember.cs" />
+    <Compile Include="TypeProjection\EmitExtensions.cs" />
+    <Compile Include="TypeProjection\IAspectWeaver.cs" />
+    <Compile Include="TypeProjection\MemberProjection.cs" />
+    <Compile Include="TypeProjection\ShapeableExpando.cs" />
+    <Compile Include="TypeProjection\ShapeableExpandoList.cs" />
+    <Compile Include="TypeProjection\DynamicPropertiesToReflectablePropertiesProxy.cs" />
+    <Compile Include="TypeProjection\FixedArray.cs" />
+    <Compile Include="TypeProjection\IBuilder.cs" />
+    <Compile Include="TypeProjection\IDynamicKnownInterfacesProjection.cs" />
+    <Compile Include="TypeProjection\InterceptorAddRemove.cs" />
+    <Compile Include="TypeProjection\InterfaceProjectionCaster.cs" />
+    <Compile Include="TypeProjection\Invocation.cs" />
+    <Compile Include="TypeProjection\InvocationCacheCompatible.cs" />
+    <Compile Include="TypeProjection\InvocationContext.cs" />
+    <Compile Include="TypeProjection\InvocationMapping.cs" />
+    <Compile Include="TypeProjection\InvocationMappingEx.cs" />
+    <Compile Include="TypeProjection\InvokeExtensions.cs" />
+    <Compile Include="TypeProjection\InvokeMemberByName.cs" />
+    <Compile Include="TypeProjection\InvokeSetters.cs" />
+    <Compile Include="TypeProjection\IDressedAs.cs" />
+    <Compile Include="TypeProjection\ITypeProjectionProxy.cs" />
+    <Compile Include="TypeProjection\LambdasEx.cs" />
+    <Compile Include="TypeProjection\LateBindingInterceptor.cs" />
+    <Compile Include="TypeProjection\MemberInvocationMoniker.cs" />
+    <Compile Include="TypeProjection\MetaProperty.cs" />
+    <Compile Include="TypeProjection\MethodInvocationArgument.cs" />
+    <Compile Include="TypeProjection\PassthroughObject.cs" />
+    <Compile Include="TypeProjection\ProxyCIL.cs" />
+    <Compile Include="TypeProjection\DressedAsAttribute.cs" />
+    <Compile Include="TypeProjection\DressAsProxySerializer.cs" />
+    <Compile Include="TypeProjection\ShapeableObject.cs" />
+    <Compile Include="TypeProjection\SignatureKey.cs" />
+    <Compile Include="TypeProjection\TapeRecorderInterceptor.cs" />
+    <Compile Include="TypeProjection\TypeFactorization.cs" />
+    <Compile Include="TypeProjection\TypeHasher.cs" />
+    <Compile Include="TypeProjection\TypeInterceptionCIL.cs" />
+    <Compile Include="TypeProjection\InvocationBinding.cs" />
+    <Compile Include="TypeProjection\TypeProjector.cs" />
+    <Compile Include="TypeProjection\UseNamedArgumentAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TypeProjection\StaticTypeProjectionInterfaceTemplate.tt" />
+    <None Include="TypeProjection\StaticTypeProjectionTemplate.tt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

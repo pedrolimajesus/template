@@ -1,0 +1,67 @@
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.FileStore
+
+@{
+    const string srcImg = "~/Content/Theme/Default/Images/Command/Invitation/details-icon.png";
+}
+
+@using (Ajax.BeginForm("ExecuteFileStoreAction", "Deployment", new { id = "" }, new AjaxOptions
+ {
+     HttpMethod = "POST",
+     UpdateTargetId = "filestore-component",
+     InsertionMode = InsertionMode.Replace
+ }, new {enctype = "multipart/form-data", id = "formDevices"}))
+ {
+     
+     <div class="left-div">
+         <div class="float-left-container">
+             <img src="@Url.Content(srcImg)" alt="File store icon"/>
+         </div>
+         <div class="deploymentContainer-inputs">
+             <div class="input-div">
+                 <div class="input-label">Folder Path</div>
+                 <div class="input-field">
+                     <input id="FolderPath" name="FolderPath" value="@Model.FolderPath"/>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <input type="hidden" value="" name="fsCommand"  id="fsCommand"/>
+
+     <div class="right-div button-set">
+         <input value="Test" type="submit" id="fileStoreTestButton" onclick="TestFileStore()"/>
+         <input value="Save" type="submit" id="fileStoreSaveButton" onclick="SaveFileStore()"/>
+         <input value="Restore" type="submit" id="fileStoreRestoreButton" onclick="RestoreFileStore()"/>
+     </div>
+
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var status = '@Model.Status';
+
+        switch (status) {
+            case 'TestPassed': { alert("Test completed successfully"); } break;
+            case 'TestFailed': { alert("Test failed"); } break;
+            case 'SavePassed': { alert("Saved Completed "); } break;
+            case 'SaveFailed': { alert("Saved failed"); } break;
+            //"Not needed" case 'RestorePassed': { alert("Restore Completed"); } break;
+            case 'RestoreFailed': { alert("Restore failed"); } break;
+            default:
+        }
+     });
+
+    function TestFileStore() {
+        $('#fsCommand').val('Test');
+    }
+
+    function RestoreFileStore() {
+        $('#fsCommand').val('Restore');
+    }
+
+    function SaveFileStore() {
+        $('#fsCommand').val('Save');
+    }
+
+</script>

@@ -1,0 +1,19 @@
+﻿@using System.Web.Mvc.Html
+@{
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    ViewBag.Title = "Deactivate System";
+}
+
+<div id="left-container">
+    @Html.Partial("_FilterLayoutPanel")
+</div>
+
+<div id="central-container">
+    <div class="console-header">
+        @ViewBag.Title
+    </div>
+</div>
+
+<div id="right-container">
+    @Html.Partial("_CommandLayoutPanel")
+</div>

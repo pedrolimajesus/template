@@ -1,0 +1,200 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using AppComponents.Web
+@using Shrike.DAL.Manager
+@using Shrike.UserManagement.BusinessLogic.Models
+@model IEnumerable<Shrike.UserManagement.BusinessLogic.Models.OwnerInvitationModel>
+@{
+    ViewBag.Title = "Index";
+    ViewBag.CurrentTenancy = Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy;
+    ViewBag.IsOwner = ViewBag.CurrentTenancy == Tenants.SuperAdmin;
+    ViewBag.id = "";
+
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    var isReload = ViewBag.IsReloadInvited ?? false;
+    var timeZoneService = AppComponents.Catalog.Factory.Resolve<Shrike.TimeZone.Contracts.ITimeZoneService>();
+}
+<div id="left-container">
+    @Html.Partial("_FilterLayoutPanel")
+</div>
+<div id="central-container">
+    <div class='console-header'>
+        Invitations
+    </div>
+    <div id="content-partial">
+    </div>
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <div class="contend-owner-grid-Report" id="content-grid">
+        @{
+            var grid = new WebGrid(Model, rowsPerPage: 18, canSort: true, ajaxUpdateContainerId: "content-grid") {SortColumn = (string) ViewBag.LastSortedColumn};
+
+            @grid.GetHtml(fillEmptyRows: true, tableStyle: "listing-border", headerStyle: "gridhead",
+            footerStyle: "paging", rowStyle: "td-dark", alternatingRowStyle: "td-light", selectedRowStyle: "webgrid-selected-row",
+            columns: grid.Columns(
+            grid.Column("SentTo", "Send to Email", format: @<text>
+            <div style="width: 180px; display: inline-block">
+                <label title="@item.SentTo">@item.SentTo</label>
+            </div>
+            </text>),
+            grid.Column("Tenancy", format: @<text>
+            <div style="width: 80px;">
+                <label title="@item.Tenancy">
+                    @item.Tenancy
+                </label>
+                <input type="hidden" value="@item.Id" id="idSuperAdminInv"/>
+                <input type="hidden" value="@item.AcceptingUserId" id="idUser"/>
+            </div>
+            </text>),
+            grid.Column("DateSent", "Last Date", format: @<text>
+            <div style="width: 80px;">
+                @{
+                    var dateText = timeZoneService.ConvertUtcToLocal(item.DateSent,"MM/dd/yyyy HH:mm:ss");
+                }
+
+                <label title="@dateText" id="dataSent">
+                    @dateText
+                </label>
+            </div>
+            </text>),
+            grid.Column("Role", "Role", format: @<text>
+            <div style="width: 80px;">
+                <label title="@item.Role">
+                    @item.Role
+                </label>
+            </div>
+            </text>),
+            grid.Column("ExpirationTime", "Expire in days", format: @<text>
+            <div style="width: 80px;">
+                <label title="@item.ExpirationTime">
+                    @item.ExpirationTime
+                </label>
+            </div>
+            </text>),
+            grid.Column("Status", "Current status", format: @<text>
+            <div style="width: 80px;">
+                <label title="@item.Status">
+                    @item.Status
+                </label>
+            </div>
+            </text>),
+            grid.Column("ResentTimes", "Time Resent", format: @<text>
+            <div style="width: 70px;">
+                <label title="@item.ResentTimes">
+                    @item.ResentTimes
+                </label>
+            </div>
+            </text>)
+                                    ))  
+            @Html.Hidden("SelectedRow", null)
+        }
+        <input type="hidden" id="type" value="owner" />
+    </div>
+</div>
+<div id="right-container">
+    @Html.Partial("_CommandLayoutPanel")
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var clientreloaded = '@isReload';
+
+        if (clientreloaded == "True") {
+            var urlAction = '@Html.Raw(Url.Action("Create", "OwnerInvitation", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))';
+            $.ajax({
+                url: urlAction,
+                type: 'GET',
+                cache: false,
+                datatype: "html",
+                success: function (data) {
+                    $("#content-partial").html(data);
+                }
+            });
+            $("#content-partial").css("display", "inline-block");
+        }
+
+        if ($("table tbody tr input#idSuperAdminInv").length > 0) {
+            $("table tbody tr.selectedRow").removeClass("selectedRow");
+            $("table tbody tr:eq(0)").addClass("selectedRow");
+            $("table tbody tr.selectedRow").each(function () {
+                var datasent = $(this).find("#dataSent").text();
+                var name = $(this).find("#idSuperAdminInv").val().trim();
+                $("#SelectedRow").val(name);
+            });
+        }
+    });
+
+    $(document).on("click", "table tbody tr", function () {
+        var name = $(this).find("#idSuperAdminInv").val();
+        var user = $(this).find("#idUser").val();
+
+        if (name != undefined && name.trim().length > 0 && user != undefined && user.trim().length > 0) {
+            $("table tbody tr.selectedRow").removeClass("selectedRow");
+            $(this).toggleClass('selectedRow');
+            var datasent = $(this).find("#dataSent").text();
+            $("#SelectedRow").val(name);
+            SelectedItemAction();
+        }
+    });
+
+    var bandcontentPartial = false;
+    function SelectedItemAction() {
+        $("#content-partial").empty();
+        $("#content-partial").css("display", "none");
+        bandcontentPartial = false;
+    }
+
+    function fillDataSentEmail(id, datasent) {
+        var modelList = '@Html.Raw(Json.Encode(Model))';
+        for (var s = 0; s < modelList.length; s++) {
+            if (modelList[s].Id == id) {
+                $("#tenancy").text(modelList[s].Tenancy);
+                $("#sentto").text(modelList[s].SentTo);
+                $("#datesent").text(datasent);
+                $("#expiration").text(modelList[s].ExpirationTime);
+                $("#status").text(modelList[s].Status);
+                $("#resentTimes").text(modelList[s].ResentTimes);
+            }
+        }
+    }
+
+    function ShowContentPartial(actionController) {
+        $("#content-partial").empty();
+        if (bandcontentPartial) {
+            $("#content-partial").css("display", "none");
+            bandcontentPartial = false;
+        }
+        else {
+            var urlaction = "";
+            var id = $("#SelectedRow").val().trim();
+            switch (actionController) {
+                case "create":
+                    urlaction = '@Html.Raw(Url.Action("Create", "OwnerInvitation", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))';
+                    break;
+                case "edit":
+                    urlaction = '@Html.Raw(Url.Action("Edit", "OwnerInvitation", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                    break;
+                case "delete":
+                    urlaction = '@Html.Raw(Url.Action("Delete", "OwnerInvitation", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                    break;
+                case "sendemail":
+                    urlaction = '@Html.Raw(Url.Action("SendEmail", "OwnerInvitation", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                    break;
+            }
+            bandcontentPartial = true;
+            $.ajax({
+                url: urlaction,
+                cache: false,
+                datatype: "html",
+                success: function (data) {
+                    $("#content-partial").html(data);
+                }
+            });
+
+            $("#content-partial").css("display", "inline-block");
+        }
+    }
+
+</script>

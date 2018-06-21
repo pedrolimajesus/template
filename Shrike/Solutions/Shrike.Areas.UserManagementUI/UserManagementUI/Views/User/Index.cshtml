@@ -1,0 +1,56 @@
+﻿@using Shrike.UserManagement.BusinessLogic.Models
+@model IEnumerable<Shrike.Areas.UserManagementUI.UserManagementUI.Models.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    
+    var isReload = ViewBag.IsReloadInvited ?? false;
+}
+
+<div id="left-container">
+    @Html.Partial("_FilterLayoutPanel")
+</div>
+<div id="central-container">
+    
+    @Html.Partial("~/Areas/UserManagementUI/Views/Shared/_GridUsersPartial.cshtml", Model)
+
+    <div class="tab-container" >
+        <div id="user-tab">
+            <ul>
+                
+                @Html.Partial("~/Areas/UserManagementUI/Views/Shared/_PanelTabsHead.cshtml")
+
+            </ul>
+
+            @Html.Partial("~/Areas/UserManagementUI/Views/Shared/_PanelTabsContent.cshtml")
+
+        </div>
+    </div>
+
+</div>
+<div id="right-container">
+    @Html.Partial("_CommandLayoutPanel")
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#user-tab").tabs();
+        $(".description-User").jScrollPane();
+        
+        var clientreloaded = '@isReload';
+        
+        if(clientreloaded == "True") {
+            var urlAction = '@Html.Raw(Url.Action("InviteUser", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))';            
+            $.ajax({
+                url: urlAction,
+                type: 'GET',
+                cache: false,
+                datatype: "html",
+                success: function (data) {
+                    $("#content-partial").html(data);
+                }
+            });
+            $("#content-partial").css("display", "inline-block");
+        }
+    });    
+</script>

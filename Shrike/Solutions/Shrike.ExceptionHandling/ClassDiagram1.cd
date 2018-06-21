@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Shrike.ExceptionHandling.Exceptions.BusinessLogicException">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\BusinessLogicException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shrike.ExceptionHandling.Exceptions.DataAccessException">
+    <Position X="4" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\DataAccessException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shrike.ExceptionHandling.Exceptions.SmtpException">
+    <Position X="0.5" Y="2" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAA=</HashCode>
+      <FileName>Exceptions\SmtpException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shrike.ExceptionHandling.Exceptions.UILogicException">
+    <Position X="4" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\UILogicException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shrike.ExceptionHandling.Logic.ExceptionHandler">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logic\ExceptionHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Shrike.ExceptionHandling.Layer">
+    <Position X="7" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABIAAAABA=</HashCode>
+      <FileName>Layer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

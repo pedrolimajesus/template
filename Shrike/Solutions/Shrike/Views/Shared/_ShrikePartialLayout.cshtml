@@ -1,0 +1,59 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>@ViewBag.Title</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="@Url.Content("~/Content/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+        @Styles.Render("~/Content/Theme/Default/Site")
+        @Styles.Render("~/Content/Theme/Default/styles/jquery")
+        @Styles.Render("~/Content/Theme/Default/styles/jquery-ui")
+        @Scripts.Render("~/bundles/jquery")
+    </head>
+    <body>
+        <div id='master-container'>
+            <div id='internal-container'>
+                <header>
+                    <div id='header-container'>
+                        <div class="float-left">
+                            <img src="~/Content/Theme/Default/Images/logo-default.png" alt="shrike logo" />
+                            <h1>Shrike</h1>
+                        </div>
+                        <div class="float-right">
+                            <section id="login">
+                                @Html.Partial("~/Areas/UserManagementUI/Views/Shared/_LoginPartial.cshtml")
+                            </section>
+                        </div>
+                    </div>
+                </header>
+                <div id="body-container">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer>
+                <div id="footer-content">
+                    @Html.Partial("_NavigationLayoutPartial")
+                </div>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/customtags")
+        @Scripts.Render("~/bundles/customs")
+        @Scripts.Render("~/bundles/Tag")
+        @Scripts.Render("~/bundles/timezone")
+        @RenderSection("scripts", required: false)
+
+        <script type="text/javascript">
+            var loginUrl = '@Url.Action("Login", "Account", new {area = "UserManagementUI"})?returnUrl=';
+            var verificationUrl = '@Url.Action("VerifyAutentication", "Account", new {area = "UserManagementUI"})?returnUrl=';
+
+            $(document).ready(function() {
+                checkTimezoneCookie();
+                $(document).on("keydown", "input[type=number]", onKeydownEventHandler);
+            });
+        </script>
+    </body>
+</html>

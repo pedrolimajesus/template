@@ -1,0 +1,338 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using Lok.Unik.ModelCommon.Client
+@using Shrike.UserManagement.BusinessLogic.Models
+@using System.Linq
+@using User = Shrike.Areas.UserManagementUI.UserManagementUI.Models.User
+@model IEnumerable<Shrike.Areas.UserManagementUI.UserManagementUI.Models.User>
+    @{
+        var listTag = new List<Shrike.Areas.TagsUI.TagsUI.Models.Tag>();
+
+        foreach (var deviceRegistration in Model)
+        {
+            listTag.AddRange(deviceRegistration.Tags);
+        }
+
+        listTag.Distinct().ToList();
+
+        listTag = listTag.Distinct().ToList();//this is not used ???
+
+        IEnumerable<User> newOrderModel = new List<User>();//not used
+
+        ViewBag.LeftLabel = "User(s)";
+        ViewBag.RightLabel = "Device(s)";
+        ViewBag.CurrentUrl = Html.Raw(Request.Url.AbsoluteUri);
+
+        var newUser = new User();//not used
+        var roles = Shrike.DAL.Manager.RoleManager.TenantRoleDescriptions;
+        ViewBag.Roles = roles.Values.ToString();
+
+        Layout = null;
+
+        //var timeZoneService = AppComponents.Catalog.Factory.Resolve<Shrike.TimeZone.Contracts.ITimeZoneService>();
+    }
+
+    <div class='console-header'>
+        User
+    </div>
+    <div id="content-partial">
+
+    </div>
+    <div id="content-device">
+        <div id='user-grid'>
+            @Scripts.Render("~/bundles/jqueryui")
+            @Scripts.Render("~/bundles/customtags")
+
+            @{
+                var grid = new WebGrid(Model, canSort: true, defaultSort: "FirstName", rowsPerPage: 11, ajaxUpdateContainerId: "user-grid", ajaxUpdateCallback: "callBack");
+                grid.SortColumn = (string)ViewBag.LastSortedColumn;
+                @grid.GetHtml(fillEmptyRows: true, tableStyle: "listing-border", headerStyle: "gridhead", footerStyle: "paging", rowStyle: "td-dark", alternatingRowStyle: "td-light",
+                        columns: grid.Columns(
+                grid.Column("Username", header: "Name", format: @<text>
+                            <div class="username" style="width: 150px;">
+                                <label title="@item.Username">@item.Username</label>
+                                <input type="hidden" id="id" value="@item.Id" />
+                                <input type="hidden" id="email" value="@item.Email" />
+                                <input type="hidden" id="status" value="@item.Status" />
+                            </div>
+                </text>),
+             grid.Column(header: "Roles", format: @<text>
+                    @{
+                        var tempRoleList = string.Empty;
+                        foreach (var role in item.Roles)
+                        {
+                            if (role != null)
+                            {
+                                if (role.Contains("/"))
+                                {
+                                    tempRoleList += role.Remove(0, role.LastIndexOf('/') + 1) + ", ";
+                                }
+                                else
+                                {
+                                    tempRoleList += role + ", ";
+                                }
+                            }
+                        }
+
+                        if (tempRoleList.Length > 0)
+                        {
+                            tempRoleList = tempRoleList.Remove(tempRoleList.Length - 2);
+                        }
+
+                        if (!string.IsNullOrEmpty(tempRoleList))
+                        {
+                            <div class="row" style="width: 150px;">
+                                <label title="@tempRoleList">@tempRoleList</label>
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="row" style="width: 150px">
+                                <label title="@tempRoleList">@item.RoleInvitation</label>
+                            </div>
+                        }
+
+                    }
+            </text>),
+             grid.Column("Status", header: "Status", format: @<text><div style="width: 60px;">
+                        <label>
+                            @item.Status
+                        </label>
+                    </div></text>),
+            grid.Column("AdminOver", header: "Tenancy", format: @<text><div style="width:100%;">
+<label title="@item.AdminOver">@item.AdminOver</label>
+                    </div></text>),
+            grid.Column("DateCreated", header: "Date Created", format: @<text>
+                    <div class="dateCreate" style="width: auto;">
+                        <label title="@item.DateCreated">
+                            @item.DateCreated
+                        </label>
+                    </div>
+            </text>),
+            grid.Column(header: "Tags", format: @<text>
+                    @{
+                        var tempList = string.Empty;
+                        foreach (var variable in item.Tags)
+                        {
+                            if (variable != null)
+                            {
+                                if (variable.Type == TagType.User.ToString() && variable.Color != System.Drawing.KnownColor.Transparent.ToString())
+                                {
+                                    tempList += variable.Name + ";";
+
+                                }
+                            }
+                        }
+                    }
+                    <div style="width: 150px">
+                        <label id="user-tag-list" title="@tempList">@tempList</label>
+                        <input id="hiddenUserDevices" value="" type="hidden" />
+                    </div>
+            </text>)))
+
+            }
+
+            <input type="hidden" value="@ViewBag.Roles" id="Roles" name="Roles" />
+            @Html.Hidden("SelectedRow", null)
+            @Html.Hidden("CurrentStatus", null)
+            @Html.Hidden("tagsSelect", null)
+            @Html.Hidden("EmailUser", null)
+            @Html.Hidden("type", "user")
+            @*Test GroupLinks*@
+            @Html.Hidden("left-text", "User(s)")
+            @Html.Hidden("right-text", "Registration(s)")
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var id;
+        var band = true;
+        var bandContentPartial = false;
+
+
+        $(document).on("click", "table tbody tr", function () {
+
+            var idRow = $(this).find("#id").val();
+
+            if (idRow == undefined || idRow.trim().length == 0) return;
+
+            $("#SelectedRow").val("");
+            $("#tagsSelect").val("");
+            $("#EmailUser").val("");
+            $("#CurrentStatus").val("");
+            band = false;
+
+            $("table tbody tr.selectedRow").removeClass('selectedRow');
+            $(this).toggleClass('selectedRow');
+
+            var tag = $(this).find("#user-tag-list").attr("title");
+            var mail = $(this).find("#email").val();
+            var status = $(this).find("#status").val();
+
+            $("#SelectedRow").val(idRow);
+            $("#tagsSelect").val(tag);
+            $("#EmailUser").val(mail);
+            $("#CurrentStatus").val(status);
+
+            LoadNavigatorTabs(tag);
+
+            SelectedItemAction();
+        });
+
+        $(document).ready(function () {
+
+            $(".content-tags").jScrollPane();
+
+            if ($("table tbody tr input#id").length > 0) {
+                $("table tbody tr.selectedRow").removeClass("selectedRow");
+                $("table tbody tr:eq(0)").toggleClass("selectedRow");
+                $("table tbody tr.selectedRow").each(function () {
+                    var idRow = $(this).find("#id").val();
+                    var tag = $(this).find("#user-tag-list").attr("title");
+                    var status = $(this).find("#status").val();
+                    var mail = $(this).find("#email").val();
+                    $("#SelectedRow").val(idRow);
+                    $("#tagsSelect").val(tag);
+                    $("#CurrentStatus").val(status);
+                    $("#EmailUser").val(mail);
+
+                    LoadNavigatorTabs(tag);
+                });
+            }
+        });
+
+        function SelectedItemAction() {
+            $("#content-partial").empty();
+            $("#content-partial").css("display", "none");
+            bandContentPartial = false;
+        }
+
+        function ShowContentPartial(actionController) {
+            UserIsAutenticated();
+            $("#content-partial").empty();
+            if (bandContentPartial) {
+                $("#content-partial").css("display", "none");
+                bandContentPartial = false;
+            } else {
+                var urlAction = "";
+                var id = $("#SelectedRow").val();
+                switch (actionController) {
+                    case "inviteuser":
+                        urlAction = '@Html.Raw(Url.Action("InviteUser", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))';
+                        break;
+                    case "edit":
+                        urlAction = '@Html.Raw(Url.Action("Edit", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                        break;
+                    case "delete":
+                        urlAction = '@Html.Raw(Url.Action("Delete", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                        break;
+                    case "changeuserrole":
+                        urlAction = '@Html.Raw(Url.Action("ChangeRole", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                        break;
+                    case "details":
+                        urlAction = '@Html.Raw(Url.Action("Details", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                        break;
+                    case "resetpassword":
+                        urlAction = '@Html.Raw(Url.Action("ResetPassword", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?id=' + id;
+                        break;
+                }
+                bandContentPartial = true;
+
+                if (actionController == 'resetpassword') {
+                    bandContentPartial = false;
+                }
+
+                $.ajax({
+                    url: urlAction,
+                    cache: false,
+                    datatype: "html",
+                    success: function (data) {
+                        $("#content-partial").html(data);
+                    }
+                });
+                $("#content-partial").css("display", "inline-block");
+            }
+        }
+
+        $(document).on("submit", "#editUserForm", function () {
+            $.validator.unobtrusive.parse("#editUserForm");
+            var evaluation = $("#editUserForm").valid();
+            return evaluation;
+        });
+
+        function OnSuccessEditUser(userData) {
+            commitEditUserOnUI(userData);
+        }
+
+        function OnFailureEditUser(ajaxContext) {
+            var response = ajaxContext.get_response();
+            var statusCode = response.get_statusCode();
+            alert('Failure: ' + statusCode);
+        }
+
+        $("#fileUpload01").live("change", function () {
+            $("#nameFile01").text($(this).val());
+        });
+
+        $(document).on("click", "#buttonFile01", function () {
+            $("#fileUpload01").click();
+        });
+
+
+        $(document).on("click", "div.buttonTag", function () {
+            //AssignTagTagsUI();
+            alert("AssignTag not defined, fix it!");
+        });
+
+        function LoadNavigatorTabs(tagselect) {
+            $('#email-user').text($('#EmailUser').val());
+            $('#state-user').text($('#CurrentStatus').val());
+            $('#tabletag').remove();
+
+            var listAllTag = '@Html.Raw(Json.Encode(@listTag))';
+
+            AppendToTags(listAllTag, tagselect);
+        }
+
+        function AppendToTags(listalltag, tags) {
+
+            var cont = 0;
+            var valuetag = [];
+            var arrTag = [];
+            if (tags != null) {
+                arrTag = tags.split(";");
+            }
+            for (var i = 0; i < arrTag.length; i++) {
+                if (arrTag[i] != null) {
+                    for (var j = 0; j < listalltag.length; j++) {
+                        if (arrTag[i] == listalltag[j].Name && cont == 0) {
+                            valuetag.push(listalltag[j]);
+                            cont++;
+                            break;
+                        }
+                    }
+                    cont = 0;
+                }
+            }
+            var tablehead = '';
+            var band1 = true;
+            var table = $('<table id="tabletag" class="listing-border"></Table>');
+            tablehead = '<thead><tr class="gridhead"><td>Name</td><td>Category</td><td>Color</td><td>Type</td></tr></thead><tbody>';
+            for (var q = 0; q < valuetag.length; q++) {
+                if (band1) {
+                    tablehead = tablehead + '<tr class="td-dark"><td>' + valuetag[q].Name + '</td><td>' + valuetag[q].Category + '</td><td>' + valuetag[q].Color + '</td><td>' + valuetag[q].Type + '</td></tr>';
+                    band1 = false;
+                }
+                else {
+                    tablehead = tablehead + '<tr class="td-light"><td>' + valuetag[q].Name + '</td><td>' + valuetag[q].Category + '</td><td>' + valuetag[q].Color + '</td><td>' + valuetag[q].Type + '</td></tr>';
+                    band1 = true;
+                }
+            }
+            tablehead = tablehead + '</tbody>';
+            table.append(tablehead);
+            $("#tab2-content").append(table);
+        }
+
+    </script>

@@ -1,0 +1,43 @@
+﻿@using System.Drawing
+@using Lok.Unik.ModelCommon.Client
+
+ <div id='user-grid'>
+       @{
+            var grid = new WebGrid(Model, defaultSort: "FirstName", rowsPerPage: 11, ajaxUpdateContainerId: "user-grid", sortFieldName: "TimeRegistered");
+            @grid.GetHtml(fillEmptyRows:true,tableStyle: "listing-border", headerStyle: "gridhead", footerStyle: "paging", rowStyle: "td-dark", alternatingRowStyle: "td-light", selectedRowStyle: "webgrid-selected-row",
+                                columns: grid.Columns(
+                                    grid.Column("Pass Code", format: @<div class="passcodetable" style="width:320px;">
+                                        <label class="passcode" title="@item.Name">@item.Name</label>
+                                        <input type="hidden" id="row" value="@item.Id"/>
+                                    </div>),
+                                    grid.Column("Type", format: @<div>
+                                        <label class="deviceType" title="@item.Type">@item.Type</label>
+                                    </div>),
+                                    grid.Column("Tags", format:@<text>
+                                    @{
+                                        var tempList = string.Empty;
+                                        if (item.Tags != null)
+                                        {
+                                            foreach (var variable in item.Tags)
+                                            {
+                                                if (variable.Type == TagType.ItemRegistration && variable.Category.Color != KnownColor.Transparent)
+                                                {
+                                                    tempList += variable.Attribute + ";";
+                                                }
+
+                                            }
+                                        }     
+                                        <div class="tagstable" style="width: 460px;">
+                                            <label id="tags" title="@tempList">@tempList</label>
+                                            <input type="hidden" id="tags1" value="@tempList"/>
+                                        </div>
+            }
+            </text>)))
+            <input type="submit" value="0" hidden="true" style="display: none" />
+        
+            @Html.Hidden("SelectedRow", "")
+            @Html.Hidden("NameItem", "" )
+            @Html.Hidden("tagsSelectDelete", null)
+            @Html.Hidden("type", "itemregistration")
+         }   
+    </div>

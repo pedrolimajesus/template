@@ -1,0 +1,21 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#4.0" #>
+<#@ output extension=".generated.cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(TargetDir)TAC.dll" #>
+
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="AppComponents" #>
+<#@ import namespace="AppComponents.Dynamic" #>
+<#@ import namespace="AppComponents.Dynamic.Lambdas" #>
+<#@ import namespace="AppComponents.Dynamic.Projection" #>
+
+
+
+
+<#+
+IEnumerable<TypeProjection> Projections = Enumerable.Empty<TypeProjection>();
+#>

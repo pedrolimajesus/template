@@ -1,0 +1,159 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Shrike.DAL.Manager
+@model Shrike.UserManagement.BusinessLogic.Models.OwnerInvitationModel
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.id = Model.Id;
+    Layout = null;
+    string rol = ViewBag.InvitationRol;
+    const string formId = "editInvitationForm";
+    var timeZoneService = AppComponents.Catalog.Factory.Resolve<Shrike.TimeZone.Contracts.ITimeZoneService>();
+}
+
+<div id="div-add-device-form" style="height: 223px;">
+    @using (Html.BeginForm("Edit", "OwnerInvitation", FormMethod.Post, new { id = formId, enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset class="group-details-ownerinvitations">
+            <legend class="hide"></legend>
+            <div class="group-title-ownerinvitation">Edit Invitation</div>
+            <div class="group-content-ownerinvitation" style="height: 150px;">
+                <div class="content-middle">
+                    <div class="list">
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.SentTo)</div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.SentTo, new { @readonly = "readonly", @class = "home-text-field" })
+                                @Html.ValidationMessageFor(model => model.SentTo)
+                            </div>
+                        </div>
+                        @{
+        if (rol == DefaultRoles.TenantOwner)
+        {   
+                            <div class="row-form">
+                                <div class="editor-label">@Html.LabelFor(model => model.Tenancy)</div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Tenancy)
+                                    @Html.ValidationMessageFor(model => model.Tenancy)
+                                </div>
+                            </div>
+        }
+                        }
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.ExpirationTime)</div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.ExpirationTime)
+                                @Html.ValidationMessageFor(model => model.ExpirationTime)
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.AuthorizationCode)</div>
+                            <div class="editor-field">
+                                @{
+        var authorization1 = string.Empty;
+        var cont = 0;
+        if (!string.IsNullOrEmpty(Model.AuthorizationCode))
+        {
+            foreach (var s in Model.AuthorizationCode)
+            {
+                if (cont < 26)
+                {
+                    authorization1 = authorization1 + s;
+                }
+
+                cont++;
+            }
+        }
+        authorization1 += "...";
+                                }
+                                <label title="@Model.AuthorizationCode">@authorization1</label>
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.DateSent)</div>
+                            <div class="editor-field">@(timeZoneService.ConvertUtcToLocal(Model.DateSent, "MM/dd/yyyy HH:mm:ss"))</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-middle">
+                    <div class="list">
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.AcceptingUserName)</div>
+                            <div class="editor-field">@Html.DisplayFor(model => model.AcceptingUserName)</div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.Role)</div>
+                            <div class="editor-field">@Html.DisplayFor(model => model.Role)</div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.Status)</div>
+                            <div class="editor-field">@Html.DisplayFor(model => model.Status)</div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">@Html.LabelFor(model => model.ResentTimes)</div>
+                            <div class="editor-field">@Html.DisplayFor(model => model.ResentTimes)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row-form-new">
+            <div class="list">
+                <div class="submit-button">
+                    @Html.HiddenFor(m => m.Tenancy)
+                    @Html.HiddenFor(m => m.Id)
+                    <input type="submit" value="Update Invitation" onclick="updateInvitation(this); return false;" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    var loadingScreenEditId = '';
+    var loadingImageUrl = '@Url.Content("~/Content/Theme/Default/Images/icon-loading.gif")';
+
+    var formId = '#@formId';
+
+    $(document).ready(function () {
+        loadingScreenEditId = 'screenId' + (new Date()).getTime();
+        createOrUpdateLoadingScreen("updating an invitation...", loadingImageUrl, loadingScreenEditId);
+    });
+
+    function updateInvitation(button) {
+        var form = $(formId);
+        window.jQuery.validator.unobtrusive.parse(formId);
+
+        if (form.valid()) {
+            var caller = $(button);
+
+            submitFormPost(form, caller, "", '', loadingScreenEditId);
+        } else {
+            $("#SentTo").live("focusout,mouseup", function () {
+                if ($("#SentTo") == "") {
+                    $(this).css({
+                        border: "1px solid #CD0A0A",
+                        "background-color": "#FEF1EC"
+                    });
+                }
+
+            });
+
+            $("#SentTo").live("keyup, click", function () {
+                if ($(this).attr("value") == "") {
+                    $(this).css({
+                        border: "1px solid #CD0A0A",
+                        "background-color": "#FEF1EC"
+                    });
+                } else {
+                    $(this).css({
+                        border: "1px solid #D5D5D5",
+                        "background-color": "#FFFFFF"
+                    });
+                }
+
+            });
+        }
+    }
+</script>

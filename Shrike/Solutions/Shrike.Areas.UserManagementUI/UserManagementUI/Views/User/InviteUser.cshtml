@@ -1,0 +1,138 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using AppComponents.Web
+@using Shrike.Tenancy.DAL.Managers
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.User
+@{
+    Layout = IsAjax ? string.Empty : "~/Views/Shared/_ShrikePartialLayout.cshtml";
+
+    ViewBag.Title = "Index";
+    var systemowner = false;
+    if (TempData["MessageError"] != null)
+    {
+    <div id="messageTempData" hidden="hidden">@TempData["MessageError"]</div>
+    }
+    var tenantsCount = ViewBag.Tenants == null ? 0 : ViewBag.Tenants.Count;
+}
+<div id="CreateOwnerInvitation">
+    <div class="divNewOwnerInvitation">
+        @using (Html.BeginForm("InviteUser", "User", FormMethod.Post, new { id = "IdFormInviteUser" }))
+        {
+            @Html.ValidationSummary(true)
+
+            <fieldset class="group-details-ownerinvitations">
+                @*  <legend>&nbsp;</legend>*@
+                <div class="group-title-ownerinvitation">
+                    Invite User
+                </div>
+                <div id="content-info" class="group-content-ownerinvitation" style="height: 170px;">
+                    <div class="list">
+                        <div class="row-form-new">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.Roles)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(m => m.Roles, new SelectList(ViewBag.Roles, "Value", "Value"))
+                                @Html.ValidationMessageFor(model => model.Roles)
+                            </div>
+                        </div>
+                        @{
+            if (TenantManager.CurrentTenancy.Equals(Tenants.SuperAdmin, StringComparison.InvariantCultureIgnoreCase))
+            {
+                systemowner = true;
+                            <div class="row-form-new">
+                                <div class="editor-label">
+                                    @Html.Label("Tenant:")
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownList("selectedTenant", new SelectList(ViewBag.Tenants, "Key", "Value"))
+                                </div>
+                            </div>
+            }
+                        }
+                        <div class="row-form-new">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Email)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Email)
+                                <div id="errorMessage"></div>
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+                        <div class="row-form-new">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.ExpirationTime)
+                            </div>
+                            <div class="editor-field">
+                                <div class="block-textfield">
+                                    @Html.TextBoxFor(model => model.ExpirationTime, new { @MaxLength = "2", @Type="number" })
+                                    @Html.ValidationMessageFor(model => model.ExpirationTime)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-button" id="send">
+                        <input type="button" value="Invite" id="invite-user-submit" onclick="setTimeout('ValidateInviteUser(this);', 500); return false;" />
+                    </div>
+                </div>
+            </fieldset>
+            
+            @Html.Hidden("currentContext", null)
+            
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var isSuperAdmin = '@systemowner';
+        if (isSuperAdmin == "True") {
+            if (@tenantsCount < 1) {
+                $("#content-partial").css("display", "none");
+                alert("Cannot invite users without a tenancy");
+            }
+            $("#content-info").css("height", "215px");
+        }
+
+        $("#Email").css({
+            border: "1px solid #D5D5D5",
+            "background-color": "white"
+        });
+        if (($("#messageTempData").text()) != null && ($("#messageTempData").text()) != "") {
+            var message = $("#messageTempData").text();
+            $("#errorMessage").text(message);
+            $("#errorMessage").css({
+                color: "#CD0A0A",
+                "font-size": "11px",
+                "margin-top": "2px"
+            });
+            $("#Email").css({
+                border: "1px solid #CD0A0A",
+                "background-color": "#FEF1EC"
+            });
+        }
+
+        $("#Email").live("keyup, click", function () {
+            $(this).css({
+                border: "1px solid #D5D5D5",
+                "background-color": "white"
+            });
+            $("#errorMessage").attr("hidden", "hidden");
+        });
+
+        $("#currentContext").val(true);
+    });
+
+    function ValidateInviteUser() {
+        window.jQuery.validator.unobtrusive.parse("#IdFormInviteUser");
+        if (window.jQuery("#IdFormInviteUser").valid()) {
+            window.jQuery('#IdFormInviteUser').submit();
+        } else {
+            $("#Email").css({
+                border: "1px solid #CD0A0A",
+                "background-color": "#FEF1EC"
+            });
+        }
+    }
+</script>

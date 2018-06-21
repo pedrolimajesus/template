@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "AssignGroup";
+    ViewBag.IsAjax = this.Request.IsAjaxRequest();
+    const string formId = "addGroupLinkForm";
+    var options = new AjaxOptions
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "group-link-big-container",
+        OnSuccess = "OnSuccessAddGroup",
+        OnFailure = "OnFailureAddGroup"
+    };
+    
+}
+@model Shrike.Areas.TagsUI.TagsUI.Models.GroupLink
+<div class="group-link-big-container">
+    @using (ViewBag.IsAjax
+                              ? Ajax.BeginForm("AssignGroup", "GroupLink", new { area = Shrike.Areas.TagsUI.AreaPortableName.AreaName }, options,
+                              new { id = formId })
+
+                              : Html.BeginForm("AssignGroup", "GroupLink", new { area = Shrike.Areas.TagsUI.AreaPortableName.AreaName }
+                                                                               , FormMethod.Post, new { id = formId }))
+    {
+    
+        @Html.ValidationSummary(true)
+     
+        <div>
+            @Html.LabelFor(m => m.Name)
+        </div>
+        <div class="group-link-container">
+            @Html.EditorFor(m => m.Name, new { @class = "classTextArea " })
+            @Html.ValidationMessageFor(m => m.Name, "*")
+        </div>
+        <div class="group-link-container" id="left-group-text">
+            @Html.DisplayFor(m => m.LeftText)
+        </div>
+        <div class="group-link-container">
+            @Html.DropDownList("Name", new SelectList(Model.LeftGroupTags, "Id", "Name"), new { id = "left-tag-list" })
+        </div>
+        <div class="group-link-container">
+            To
+        </div>
+        <div class="group-link-container" id="right-group-text">
+            @Html.DisplayFor(m => m.RightText)
+        </div>
+        <div class="group-link-container">
+            @{
+        if (Model.RightGroupTags != null)
+        {
+                @Html.DropDownList("Name", new SelectList(Model.RightGroupTags, "Id", "Name"), new { id = "right-tag-list" })
+        }
+            }
+        </div>
+    }
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        window.jQuery.validator.unobtrusive.parse("#addGroupLinkForm");
+        $('#send input').removeAttr("disabled");
+    });
+
+    function AssignGroup(currentUrl) {
+        window.jQuery.validator.unobtrusive.parse("#addGroupLinkForm");
+
+        var linkName = document.getElementById("Name").value;
+        var leftText = $("#left-group-text").innerText;
+        var rightText = $("#right-group-text").innerText;
+        var type = $("#type").val();
+        var groupOne = GetGroupOne();
+        var groupTwo = GetGroupTwo();
+
+        var groupLink = { Name: linkName };
+        var callUrl = '@Url.Action("AssignGroup", "GroupLink", new { area = Shrike.Areas.TagsUI.AreaPortableName.AreaName })?groupOne=' + groupOne + '&groupTwo=' + groupTwo + '&type=' + type;
+
+        if (window.jQuery("#addGroupLinkForm").valid()) {
+            $.ajax({
+                type: 'POST',
+                url: callUrl,
+                data: JSON.stringify(groupLink),
+                contentType: 'application/json',
+                success: function (data) {
+                    window.location.href = currentUrl;
+                }
+            });
+
+            $("#AssignGroupLink").dialog("close");
+        }
+    }
+
+    function GetGroupOne() {
+        return $("#left-tag-list option:selected").val();
+    }
+
+    function GetGroupTwo() {
+        return $("#right-tag-list option:selected").val();
+    }
+</script>

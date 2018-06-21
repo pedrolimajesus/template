@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TACBitTorrent.TorrentHelper">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAUAAAAAAAgAAAABAAQAQAAQAAAAAAAAAAAIAAABg=</HashCode>
+      <FileName>TorrentHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TACBitTorrent.Interfaces.ITorrentClientManager">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAABAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITorrentClientManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TACBitTorrent.Interfaces.ITrackerFactory">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITrackerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TACBitTorrent.Interfaces.ITorrentCreator">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITorrentCreator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TACBitTorrent.Interfaces.ITracker">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITracker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TACBitTorrent.Interfaces.ITorrentDownloader">
+    <Position X="6.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACgAAAEAAAAAaAAAAAEAAAAAIAAAJAgAAAA=</HashCode>
+      <FileName>Interfaces\ITorrentDownloader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TACBitTorrent.Interfaces.ITorrent">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITorrent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TACBitTorrent.Interfaces.ITorrentSeeder">
+    <Position X="2" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITorrentSeeder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

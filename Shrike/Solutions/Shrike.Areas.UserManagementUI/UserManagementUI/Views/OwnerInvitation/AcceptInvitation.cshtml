@@ -1,0 +1,53 @@
+﻿@using System.Web.Mvc.Html
+@model Shrike.UserManagement.BusinessLogic.Models.OwnerInvitationModel
+
+@{
+    ViewBag.Title = "Accept Customer Invitation";
+    Layout = "~/Areas/UserManagementUI/Views/Shared/_AccountPartialLayout.cshtml";
+}
+<div class="message-info-Header">
+            <h1>@ViewBag.Title.</h1>
+</div>
+
+<h3 class="message-info-subHeader">Hi @Model.SentTo</h3>
+
+<p class="message-info">
+    Do you accept the invitation to be the administrator of @Model.Tenancy ?
+</p>
+
+<div id="div-accept-invitation-form">
+    @using (Html.BeginForm())
+    {
+        <div class="submit-button">
+            @Html.Hidden("accepted", string.Empty)
+            <input type="submit" id="accept" name="accept" value="Accept" onclick="acceptInvitation(this); return false;" />
+            <input type="submit" id="reject" name="reject" value="Reject" onclick="rejectInvitation(this); return false;" />
+        </div>
+    }
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    var loadingScreenAcceptInvitationId = '';
+    var loadingImageUrl = '@Url.Content("~/Content/Theme/Default/Images/icon-loading.gif")';
+
+    $(document).ready(function () {
+        loadingScreenAcceptInvitationId = 'screenId' + (new Date()).getTime();
+        createOrUpdateLoadingScreen("", loadingImageUrl, loadingScreenAcceptInvitationId);
+    });
+
+    function acceptInvitation(button) {
+        var form = $("#div-accept-invitation-form form");
+        var caller = $(button);
+        $("#accepted").val("True");
+        submitFormPost(form, caller, "accepting an invitation...", '', loadingScreenAcceptInvitationId);
+    }
+
+    function rejectInvitation(button) {
+        var form = $("#div-accept-invitation-form form");
+        var caller = $(button);
+        $("#accepted").val("False");
+        submitFormPost(form, caller, "rejecting an invitation...", '', loadingScreenAcceptInvitationId);
+    }
+</script>
+}

@@ -1,0 +1,490 @@
+﻿@using Lok.Unik.ModelCommon.Client
+@{
+    Layout = null;
+    var _statusEnabled = AppComponents.Web.UserStatus.Enabled;
+    var _statusDisabled = AppComponents.Web.UserStatus.Disabled;
+    var _statusDeleted = AppComponents.Web.UserStatus.Deleted;
+    var _statusInvited = AppComponents.Web.UserStatus.Invited;
+    var _statusNew = AppComponents.Web.UserStatus.New;
+    var _statusRejectInvitation = AppComponents.Web.UserStatus.RejectInvitation;
+    ViewBag.CurrentUrl = Html.Raw(Request.Url.AbsoluteUri);
+    var loadingImg = Url.Content("~/Content/Theme/Default/images/loading.png");
+    var commands = ViewBag.ListCommandData as List<ViewCommand>;
+}
+
+@if (ViewBag.ShowOptions == "true" && ViewBag.ListCommandData != null)
+{
+    <div id="action-menu">
+        <div id="action-content">
+            <div class="action-header">Actions</div>
+            @if (commands != null && commands.Any())
+            {
+                foreach (var command in commands)
+                {
+                    var eventOnclick = command.EventOnclick;
+                    var altImg = command.AltImage;
+                    var srcImg = command.SrcImage;
+                    var titleAction = command.Title;
+                <div class="action-option" onclick=" setSelected(this); @eventOnclick; ">
+                    <div class="action-option-icon">
+                        <img alt="@altImg" src="@Url.Content(srcImg)"/>
+                    </div>
+                    <div class="action-option-title">@titleAction
+                    </div>
+                </div>
+                }
+            }
+        </div>
+    </div>
+}
+
+<div id="AssignGroupLink" title="Assign Group" hidden="true" style="display: none">
+</div>
+<div id="RemoveGroupLink" title="Remove Group" hidden="true" style="display: none">
+</div>
+<div id="AssignTag" title="Assign Tag" hidden="true" style="display: none">
+</div>
+
+<div id="mydiv" title="Delete Selected Item" hidden="true" style="display: none">
+    <fieldset id="userAddFieldset" title="delete item">
+        <legend class="subtitle-container">Delete Item</legend>
+        <h4>Are you sure you want to delete this Item?</h4>
+        <p id="nameDevice">
+        </p>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+    var currentController = '@ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue';
+
+    var statusEnabled = '@_statusEnabled';
+    var statusDisabled = '@_statusDisabled';
+    var statusDeleted = '@_statusDeleted';
+    var statusInvited = '@_statusInvited';
+    var statusNew = '@_statusNew';
+    var statusRejectInvitation = '@_statusRejectInvitation';
+
+    function CreateInvitation() {
+        window.ShowContentPartial("create");
+    }
+
+    function EditInvitation() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == "" || id.length == 0 || id == undefined || id == null) {
+            alert("Please select an Invitation");
+        } else {
+            window.ShowContentPartial("edit");
+        }
+    }
+
+    function DetailsInvitation() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == "" || id.length == 0 || id == undefined || id == null) {
+            alert("Please select an Invitation");
+        } else {
+            var url = '@Url.Action("Details", "OwnerInvitation", new { area = "UserManagementUI", id = "id" })';
+            url = url.replace("id", id);
+            location.href = url;
+        }
+    }
+
+    function DeleteInvitation() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select an Invitation");
+        } else {
+            window.ShowContentPartial("delete");
+        }
+    }
+
+    function SendEmailInvitation() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select an Invitation");
+        } else {
+            window.ShowContentPartial("sendemail");
+        }
+    }
+
+    function InviteNewUser() {
+        window.ShowContentPartial("inviteuser");
+    }
+
+    function ResetUserPassword() {
+
+        var id = $("#SelectedRow").val();
+        if (id == undefined || id == "" || id == null || id.trim().length == 0) {
+            alert("Please select a User");
+            window.ShowContentPartial("resetpassword");
+        } else {
+            window.ShowContentPartial("resetpassword");
+        }
+    }
+
+    function EnableUser() {
+        var id = $("#SelectedRow").val();
+        if (id == undefined || id == "" || id == null || id.trim().length == 0) {
+            alert("Please select a User");
+        } else {
+            var currentstatus = $("#CurrentStatus").val().trim();
+
+            if (currentstatus == statusDisabled) {
+                var url = '@Html.Raw(Url.Action("EnableDisable", "User", new { id = "id", status = _statusEnabled, area = "UserManagementUI" }))';
+                url = url.replace("id", id);
+                location.href = url;
+            } else {
+                if (currentstatus == statusEnabled)
+                    alert("This User is already Enabled.");
+            }
+        }
+    }
+
+    function DisableUser() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select a User");
+        } else {
+            var currentstatus = $("#CurrentStatus").val().trim();
+
+            if (currentstatus == statusEnabled) {
+                var url = '@Html.Raw(Url.Action("EnableDisable", "User", new { id = "id", status = _statusDisabled, area = "UserManagementUI" }))';
+                url = url.replace("id", id);
+
+                location.href = url;
+            } else {
+                alert("This User cannot be Disabled.");
+            }
+        }
+    }
+
+    function ChangeRoleUser() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select a User");
+        } else {
+            var currentstatus = $("#CurrentStatus").val().trim();
+
+            if (currentstatus != statusInvited) {
+                window.ShowContentPartial("changeuserrole");
+            }
+            else {
+                if (currentstatus == statusInvited)
+                    alert("The users in state " + statusInvited + " don't have a rol assigned.");
+            }
+        }
+
+    }
+
+    function AssignTagGlobalUI() {
+        window.UserIsAutenticated();
+
+        var id = $("#SelectedRow").val();
+        var entity = $("#type").val();
+
+        var validateNumberTags = "0";
+
+        if ($("#QuantityTags") != null && $("#QuantityTags").val() != undefined)
+            validateNumberTags = $("#QuantityTags").val().trim();
+
+        var validateCategoryTags = "";
+        if ($("#ValidateCategoryTags") != null && $("#ValidateCategoryTags").val() != undefined)
+            validateCategoryTags = $("#ValidateCategoryTags").val().trim();
+
+        if (id == undefined || id == "" || id.length == 0) {
+            alert("Please Select a Row.");
+        } else {
+            if (entity == undefined || entity == "" || entity.length == 0) {
+                alert("Not found entity value.");
+            } else {
+                $('#AssignTag').dialog({
+                    modal: true,
+                    resizable: false,
+                    width: 480,
+                    height: 301,
+                    open: function () {
+                        $(this).load('@Html.Raw(Url.Action("AssignTag", "Tag", new { area = "TagsUI" }))?id=' + id + "&entity=" + entity + "&validateQuantityTags=" + validateNumberTags + "&validateCategoryTags=" + validateCategoryTags);
+                        $(this).dialog("option", "position", { my: "left-top", at: "left+600 top+100", of: window });
+                        $(this).dialog({
+                            buttons: {
+                                "Add Tag": function () {
+                                    $(this).dialog("close");
+
+                                    if (window.AssignTagTagsUI) window.AssignTagTagsUI();
+                                    else alert("window.AssignTagTagsUI not found");
+
+                                },
+                                Cancel: function () {
+                                    $(this).dialog("close");
+                                }
+                            }
+
+                        });
+                    }
+                });
+        }
+    }
+
+    return true;
+}
+
+function EditTagUser() {
+
+    UserIsAutenticated();
+
+    var id = $("#SelectedRow").val().trim();
+
+    var type = "user";
+    var pageSend = "edit";
+    var alert1 = "";
+    $('#').dialog(
+    {
+        modal: true,
+        resizable: false,
+        width: 480,
+        height: 301,
+        open: function () {
+            $(this).load('@Html.Raw(Url.Action("NewSelectedTag", "Tag", new { area = "TagsUI" }))&id=' + id + '&objectValue=' + type + "&pageSend=" + pageSend + "&alertCategory=" + alert1);
+            $(this).dialog("option", "position", { my: "Left top", at: "left+600 top+100", of: window });
+            $(this).dialog({
+                buttons: {
+                    "Add Tag": function () {
+                        $(this).dialog("close");
+                        window.AssignTagGlobalUI();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+    });
+
+}
+
+function AddItemRegistrationGlobalUI() {
+    //alert("AddItemRegistration GlobalUI");
+    $("#SelectedRow").val(null);
+
+    LoadContentAddItemRegistration();
+}
+
+function RemoveItemRegistration() {
+    UserIsAutenticated();
+
+    var selecId = $("#SelectedRow").val().trim();
+    if (selecId == null || selecId.length == 0 || selecId == '{ Value =  }') {
+        alert("Select an Item Registration");
+    } else {
+        var selectName = $("#NameItem").val().trim();
+        $('#NameItem').text(selectName);
+        $('#content-OptionItemRegistration').css({ "display": "none" });
+        bandDisplayAddDeviceRegistration = false;
+        $('#content-OptionItemRegistration').empty();
+        $('#mydiv').dialog(
+            {
+                modal: true,
+                resizable: false,
+                height: 250,
+                open: function (event, ui) {
+                    $(this).dialog("option", "position", { my: "left top", at: "left+600 top+100", of: window });
+                    var buttonClicked = true;
+                    $(this).dialog({
+                        buttons: {
+                            "Yes": function () {
+                                if (buttonClicked) {
+                                    buttonClicked = false;
+                                    confirmDeleteItemRegistration();
+                                    $("<div class='wait-circle' style='text-align: center; font-weight:bold;'><img src='@loadingImg' alt='loading...' /></div>").prependTo(this);
+                                    }
+                                },
+                                No: function () {
+                                    if (buttonClicked) {
+                                        buttonClicked = false;
+                                        $(this).dialog("close");
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        function ClearTag() {
+            var id = $("#SelectedRow").val().trim();
+
+            if (id == undefined || id == "" || id.length == 0) {
+                alert("Please Select a Row.");
+                return true;
+            }
+
+            var entity = $("#type").val().trim();
+            var sentData = { "id": id, "entity": entity };
+
+            $.ajax({
+                type: 'POST',
+                url: '@Html.Raw(Url.Content("~/" + @Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy + "/TagsUI/Tag/Delete"))',
+                data: sentData,
+                complete: function () {
+                    switch (entity) {
+                        case "user":
+                            window.location.href = '@Html.Raw(Url.Content("~/" + @Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy + "/UserManagementUI/User/Index"))';
+                        break;
+                    case "itemregistration":
+                        window.location.href = '@Html.Raw(Url.Content("~/" + @Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy + "/ItemRegistrationUI/ItemRegistration/Index"))';
+                        break;
+                    default:
+                        window.PostAssignTagExtension(entity);
+                        break;
+                }
+            }
+            });
+    }
+
+    function EditUser() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select a User");
+        }
+        else {
+            window.ShowContentPartial("edit");
+        }
+    }
+
+    function DetailsUser() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select a User");
+        }
+        else {
+            window.ShowContentPartial("details");
+        }
+    }
+
+    function DeleteUser() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select a User");
+        }
+        else {
+            window.ShowContentPartial("delete");
+        }
+    }
+
+    function ResentEmail() {
+        var id = $("#SelectedRow").val().trim();
+        if (id == undefined || id == "" || id == null || id.length == 0) {
+            alert("Please select a User");
+        } else {
+            var url = '@Url.Action("Index", "OwnerInvitation", new { id = "id", area = "UserManagementUI" })';
+            url = url.replace("id", id);
+            location.href = url;
+        }
+    }
+
+    function AssignGroup() {
+        UserIsAutenticated();
+        var entityType = $("#type").val().trim();
+        var leftText = $("#left-text").val().trim();
+        var rightText = $("#right-text").val().trim();
+
+        var url = '@Html.Raw(Url.Action("AssignGroup", "GroupLink", new { area = "TagsUI" }))?type=' + entityType + '&leftText=' + leftText + '&rightText=' + rightText;
+
+        var currentUrl = '@ViewBag.CurrentUrl';
+
+        var collectionsAny = false;
+        var scriptMessage = "To Assign Groups at least one entity must exists in both sides";
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                if (data == collectionsAny) {
+                    alert(scriptMessage);
+                } else {
+                    $('#AssignGroupLink').dialog(
+                        {
+                            modal: true,
+                            resizable: false,
+                            width: 450,
+                            height: 300,
+                            open: function () {
+                                $(this).load(url);
+                                $(this).dialog("option", "position", { my: "Left top", at: "left+600 top+100", of: window });
+                                $(this).dialog({
+                                    buttons: {
+                                        "Assign": function () {
+                                            window.AssignGroup(currentUrl);
+                                        },
+                                        Cancel: function () {
+                                            $(this).dialog("close");
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    );
+
+                }
+            }
+        });
+    }
+
+    function RemoveGroup() {
+        UserIsAutenticated();
+        var entityType = $("#type").val().trim();
+        var currentUrl = '@ViewBag.CurrentUrl';
+        var url = '@Url.Action("RemoveGroup", "GroupLink", new { type = "entityType", area = "TagsUI" })';
+        url = url.replace("entityType", entityType);
+        var anyGroups = false;
+        var message = "There is no Groups to Remove";
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                if (data == anyGroups) {
+                    alert(message);
+                } else {
+                    $('#RemoveGroupLink').dialog(
+                        {
+                            modal: true,
+                            resizable: false,
+                            width: 450,
+                            height: 300,
+                            open: function () {
+                                $(this).load(url);
+                                $(this).dialog("option", "position", { my: "Left top", at: "left+600 top+100", of: window });
+                                $(this).dialog({
+                                    buttons: {
+                                        "Remove": function () {
+                                            window.RemoveGroup(currentUrl);
+                                        },
+                                        Cancel: function () {
+                                            $(this).dialog("close");
+                                        }
+                                    }
+                                });
+                            }
+
+                        }
+                    );
+                }
+            }
+        });
+    }
+
+    function setSelected(currentPanel) {
+        $(".action-option-selected").each(function () {
+            var actionOption = $(this);
+            if (actionOption.hasClass("action-option-selected")) {
+                actionOption.removeClass("action-option-selected");
+                actionOption.addClass("action-option");
+            }
+        });
+
+        var currentPanelO = $(currentPanel);
+        currentPanelO.removeClass("action-option");
+        currentPanelO.addClass("action-option-selected");
+    }
+</script>

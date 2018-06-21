@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+    var title1 = "";
+    var title2 = "";
+    var onclick = "";
+}
+
+<div class='view-header'>
+    Views
+</div>
+
+<div id="rp1" class="view-option-hover">
+    <div class='view-option-icon'>
+    </div>
+    <div class='view-option-title'>
+        Tag Filter
+    </div>
+</div>
+<div id="rp0" class="view-option-hover-All" onclick="showAll()">
+    <label>All</label>
+</div>
+<div id="report-view-option1" class='report-view-option'>
+    <div id="accordion-data" class="view-option-content-collapse-open">
+        <div id="tag-filter-accordion" class="view-option-content-tags">
+            <!--Set Data in LoadFilters-->
+        </div>
+    </div>
+</div>
+
+<div id="rp2" class="view-option-hover">
+    <div class='view-option-icon'>
+    </div>
+    <div class='view-option-title'>
+        Category
+    </div>
+</div>
+<div id="action1" class="view-option" style="display: none;">
+    <div class="view-option-icon">
+    </div>
+    <div class="view-option-title">
+        <select id='select_filter_by_category' class="filter-by-category-select-op">
+            <!--Set data in FilterByCategory() -->
+        </select>
+    </div>
+</div>
+
+

@@ -1,0 +1,39 @@
+﻿
+
+@model Lok.Unik.ModelCommon.ItemRegistration.ItemRegistration
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    ViewBag.IsAjax = Request.IsAjaxRequest();
+    Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_ShrikePartialLayout.cshtml";
+
+    const string formId = "formDeleteDevice";
+
+    var ajaxOptions = new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "divDeleteItemRegistrationForm", OnSuccess = "OnSuccessDeleteDevice", OnFailure = "OnFailureDeleteDevice" };
+}
+<div id="divDeleteItemRegistrationForm" title="confirm delete Item">
+    @using (ViewBag.IsAjax ? Ajax.BeginForm("Delete", "ItemRegistration", ajaxOptions, new { id = formId })
+                           : Html.BeginForm("Delete", "ItemRegistration", FormMethod.Post, new { id = formId }))
+    {
+        @Html.ValidationSummary(true)
+        <h4>
+            Are you sure you wanto to delete this Item Registration?</h4>
+        @Html.HiddenFor(x => x.Id)
+        <h4>
+            -- @Html.DisplayFor(x => x.PassCode) --</h4>
+        if (!ViewBag.IsAjax)
+        {
+        <p>
+            <input type="submit" value="Delete" />
+        </p>
+        }
+    }
+</div>
+<script type="text/javascript">
+    
+    function OnSuccessDeleteItem() {
+        window.location.href = '@Html.Raw(Url.Action("Index", "ItemRegistration"))';
+        setTimeout(function () { $('#deviceRegistrationDialog').dialog("close"); });
+    }
+
+</script>

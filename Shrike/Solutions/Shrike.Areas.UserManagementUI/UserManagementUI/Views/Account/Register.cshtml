@@ -1,0 +1,222 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Shrike.Tenancy.DAL.Managers
+@using AppComponents.Web
+@using Shrike.UserManagement.BusinessLogic.Models
+@model RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Areas/UserManagementUI/Views/Shared/_AccountPartialLayout.cshtml";
+    var invitation = Session["Invitation"] as OwnerInvitationModel;
+    ViewBag.IsInvited = invitation != null;
+    ViewBag.Email = invitation == null ? string.Empty : invitation.SentTo;
+    var errorMessage = ViewBag.ErrorMessage;
+}
+
+<div class="message-info-header">
+    <h1 style="font-size: 1.5em;">@ViewBag.Title</h1>
+</div>
+<div class="login-content">
+    <div id="login-container">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+            @Html.ValidationSummary(true)
+
+            <fieldset id="fieldset-account-login">
+                <legend class="subtitle-container">Registration Form</legend>
+                <ol>
+                    <li>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.FirstName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(m => m.FirstName, new {@class = "home-text-field"})
+                                @Html.ValidationMessageFor(m => m.FirstName, "*")
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.LastName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(m => m.LastName, new {@class = "home-text-field"})
+                                @Html.ValidationMessageFor(m => m.LastName, "*")
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.UserName)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(m => m.UserName, new {@class = "home-text-field"})
+                                @Html.ValidationMessageFor(m => m.UserName, "*")
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.Email)
+                            </div>
+                            <div class="editor-field">
+                                @(this.ViewBag.IsInvited
+                                      ? this.Html.TextBoxFor(m => m.Email, new {@readonly = "readonly", @Value = ViewBag.Email})
+                                      : this.Html.TextBoxFor(m => m.Email, new {@class = "home-text-field"}))
+                                @Html.ValidationMessageFor(m => m.Email, "*")
+                            </div>
+                        </div>
+                    </li>
+                    @if (Model == null || (Model != null && (string.IsNullOrEmpty(Model.Password) || string.IsNullOrEmpty(Model.ConfirmPassword) || Model.Password != Model.ConfirmPassword)))
+                    {
+                        <li>
+                            <div class="row-form">
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.Password)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.PasswordFor(m => m.Password, new {@class = "home-text-field"})
+                                    @Html.ValidationMessageFor(m => m.Password, "*")
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row-form">
+                                <div class="editor-label">
+                                    @Html.LabelFor(m => m.ConfirmPassword)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "home-text-field"})
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "*")
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        if (Model != null && !string.IsNullOrEmpty(Model.Password) && !string.IsNullOrEmpty(Model.ConfirmPassword))
+                        {
+                            <li>
+                                <div class="row-form">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.Password)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.PasswordFor(m => m.Password, new {@class = "home-text-field"})
+                                        @Html.ValidationMessageFor(m => m.Password, "*")
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row-form">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.ConfirmPassword)
+                                    </div>
+                                    <div class="editor-field">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "home-text-field"})
+                                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "*")
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            @Html.HiddenFor(m => m.Password)
+                            @Html.HiddenFor(m => m.ConfirmPassword)
+                        }
+                    }
+                    @{
+                        if (!TenantManager.CurrentTenancy.Equals(Tenants.SuperAdmin, StringComparison.OrdinalIgnoreCase))
+                        {
+                            <li>
+                                <div class="row-form">
+                                    <div class="editor-label">
+                                        @Html.LabelFor(m => m.AuthenticationCode)
+                                    </div>
+                                    @{
+                                        var inv = Session["Invitation"] as OwnerInvitationModel;
+
+                                        if (inv == null)
+                                        {
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(m => m.AuthenticationCode, new {@class = "home-text-field"})
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="editor-field">
+                                                @Html.TextBoxFor(m => m.AuthenticationCode, new {@class = "home-text-field", @Value = inv.AuthorizationCode, @readonly = true})
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </li>
+                        }
+                    }
+                </ol>
+                <div class="submit-button">
+                    <input type="submit" value="Register" />
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.login-content').jScrollPane();
+        });
+
+        $("#Avatar").change(function() {
+            $("#nameFile01").text($(this).val());
+        });
+
+        $("#buttonFile01").click(function() {
+            $("#Avatar").click();
+        });
+
+        $("input[type=text]").live("change", function() {
+            $(this).val($(this).val().trim());
+        });
+
+        $("#ConfirmPassword").change(function() {
+            eval_confirm_password();
+        });
+
+        $("input[type=submit]").live("click", function() {
+            eval_confirm_password();
+        });
+
+        $(document).ready(function() {
+            var errorMessage = '@errorMessage';
+            if (errorMessage.length > 0) {
+                alert(errorMessage);
+            }
+        });
+
+        function eval_confirm_password() {
+            if ($("#Password").val() != $("#ConfirmPassword").val()) {
+                $("#ConfirmPassword").removeClass("input-validation-error");
+                $("#ConfirmPassword").addClass("input-validation-error");
+                $("#ConfirmPassword").next().removeClass("field-validation-error");
+                $("#ConfirmPassword").next().addClass("field-validation-error");
+            } else {
+                $("#ConfirmPassword").removeClass("input-validation-error");
+                $("#ConfirmPassword").next().removeClass("field-validation-error");
+                $("#ConfirmPassword").next().addClass("field-validation-valid");
+            }
+        }
+
+        $("form").submit(function() {
+            var evaluation = $("#Password").val() == $("#ConfirmPassword").val();
+            return evaluation;
+        });
+
+    </script>
+}

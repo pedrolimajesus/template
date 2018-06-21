@@ -1,0 +1,8 @@
+﻿{
+"Subject" : "Lo-K Systems Customer Invitation: {0}",
+"Content" : "<h1>Hello {1}!</h1>
+<p>Use the following link in order to start using Lo-K Systems for your business</p>
+<p><a href='{2}'>{2}</a></p>
+Or you can register on the system as a user using the following form: <br/><a href='{3}'>{3}</a><br/>
+Then you can use this code after registering: {4}"
+}

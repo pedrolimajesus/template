@@ -1,0 +1,29 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\TACWeb.dll.config
+C:\Global InSight\workspace\Shrike\bin\Debug\TACWeb.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\TACWeb.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csproj.App.config
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACWeb.dll.config
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACWeb.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACWeb.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csproj.App.config
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.pdb
+F:\New folder\workspace\Shrike\bin\Debug\TACWeb.dll.config
+F:\New folder\workspace\Shrike\bin\Debug\TACWeb.dll
+F:\New folder\workspace\Shrike\bin\Debug\TACWeb.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csproj.App.config
+F:\New folder\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.dll
+F:\New folder\workspace\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.pdb
+C:\Shared\Shrike\bin\Debug\TACWeb.dll.config
+C:\Shared\Shrike\bin\Debug\TACWeb.dll
+C:\Shared\Shrike\bin\Debug\TACWeb.pdb
+C:\Shared\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csproj.App.config
+C:\Shared\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.dll
+C:\Shared\Shrike\Common\TAC\TACWeb\obj\Debug\TACWeb.pdb

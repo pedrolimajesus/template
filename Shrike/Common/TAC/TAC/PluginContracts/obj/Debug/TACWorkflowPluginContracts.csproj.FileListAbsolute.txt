@@ -1,0 +1,19 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\PluginContracts.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\PluginContracts.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\PluginContracts.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\PluginContracts.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\TACWorkflowPluginContracts.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.pdb
+F:\New folder\workspace\Shrike\bin\Debug\PluginContracts.dll
+F:\New folder\workspace\Shrike\bin\Debug\PluginContracts.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\TACWorkflowPluginContracts.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.dll
+F:\New folder\workspace\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.pdb
+C:\Shared\Shrike\bin\Debug\PluginContracts.dll
+C:\Shared\Shrike\bin\Debug\PluginContracts.pdb
+C:\Shared\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\TACWorkflowPluginContracts.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.dll
+C:\Shared\Shrike\Common\TAC\TAC\PluginContracts\obj\Debug\PluginContracts.pdb

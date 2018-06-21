@@ -1,0 +1,627 @@
+﻿@using Shrike.Areas.TagsUI.TagsUI.Models
+@model DataTagUi
+@{
+    ViewBag.Title = "NewSelectedTag";
+    string names = "";
+    string text_title = "";
+    string nameCategory = "";
+    string colorCategory = "";
+    var tagUnique = new List<Tag>();
+
+    var uniquesTagList = new List<string>();
+
+    foreach (var tag in  Model.AllTags)
+    {
+        var nameAndCategory = tag.Name + "(" + tag.Category + ")";
+        if (!uniquesTagList.Contains(nameAndCategory) && nameAndCategory!="" )
+        {
+            uniquesTagList.Add(tag.Name);
+            tagUnique.Add(tag);
+        }
+    }
+
+    var enableValidation = Shrike.Areas.TagsUI.TagsUI.TagUILogic.EnableTagValidation();
+    
+}
+@foreach (var category in Model.TagsCategories)
+{
+    nameCategory = nameCategory + category.Name + ",";
+    colorCategory = colorCategory + category.Color + ",";
+}
+
+<div class="row-form">
+    <label>Tag List:</label>
+</div>
+<div class="carrousel-assign" style="height: 80px; padding-left: 1px; width: 100%; float: left">
+    <div class="button-slide">
+        <a id="foo2_prev" href="#">
+            <img src='@Url.Content("~/Content/Theme/Default/Images/Command/Tag/left.png")' alt="button-left" /></a></div>
+    <div style="width: 390px; float: left; height: 45px;">
+        <div id="foo2" style="float: left; margin-top: 12px;">
+        </div>
+    </div>
+    <div class="button-slide">
+        <a id="foo2_next" href="#">
+            <img src='@Url.Content("~/Content/Theme/Default/Images/Command/Tag/rigth.png")' alt="button-rigth" />
+        </a>
+    </div>
+</div>
+<div id="tags-row-form" class="row-form-new">
+    <div class="contanier-Tags">
+        @Html.Hidden("tags", null)
+        @Html.Hidden("nameValue", null)
+        @Html.Hidden("colorValue", null)
+        @Html.Hidden("optionValue", null)
+        @Html.Hidden("listTag", null)
+        <select id="tagDeviceCreate" name="tag" multiple="multiple">
+            @foreach (var tag in tagUnique)
+            {
+                bool band = false;
+
+                foreach (var objtag in Model.TagsEntity)
+                {
+                    if (tag.Name.Equals(objtag.Name))
+                    {
+                        band = true;
+                    }
+                }
+
+                if (band)
+                {
+                <option value="@tag.Name" selected="selected">@tag.Name (@tag.Category)</option>
+                    names = names + tag.Name + ",";
+                    text_title += tag.Name +" (" +tag.Category+"):";
+                }
+                else
+                {
+                    <option value="@tag.Name">@tag.Name (@tag.Category)</option>
+                }
+            }
+            @{
+                if (ViewBag.arrTags != null)
+                {
+                    ICollection<string> tags = ViewBag.arrTags.Split(',');
+                    tags = tags.Distinct().ToList();
+                    foreach (var tag in tags)
+                    {
+                        <option value="@tag">@tag</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+<input type="hidden" id="idUser" value="@Model.Id"/>
+<input type="hidden" id="tagobj" value="@names"/>
+<input type="hidden" id ="ObjValue" value="@Model.Entity"/>
+<input type="hidden" id="nameTagCreate" value="" />
+<input type="hidden" id="categoryTagCreate" value="" />
+<input type="hidden" id="validateQuantityTags" value="@ViewBag.QuantityTagsToValidate">
+<input type="hidden" id="validateCategoryTags" value="@ViewBag.CategoryTagsToValidate">
+
+@Html.Hidden("listCheck", null)
+
+<script type="text/javascript" >
+    var nameCat = '@nameCategory';
+    var colorCat = '@colorCategory';
+    var optionSelect = "";
+    var arrNameCat = nameCat.split(",");
+    var arrColorCat = colorCat.split(",");
+    var band = true;
+
+    for (var i = 0; i < arrNameCat.length; i++) {
+        if (arrNameCat[i].length > 0)
+            optionSelect = optionSelect + "<option style='color:" + arrColorCat[i] + "' value=" + arrNameCat[i] + ">" + arrNameCat[i] + "</option>";
+    }
+
+    var interfaceCreate = "<div class='createTag' onclick='showHiddenFromCreateTag()'>Create New Tag</div>" +
+        "<div id='newCreateTag'>" +
+            "<div class='row-form'>" +
+                "<div class='editor-label'><label>Name:</label></div>" +
+                "<div class='editor-field'><input id='NameTag' type='text'value='' style='width:180px;'/></div>" +
+            "</div>" +
+            "<div class='row-form'>" +
+                "<div class='editor-label'><label>Category:</label></div>" +
+                "<div class='editor-field'><select id='selectCategory' style='width:190px;'>" +
+                       optionSelect +
+                     "</select></div>" +
+            "</div>" +
+            "<div style='margin-left:230px;' onclick='createTag();'><label class='buttonTag'>&nbsp&nbsp&nbspCreate&nbsp&nbsp&nbsp</label></div>" +
+         "</div>";
+
+    $(document).ready(function () {
+
+        window.jQuery.validator.unobtrusive.parse("#createTagForm");
+
+        $("#tagDeviceCreate").multiselect({
+            header: interfaceCreate,
+            minWidth: 350,
+            selectedText: function (numChecked, numTotal, checkedItems) {
+                return numChecked + ' Assigned';
+            }
+        }).multiselectfilter();
+        
+        var listTagAsign = '@names';
+        var titles_list = '@text_title';
+
+        var arrTagAsign = listTagAsign.split(",");
+        var titles = titles_list.split(":");
+        var listTagHtml = "";
+        for (var i = 0; i < arrTagAsign.length; i++) {
+            if (arrTagAsign[i] != "") {
+                listTagHtml = listTagHtml +
+                    "<div class='item-carousel' ><div class='tag-container' title='" +
+                    titles[i] + "'><label class='ellipsis_text' name='" + arrTagAsign[i] +
+                    "'>" + arrTagAsign[i] + "</label></div></div>";
+            }
+        }
+
+        $("#foo2").html(listTagHtml);
+
+        var cont = 1;
+        $(".ui-dialog-buttonset").find("button").each(function () {
+            $(this).attr("id", "button" + cont);
+            cont++;
+        });
+        cont = 1;
+        $(".ui-dialog-buttonset").find("span").each(function () {
+            $(this).attr("id", "span" + cont);
+            cont++;
+        });
+        $("#foo2").carouFredSel({
+            circular: false,
+            infinite: false,
+            auto: false,
+            prev: {
+                button: "#foo2_prev",
+                key: "left"
+            },
+            next: {
+                button: "#foo2_next",
+                key: "right"
+            },
+            pagination: "#foo2_pag"
+        });
+        showHiddenFromCreateTag();
+        $("#linkMultiSelect").css({ "margin-top": "-2px", "margin-left": "-355px" });
+        $("#linkMultiSelect").addClass("buttonTag");
+    });
+
+    function showHiddenFromCreateTag() {
+
+        var count = "";
+
+        if (band) {
+            $("#newCreateTag").css({ "display": "none" });
+            band = false;
+        } else {
+            $("#newCreateTag").css({ "display": "block" });
+            $("#NameTag").val("");
+            band = true;
+        }
+        $("#NameTag").removeClass("input-validation-error");
+    }
+
+    function createTag() {
+        var name = $("#NameTag").val().trim();
+        var newcategory = $("#selectCategory option:selected").text();
+        var text = name + " (" + newcategory + ")";
+        
+        if (name != undefined && name != "") {
+            
+            if (ValidateUniqueTagName(text)) {
+                showHiddenFromCreateTag();
+                var newNameTag = $("#nameTagCreate").val();
+                $("#nameTagCreate").val(name + "," + newNameTag);
+                var newCategoryTag = $("#categoryTagCreate").val();
+                $("#categoryTagCreate").val(newcategory + "," + newCategoryTag);
+
+                var isChecked = verifyCategoryCheckeds(newcategory);
+
+                var newoption = "";
+                
+                if (isChecked)
+                    newoption = "<option id='newOption-" + name + '-' + newcategory + "' value='" + name + "' selected='selected'>" + text + "</option>";
+                else
+                    newoption = "<option id='newOption-" + name + '-' + newcategory + "' value='" + name + "' >" + text + "</option>";
+
+                if (name != "") {
+                    var newoptioncreate = $('#tagDeviceCreate').find("#newOption-" + name + '-' + newcategory);
+                    if (newoptioncreate != null) {
+                        $('#tagDeviceCreate').append(newoption);
+                    } else {
+                        $('#tagDeviceCreate').append(newoption);
+                    }
+                }
+                $('#tagDeviceCreate').multiselect("refresh");
+                setTimeout("updateTextSelection();", 500);
+            }
+            else {
+                alert("The Tag Name must to be Unique for each Category.");
+                $("#NameTag").removeClass("input-validation-error");
+                $("#NameTag").addClass("input-validation-error");
+            }
+        }
+        else {
+            $("#NameTag").removeClass("input-validation-error");
+            $("#NameTag").addClass("input-validation-error");
+        }
+
+        //var categoriesSelected = "";
+        //var categoriesCounter = 0;
+
+        //$("#jQueryMultiSelect li label.ui-corner-all input[type='checkbox']").each(function () {
+        //    //categoriesSelected = $(this).next().text().replace($(this).val(), "").replace("(", "").replace("", ")") + ";";
+        //    categoriesSelected += $(this).attr("title").replace($(this).val(), "").replace("(", "").replace(")", "") + ";";
+        //    //categoriesCounter += 1;
+        //});
+        
+        //$("#jQueryMultiSelect li label.ui-corner-all input[type='checkbox'][checked=checked]").each(function () {
+        //    //categoriesSelected = $(this).next().text().replace($(this).val(), "").replace("(", "").replace("", ")") + ";";
+        //    //categoriesSelected += $(this).attr("title").replace($(this).val(), "").replace("(", "").replace(")", "") + ";";
+        //    categoriesCounter += 1;
+        //});
+    }
+
+    function ValidateUniqueTagName(name) {
+        var result = true;
+        name = name.toLowerCase().trim();
+        $(".jQueryMultiSelect ul").find("input[type=checkbox]").each(function () {
+            if ($(this).attr('title').toLowerCase().trim() == name) {
+                result = false;
+            }
+        });
+        return result;
+    }
+
+    function AssignTagTagsUI() {
+        var idUser = $("#SelectedRow").val().trim();
+        
+        if (idUser == null || idUser == "") return false;
+
+        var listTag = $("#listCheck").val().trim();
+        var type = $("#ObjValue").val();
+        var pageSend = '@ViewBag.PageSend';
+
+        var newNamesTag = $("#nameTagCreate").val();
+        var newCategoriesTag = $("#categoryTagCreate").val();
+        var arrSelectTag = listTag.split(',');
+        var arrNewNameTag = newNamesTag.split(',');
+        var arrNewCategoryTag = newCategoriesTag.split(',');
+        var confirmNameTag = "";
+        var confirCategoryTag = "";
+        var selectTag = "";
+        var band = true;
+        for (var i = 0; i < arrSelectTag.length; i++) {
+            if (arrSelectTag[i] != "") {
+                for (var j = 0; j < arrNewNameTag.length; j++) {
+                    if (arrSelectTag[i] == arrNewNameTag[j]) {
+                        confirmNameTag = confirmNameTag + arrNewNameTag[j] + ",";
+                        confirCategoryTag = confirCategoryTag + arrNewCategoryTag[j] + ",";
+                        band = false;
+                    }
+                }
+                if (band) {
+                    selectTag = selectTag + arrSelectTag[i] + ",";
+                }
+            }
+        }
+
+        var name1 = confirmNameTag;
+        var category = confirCategoryTag;
+        listTag = selectTag;
+        var url = '@Url.Action("SaveAssignTag", "Tag", new { area=Shrike.Areas.TagsUI.AreaPortableName.AreaName })';
+        
+        var quantityToValidate = "0";
+
+        if ($("#validateQuantityTags") != null && $("#validateQuantityTags").val() != undefined)
+            quantityToValidate = $("#numberTags").val();
+
+        var categoryTagsToValidate = "";
+        if ($("#validateCategoryTags") != null && $("#validateCategoryTags").val() != undefined)
+            categoryTagsToValidate = $("#numberTags").val();
+        
+        var postData = { id: idUser, list: listTag, name: name1, category: category, type: type, quantityTagsToValidate: quantityToValidate, categoryTagsToValidate: categoryTagsToValidate };
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: postData,
+                    complete: function () {
+
+                        if (type == "user")
+                            window.location.href = '@Html.Raw(Url.Action("Index", "User", new { area = "UserManagementUI" }))';
+                        else {
+                            if (type == "itemregistration") {
+                                window.location.href = '@Html.Raw(Url.Action("Index", "ItemRegistration", new { area="ItemRegistrationUI" }))';
+                            }else {
+                                window.PostAssignTagExtension(type);
+                            }
+                        }
+                    }
+                });
+
+        return true;
+    }
+
+    $(".item-carousel div.tag-container").live("click", function () {
+        var nametag = $(this).children().first().attr("name");
+        var type = $("#ObjValue").val();
+        var url = "";
+        if (type == "user") {
+            url = '@Html.Raw(Url.Action("Index", "User", new { area="UserManagementUI" }))?criteria=' + nametag + '&divMenu=5&divViewOption=1&divAction=adm1&allbody=none&divfooter=footer5&page=1';
+        }
+        if (type == "ItemRegistration") {
+            url = '@Html.Raw(Url.Action("Index", "ItemRegistration", new { area="ItemRegistrationUI" }))?criteria=' + nametag + '&divMenu=5&divViewOption=3&divAction=adm3&allbody=none&divfooter=footer5';
+        }
+        if (type == "Alert") {
+        }
+        window.location.href = url;
+        $('#NewSelectedTag').dialog("close");
+    });
+
+    function changeStyleButton() {
+        var cont = 1;
+        $(".contanier-Tags").find("button").each(function () {
+            $(this).attr("id", "buttonAssignTag" + cont);
+            cont++;
+        });
+    }  
+
+    $("#tagDeviceCreate").bind("multiselectbeforeclose", function (event, ui) {
+        var selectedNames = new Array();
+        var selectTags = $("#tagDeviceCreate").multiselect("getChecked").map(function () {
+            selectedNames.push(this.title);
+            return this.value;
+        }).get();
+
+        $("#listCheck").val(selectTags);
+        var arrselectTags = $("#listCheck").val().split(",");
+        var stringHtml = "";
+        $(".item-carousel").remove();
+        for (var i = 0; i < arrselectTags.length; i++) {
+            if (arrselectTags[i] != "") {
+                stringHtml = stringHtml + "<div class='item-carousel'><div title='" + selectedNames[i] + "' class='tag-container'><label class='ellipsis_text' name='" + arrselectTags[i] + "' >" + arrselectTags[i] + "</label></div></div>";
+            }
+        }
+
+        $("#foo2").html(stringHtml);
+
+        $("#foo2").carouFredSel({
+            circular: false,
+            infinite: false,
+            auto: false,
+            prev: {
+                button: "#foo2_prev",
+                key: "left"
+            },
+            next: {
+                button: "#foo2_next",
+                key: "right"
+            },
+            pagination: "#foo2_pag"
+        });
+    });
+
+    function validateTagName() {
+        var name = $("#NameTag").val().trim();
+        var namesArray = $("#nameTagCreate").val().toLowerCase().split(",");
+
+        var validation = true;
+        for (var position = 0; position < namesArray.length; position++) {
+            if (namesArray[position] == name.toLowerCase()) {
+                validation = false;
+                break;
+            }
+        }
+        return validation;
+    }
+
+    function hideMultiSelectShowSelectedButtons() {
+        $("#tagDeviceCreate").next().click();
+    }
+
+    $("#linkMultiSelect").click(function () {
+        var isOpen = $("#tagDeviceCreate").multiselect("isOpen");
+        if (!isOpen) {
+            $("#tagDeviceCreate").next().click();
+        }
+    });
+
+    function updateTextSelection() {
+        var text = $("#buttonMultiSelect").children().first().next().text();
+        $("#spanText").text(text);
+    }
+
+    $("#tagDeviceCreate").multiselect({
+        click: function (event, ui) {
+            //ui.checked = false;
+
+            var result = true;
+
+            var enable = '@enableValidation' == 'True';
+            
+            if (ui.checked && enable ) {
+                var category = event.currentTarget.title.replace(event.currentTarget.value, "").replace("(", "").replace(")", "");
+                //verifyCategoryCheckedsMultiSelect(true,event.currentTarget, category);
+
+                //alert("click me!!! is checked man !!!");
+
+                var quantityId = "#validateQuantityTags";
+                var quantity = 0;
+                var categoriesId = "#validateCategoryTags";
+                
+                if ($(quantityId).val().length > 0 && $(categoriesId).val().length > 0) {
+
+                    var arrayQuantities = $(quantityId).val().split(";");
+                    var arrayCategories = $(categoriesId).val().split(";");
+
+                    var counter = 0;
+                    for (counter = 0; counter < arrayCategories.length; counter++) {
+                        quantity = parseInt(arrayQuantities[counter]);
+                        //alert("category from array:" + arrayCategories[counter] + " category received:" + category + " qunaity:" + quantity + " eval:" + (arrayCategories[counter].toString() == category.toString()));
+                        if (arrayCategories[counter].toString().trim() == category.toString().trim()) {
+                            //alert("entro man!!!");
+                            if (parseInt(quantity) > parseInt(0)) {
+                                var selectedNumber = 0;
+                                //$("#jQueryMultiSelect li label.ui-corner-all input[type='checkbox'][aria-selected=true]").each(function () {
+                                //    //categoriesSelected = $(this).next().text().replace($(this).val(), "").replace("(", "").replace("", ")") + ";";
+                                //    //categoriesSelected += $(this).attr("title").replace($(this).val(), "").replace("(", "").replace(")", "") + ";";
+                                //    if ($(this).attr("title").indexOf(" (" + arrayCategories[counter] + ")") > 0) {
+                                //        selectedNumber += 1;
+                                //    }
+                                //});
+                                var selectedNames = new Array();
+                                var selectTags = $("#tagDeviceCreate").multiselect("getChecked").map(function () {
+                                    selectedNames.push(this.title);
+                                }).get();
+                                
+                                var selectedValues = new Array();
+                                var selectedValuesNames = $("#tagDeviceCreate").multiselect("getChecked").map(function () {
+                                    selectedValues.push(this.value);
+                                }).get();
+                                
+                                for (var i = 0; i < selectedNames.length;i++)
+                                {
+                                    if(selectedNames[i].replace(selectedValues[i],'').replace("(", "").replace(")", "")==category) {
+                                        selectedNumber++;
+                                    }
+                                }
+
+                                //$("select").multiselect("widget").find(":checkbox").each(function() {
+                                //    var item = $(this).attr("title");
+                                //    var categoriesSelected = $(this).attr("title").replace($(this).attr("value"), "").replace("(", "").replace(")", "") + ";";
+                                //});
+
+                                //alert("forach quantity !!!" + quantity + " selected number: " + selectedNumber + " categories" + arrayCategories[counter]);
+                                if (parseInt(selectedNumber) > parseInt(quantity)) {
+
+                                    //event.currentTarget.checked = false;
+                                    //$("#" + event.currentTarget.id.toString()).prop("selected", false);
+                                    //$("#" + event.currentTarget.id.toString()).attr("aria-selected", false);
+                                    /*
+                                    $("#tagDeviceCreate").multiselect("widget").find(":checkbox[value='" + ui.value + "']").each(function () {
+                                        //this.click();
+                                        $(this).prop("selected",false);
+                                    });*/
+                                    alert("Only "+quantity+" instances are allowed of the category "+category+".");
+                                    result = false;
+                                    //$("#tagDeviceCreate").multiselect("refresh");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            setTimeout("updateTextSelection();", 500);
+            return result;
+        }
+    });
+    
+    /*
+    function GetQuantityCategory(category) {
+
+        var quantityID = "#validateQuantityTags";
+        var quantity = 0;
+        var categoriesID = "#validateCategoryTags";
+        var currentCategory = $("#selectCategory option:selected").text();
+
+        try {
+            if ($(quantityID).val().length > 0 && $(categoriesID).val().length > 0) {
+                
+            }
+        }
+        catch(ex) {
+        } 
+    }
+    */
+    
+    $("li label.ui-corner-all input [type=checkbox] [checked=checked]").each(function () {
+        var span = $(this).next();
+        var category = span.text().replace($(this).val(), "").replace("(", "").replace("", ")");
+    });
+
+    /*
+    $(document).on("change", "#jQueryMultiSelect li label.ui-corner-all input[type='checkbox']", function () {
+        setTimeout(function() {
+            var id = $(this).attr("id");
+            alert("unchecked: " + $(this).attr("aria-selected"));
+            if ($(this).attr("aria-selected"))
+                verifyCategoryCheckeds('true', id);
+            alert('entroooooooo');
+        },800);
+    });
+    */
+    var oto, otox;
+    function verifyCategoryCheckeds(category)
+    {
+
+            var quantityId = "#validateQuantityTags";
+            var quantity = 0;
+            var categoriesId = "#validateCategoryTags";
+
+            var validate = true;
+            var result = true;
+            
+            var enable = '@enableValidation' == 'True';
+
+            if ($(quantityId).val() != undefined && $(quantityId).val().length > 0 && $(categoriesId).val() && $(categoriesId).val().length > 0 && enable) {
+
+                //alert("starting validation quantity" + $(quantityId).val() + " categories:" + $(categoriesId).val());
+
+                var arrayQuantities = $(quantityId).val().split(";");
+                var arrayCategories = $(categoriesId).val().split(";");
+
+                var counter = 0;
+
+                for(counter = 0; counter < arrayCategories.length; counter++)
+                {
+                    if (arrayCategories[counter] == category) {
+                        validate = false;
+                        //alert("enconto:"+counter);
+                        break;
+                    }
+                }
+                
+                if (validate)
+                    counter++;
+
+                quantity = parseInt(arrayQuantities[counter]);
+                    
+                if (counter < arrayQuantities.length) {
+                    
+                        var selectedNumber = 0;
+                       
+                        var selectedNames = new Array();
+                        var selectTags = $("#tagDeviceCreate").multiselect("getChecked").map(function () {
+                            selectedNames.push(this.title);
+                        }).get();
+
+                        var selectedValues = new Array();
+                        var selectedValuesNames = $("#tagDeviceCreate").multiselect("getChecked").map(function () {
+                            selectedValues.push(this.value);
+                        }).get();
+
+                        for (var i = 0; i < selectedNames.length; i++) {
+                            //alert("Name:" + selectedNames[i] + " Value:" + selectedValues[i] + '\n indexOf' + selectedNames[i].indexOf('(' + category + ')')+ '\n category '+category);
+                            if (selectedNames[i].indexOf('('+category+')')>0) {
+                                selectedNumber++;
+                            }
+                        }
+                        
+                        //alert("ento!!! quantity to control "+quantity + "\n encontered:"+selectedNumber+" \n category:"+category);
+
+                        if (parseInt(selectedNumber) >= parseInt(quantity)) {
+
+                            result = false;
+                        }
+                        
+                    }
+            }
+
+            return result;
+        
+        }
+
+
+
+</script>

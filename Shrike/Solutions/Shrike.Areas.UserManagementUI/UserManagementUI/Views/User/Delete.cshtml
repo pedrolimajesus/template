@@ -1,0 +1,92 @@
+﻿@using System.Web.Optimization
+@using Shrike.Areas.UserManagementUI.UserManagementUI.Models
+@using Shrike.UserManagement.BusinessLogic.Models
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.User
+@{
+    ViewBag.Title = "Delete User";
+
+    IEnumerable<User> newOrderModel = new List<User>();
+    const string FormId = "formDeleteUser";
+    ViewBag.Roles = Shrike.DAL.Manager.RoleManager.TenantRoleDescriptions;
+    
+    
+}
+<div id="content-deleteUser" style="padding:9px 5px;">
+    @using (Html.BeginForm("Delete", "User", FormMethod.Post))
+    {
+        <fieldset class="group-details-ownerinvitations">
+            <div class="group-title-ownerinvitation">
+                Delete Device</div>
+            <div class="group-content-ownerinvitation" style="padding-left: 0px; height: 150px;">
+                <div class="list">
+                    <div class="table-Owner">
+                        @Html.Hidden("idUserDelete", Model.Id)
+                        <div class="thead-Owner" style="width: 150px;">
+                            <div class="th-Owner">@Html.LabelFor(m => m.Roles)</div>
+                            <div class="tr-Owner">@Html.DisplayFor(m => m.Roles)</div>
+                        </div>
+                        <div class="thead-Owner" style="width: 150px;">
+                            <div class="th-Owner">@Html.LabelFor(model => model.Email)</div>
+                            <div class="tr-Owner">@Html.DisplayFor(model => model.Email)</div>
+                        </div>
+                        <div class="thead-Owner" style="width: 150px;">
+                            <div class="th-Owner">@Html.LabelFor(model => model.Username)</div>
+                            <div class="tr-Owner">@Html.DisplayFor(model => model.Username)</div>
+                        </div>
+                        <div class="thead-Owner" style="width: 302px;">
+                            <div class="th-Owner">@Html.LabelFor(model => model.Tags)</div>
+                            @{
+                                var nametags = "";
+                                foreach (var tag in Model.Tags)
+                                {
+                                    nametags += tag.Name + ",";
+                                }
+                                nametags = nametags.Remove(nametags.Length-1);
+                            }
+                            <div class="tr-Owner">
+                                <label id="tags-delete">
+                                    @nametags
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-form">
+                    <label style="padding-left: 9px;" id="delete-device-confirm-label">
+                        Are you sure you want to delete this user?</label>
+                </div>
+                <div class="row-form-new">
+                    <div class="list">
+                        <div class="submit-button">
+                            <input type="submit" value="Delete" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+
+        function DeleteUser() {
+            $("#formDeleteUser").submit();
+        }
+
+        function OnSuccessDeleteUser(userData) {
+            commitDeleteUserOnUI(userData);
+        }
+        function OnFailureDeleteUser(ajaxContext) {
+            var response = ajaxContext.get_response();
+            var statusCode = response.get_statusCode();
+            alert('Failure: ' + statusCode);
+        }
+
+        $(document).ready(function () {
+            $("#content-tags").jScrollPane();
+        });
+        
+    </script>
+}
+@*@Scripts.Render("~/bundles/customized")*@

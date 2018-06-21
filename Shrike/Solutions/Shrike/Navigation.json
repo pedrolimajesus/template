@@ -1,0 +1,250 @@
+﻿{
+	"Navigations" : [{
+			"Role" : "SuperAdmin",
+			"NavigationItems" : [{
+					"ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user-inv.png",
+					"Title" : "Invitation",
+
+
+					"ViewItems":[{
+					"ActionName" : "Index",
+					"ControllerName" : "OwnerInvitation",
+					"AreaName" : "UserManagementUI",
+					"ViewCommands" : [{
+							"EventOnclick" : "CreateInvitation()",
+							"AltImage" : "addInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/add-icon.png",
+							"Title" : "Create"
+						}, {
+							"EventOnclick" : "EditInvitation()",
+							"AltImage" : "editInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/edit-icon.png",
+							"Title" : "Edit"
+						}, {
+							"EventOnclick" : "DetailsInvitation()",
+							"AltImage" : "detailsInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/details-icon.png",
+							"Title" : "Details"
+						}, {
+							"EventOnclick" : "DeleteInvitation()",
+							"AltImage" : "deleteInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/delete-icon.png",
+							"Title" : "Delete"
+						}, {
+							"EventOnclick" : "SendEmailInvitation()",
+							"AltImage" : "sendEmailInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/send-icon.png",
+							"Title" : "Sent Email"
+						}
+					]
+					}]
+				}, {
+				    "ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user.png",
+					"Title" : "Users",
+
+
+					"ViewItems":[{
+					"ActionName" : "Index",
+					"ControllerName" : "User",
+					
+					"AreaName" : "UserManagementUI",
+					"ViewCommands" : [{
+							"EventOnclick" : "InviteNewUser()",
+							"AltImage" : "newUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/add-icon.png",
+							"Title" : "Invite New User"
+						}, {
+							"EventOnclick" : "EnableUser()",
+							"AltImage" : "enableUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/enable-icon.png",
+							"Title" : "Enable"
+						}, {
+							"EventOnclick" : "DisableUser()",
+							"AltImage" : "disableUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/disable-icon.png",
+							"Title" : "Disable"
+						},  {
+							"EventOnclick" : "ResetUserPassword()",
+							"AltImage" : "ResetUserPassword",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/disable-icon.png",
+							"Title" : "Reset Password"
+						}
+					]
+					}]
+				},
+                {
+					"ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user-inv.png",
+						"Title" : "Deployment",
+						"ViewItems":[{
+					        "ActionName" : "Index",
+					        "ControllerName" : "Deployment",
+				            "AreaName" : "UserManagementUI",
+				            "ViewCommands" : []
+	                    }]
+                }
+			]
+		}, {
+			"Role" : "TenantOwner",
+			"NavigationItems" : [{
+					"ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user.png",
+					"Title" : "Users",
+
+					"ViewItems":[{
+					"ActionName" : "Index",
+					"ControllerName" : "User",
+					"AreaName" : "UserManagementUI",
+					"ViewCommands" : [{
+							"EventOnclick" : "InviteNewUser()",
+							"AltImage" : "newUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/add-icon.png",
+							"Title" : "Invite New User"
+						}, {
+							"EventOnclick" : "EnableUser()",
+							"AltImage" : "enableUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/enable-icon.png",
+							"Title" : "Enable"
+						}, {
+							"EventOnclick" : "DisableUser()",
+							"AltImage" : "disableUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/disable-icon.png",
+							"Title" : "Disable"
+						}, {
+							"EventOnclick" : "ChangeRoleUser()",
+							"AltImage" : "changeRoleUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/change-role-icon.png",
+							"Title" : "Change User Role"
+						}, {
+							"EventOnclick" : "return AssignTagGlobalUI();",
+							"AltImage" : "addTag",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/tag-add-icon.png",
+							"Title" : "Assign Tags"
+						}, {
+							"EventOnclick" : "ClearTag()",
+							"AltImage" : "clearTag",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/tag-delete-icon.png",
+							"Title" : "Clear Tags"
+						}, {
+							"EventOnclick" : "EditUser()",
+							"AltImage" : "editUSer",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/edit-icon.png",
+							"Title" : "Edit User"
+						}, {
+							"EventOnclick" : "DetailsUser()",
+							"AltImage" : "detailsUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/details-icon.png",
+							"Title" : "Details User"
+						}, {
+							"EventOnclick" : "DeleteUser()",
+							"AltImage" : "deleteUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/delete-icon.png",
+							"Title" : "Delete User"
+						}, {
+							"EventOnclick" : "ResentEmail()",
+							"AltImage" : "resentEmailUser",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/send-icon.png",
+							"Title" : "ReSent Invitation"
+						}, {
+							"EventOnclick" : "ResetUserPassword()",
+							"AltImage" : "ResetUserPassword",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/disable-icon.png",
+							"Title" : "Reset Password"
+						},{
+							"EventOnclick" : "AssignGroup()",
+							"AltImage" : "assignGroup",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/taglink-add-icon.png",
+							"Title" : "Assign Group"
+						}, {
+							"EventOnclick" : "RemoveGroup()",
+							"AltImage" : "removeGroup",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/User/taglink-delete-icon.png",
+							"Title" : "Remove Group"
+						}
+					]
+					}]
+				}, {
+					"ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user-inv.png",
+					"Title" : "Invitation",
+
+					"ViewItems":[{
+					"ActionName" : "Index",
+					"ControllerName" : "OwnerInvitation",
+					
+					"AreaName" : "UserManagementUI",
+					"ViewCommands" : [{
+							"EventOnclick" : "EditInvitation()",
+							"AltImage" : "editInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/edit-icon.png",
+							"Title" : "Edit"
+						}, {
+							"EventOnclick" : "DetailsInvitation()",
+							"AltImage" : "detailsInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/details-icon.png",
+							"Title" : "Details"
+						}, {
+							"EventOnclick" : "DeleteInvitation()",
+							"AltImage" : "deleteInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/delete-icon.png",
+							"Title" : "Delete"
+						}, {
+							"EventOnclick" : "SendEmailInvitation()",
+							"AltImage" : "sendEmailInvitation",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Invitation/send-icon.png",
+							"Title" : "Sent Email"
+						}
+						
+					]
+					}]
+				}, {
+					"ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user-passcode.png",
+					"Title" : "Passcode",
+
+					"ViewItems":[{
+					"ActionName" : "Index",
+					"ControllerName" : "ItemRegistration",
+					
+					"AreaName" : "ItemRegistrationUI",
+					"ViewCommands" : [{
+							"EventOnclick" : "return AddItemRegistrationGlobalUI()",
+							"AltImage" : "addItem",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/ItemRegistration/add-icon.png",
+							"Title" : "Add"
+						}, {
+							"EventOnclick" : "RemoveItemRegistration()",
+							"AltImage" : "removeItem",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/ItemRegistration/delete-icon.png",
+							"Title" : "Delete"
+						}, {
+							"EventOnclick" : "return AssignTagGlobalUI();",
+							"AltImage" : "assignTag",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Tag/add-icon.png",
+							"Title" : "Assign Tag"
+						}, {
+							"EventOnclick" : "ClearTag()",
+							"AltImage" : "clearTag",
+							"SrcImage" : "~/Content/Theme/Default/Images/Command/Tag/delete-icon.png",
+							"Title" : "Clear Tag"
+						}
+					]
+					}]
+				}
+			]
+		}, {
+			"Role" : "User",
+			"NavigationItems" : [{
+					"ImageSrc" : "~/Content/Theme/Default/Images/Navigation/nav-user-inv.png",
+					"Title" : "Something",
+					"ViewItems":[{
+					"ActionName" : "Index",
+					"ControllerName" : "Home",
+					"AreaName" : "UserManagementUI",
+					"ViewCommands" : []
+					},{
+					"ActionName" : "Index2",
+					"ControllerName" : "Home",
+					"AreaName" : "UserManagementUI",
+					"ViewCommands" : []}]
+				}
+			]
+		}
+	]
+}

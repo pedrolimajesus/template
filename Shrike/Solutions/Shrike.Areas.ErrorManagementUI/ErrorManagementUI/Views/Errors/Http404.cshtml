@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Http404";
+    var isAppUser = this.User is AppComponents.Web.ApplicationUser;
+    //this.Layout = this.Context.Request.IsAuthenticated ? "~/Views/Shared/_ShrikePartialLayout.cshtml" : "~/Views/Shared/_ErrorPartialLayout.cshtml";
+    this.Layout = isAppUser ? "~/Views/Shared/_ShrikePartialLayout.cshtml" : "~/Views/Shared/_ErrorPartialLayout.cshtml";
+}
+<div class="error">
+    <h2>Error 404: Not Found</h2>
+    <h4>The requested resource could not be found but may be available again in the future.</h4>
+</div>

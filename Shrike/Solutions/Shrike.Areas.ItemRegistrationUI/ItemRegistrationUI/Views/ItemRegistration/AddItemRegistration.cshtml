@@ -1,0 +1,432 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@model Lok.Unik.ModelCommon.ItemRegistration.ItemRegistration
+
+@{
+    const string formId = "ItemRegistrationForm";
+    ViewBag.IsAjax = Request.IsAjaxRequest();
+    ViewBag.Title = "Item Registration";
+    ViewBag.SelectTag = "";
+
+    var options = new AjaxOptions
+                      {
+                          HttpMethod = "Post",
+                          UpdateTargetId = "divItemRegistrationForm",
+                          OnSuccess = "OnSuccessItemRegistration",
+                          OnFailure = "OnFailureItemRegistration"
+                      };
+
+    var nameCategory = "";
+    var colorCategory = "";
+    var names = "";
+    var titles = "";
+    int contTag = ViewBag.tags.Count;
+    var itemsType = ViewBag.ItemsRegistrationsTypes;
+
+}
+
+@if (!ViewBag.IsAjax)
+{
+    <h2>@ViewBag.Title</h2>
+}
+
+<style type="text/css">
+    #linkMultiSelectaddItemRegistration {
+        margin-top: -24px;
+        position: absolute;
+        width: 358px;
+    }
+    #buttonMultiSelectaddItemRegistration {
+        background-color: #FF0000;
+        margin: -10px 0 0;
+        overflow: hidden;
+        padding: 0;
+        visibility: hidden;
+    }
+    div.action-option[onclick="AssignTagTagsUI()"] {
+        display: none;
+    }
+</style>
+
+<div id="divItemRegistrationForm">
+    @using (ViewBag.IsAjax ? Ajax.BeginForm("AddItemRegistration", "ItemRegistration", options, new { id = formId })
+                              : Html.BeginForm("AddItemRegistration", "ItemRegistration", FormMethod.Post, new { id = formId }))
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset class="group-details-ownerinvitations">
+            <div class="group-title-ownerinvitation">Create Item Registration</div>
+            <div class="addItemRegistration" style="height: 200px;">
+                <div class="list" style="margin-left: 160px;">
+                    <div style="width: 500px;">
+                        <div class="RowForm">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.Name)
+                            </div>
+                            <div class ="editor-field">
+                                @Html.TextBoxFor(m=>m.Name, new { id="addPassCodeNameTextbox"})
+                                @Html.ValidationMessageFor(m=>m.Name, "*")
+                            </div>
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.PassCode)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(m => m.PassCode, new { id = "addPassCodeTextbox"})
+                                @Html.ValidationMessageFor(m => m.PassCode, "*")
+                            </div>
+                        </div>
+                        <div class="RowForm">
+                            <div class="editor-label">
+                               <label for="selectItemRegistrationsType">Item Registration Type:</label>
+                            </div>
+                            <div class="editor-field">
+                                <div style="float:left;">
+                                    <select id="selectItemRegistration" name="itemRegistrationType" >
+                                        @foreach (var item in itemsType)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <span class="field-validation-valid">*</span>
+                            </div>
+                        </div>
+                        <div style="height: 80px;padding-left:1px;width: 100%;float: left;" id="sliderShowTag">
+                            <div class="button-slide"><a id = "foo2_prevItem" href="#"><img src="@Url.Content("/Content/Theme/Default/Images/left.png")" alt="button-left"/></a></div>
+                            <div style="width:390px;float:left;height:45px;">
+                                <div id="foo2Item" style="float: left;margin-top:12px;">
+                                </div>
+                            </div>
+                            <div class="button-slide"><a id = "foo2_nextItem" href="#"><img src="@Url.Content("/Content/Theme/Default/Images/rigth.png")" alt="button-rigth"/></a></div>
+                        </div>
+                        <div class="RowForm">
+                            
+                            <div class="editor-field" style="overflow:visible">
+
+                                <select id="tagAddItem" name="tag"  multiple="multiple" style="display: none;">
+                                    @foreach (var tag in ViewBag.tags)
+                                    {
+                                        <option value="@tag.Name">@tag.Name (@tag.Category)</option>
+                                        names = names + tag.Name + ",";
+                                        titles += tag.Name + " (" + tag.Category + ")";
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="RowFormNew">
+                    <div class="list">
+                        <div class="submit-button">
+                            <input type="button" value="Add Item Registration" onclick="SaveItemRegistration();"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        if (!ViewBag.IsAjax)
+        {
+            <p>
+                <input type="submit" value="Register" />
+            </p>
+        }
+    }
+</div>
+<input type="hidden" id="nameTagCreate" value=""/>
+<input type="hidden" id="categoryTagCreate" value=""/>
+<input type="hidden" id="namesCategoryToValidate" value=""/>
+@Html.Hidden("listCheck1", null)
+
+@foreach (var category in ViewBag.Categories)
+{
+    nameCategory = nameCategory + category.Name + ",";
+    colorCategory = colorCategory + category.Color + ",";
+}
+    <script type="text/javascript">
+
+            var optionSelect = "";
+            var nameCat = '@nameCategory';
+            var colorCat = '@colorCategory';
+            var listTagModel = '@contTag';
+            var arrNameCat = nameCat.split(",");
+            var arrColorCat = colorCat.split(",");
+            var band = true;
+
+            for (var i = 0; i < arrNameCat.length; i++) {
+                if (arrNameCat[i].length>0)
+                optionSelect = optionSelect + "<option style='color:" + arrColorCat[i] + "'value=" + arrNameCat[i] + ">" + arrNameCat[i] + "</option>";
+            }
+           
+            var interfaceCreate = "<div class='createTag' onclick='showHiddenFromCreateTag()'>Create New Tag</div>" +
+                "<div id='newCreateTag'>" +
+                    "<div class='RowForm'>" +
+                        "<div class='editor-label'><label>Name:</label></div>" +
+                        "<div class='editor-field'><input id='NameTag' type='text'value='' style='width:180px;'/></div>" +
+                    "</div>" +
+                    "<div class='RowForm'>" +
+                        "<div class='editor-label'><label>Category:</label></div>" +
+                        "<div class='editor-field'><select id='selectCategory' style='width:190px;'>" +
+                               optionSelect +
+                             "</select></div>" +
+                    "</div>" +
+                    "<div style='margin-left:230px;' onclick='createTag()'><label class='buttonTag'>&nbsp&nbsp&nbspCreate&nbsp&nbsp&nbsp</label></div>" +
+                 "</div>";
+
+            $(document).ready(function () {
+                
+                window.jQuery.validator.unobtrusive.parse("#ItemRegistrationForm");
+
+                var cont = 1;
+                $(".ui-dialog-buttonset").find("button").each(function () {
+                    $(this).attr("id", "button" + cont);
+                    cont++;
+                });
+                cont = 1;
+                $(".ui-dialog-buttonset").find("span").each(function () {
+                    $(this).attr("id", "span" + cont);
+                    cont++;
+                });
+
+                $("#foo2Item").carouFredSel({
+                    circular: false,
+                    infinite: false,
+                    auto: false,
+                    prev: {
+                        button: "#foo2_prevItem",
+                        key: "left"
+                    },
+                    next: {
+                        button: "#foo2_nextItem",
+                        key: "right"
+                    },
+                    pagination: "#foo2_pag"
+                });
+                initializeFunction();
+
+                showHiddenFromCreateTag();
+                changeStyleButton();
+
+            });
+
+            function initializeFunction() {
+               
+                $("#tagAddItem").multiselect({
+                    header: interfaceCreate,
+                    minWidth: 350,
+                    parentClass: 'addItemRegistration',
+                    selectedText: function (numChecked, numTotal, checkedItems) {
+                        return numChecked + ' Assigned';
+                    }
+                }).multiselectfilter();
+            }
+
+            function showHiddenFromCreateTag() {
+                if (band) {
+                    $("#newCreateTag").css({ "display": "none" });
+                    band = false;
+                } else {
+                    $("#newCreateTag").css({ "display": "block" });
+                    $("#NameTag").val("");
+                    band = true;
+                }
+            }
+
+            function createTag() {
+                if (validateTagName()) {
+                    $("#NameTag").removeClass("input-validation-error");
+                    showHiddenFromCreateTag();
+                    var name = $("#NameTag").val();
+                    var newNameTag = $("#nameTagCreate").val();
+                    $("#nameTagCreate").val(name + "," + newNameTag);
+                    var newCategoryTag = $("#categoryTagCreate").val();
+                    var newcategory = $("#selectCategory option:selected").text();
+                    $("#categoryTagCreate").val(newcategory + "," + newCategoryTag);
+
+                    var newoption = "<option id='newOption " + name + "' value='" + name + "' selected='selected'>" + name + "(" + newcategory + ")" + "</option>";
+                    if (name != "") {
+                        var newoptioncreate = $('#tagAddItem').find("#newOption");
+                        if (newoptioncreate != null) {
+                            $('#tagAddItem').append(newoption);
+                        } else {
+                            $('#tagAddItem').append(newoption);
+                        }
+                    }
+                    $('#tagAddItem').multiselect("refresh");
+                    updateTextSelection();
+                }
+                else {
+                    $("#NameTag").addClass("input-validation-error");
+                    if($("#NameTag").val().length>0)
+                        alert("Error: The tag name must to be unique.");
+                    else
+                        alert("Error: Please enter a Tag name.");
+                }
+            }
+
+            $(".item-carousel").click(function () {
+                var nametag = $(this).attr("title");
+                var url = '@Html.Raw(Url.Action("Index", "ItemRegistration", new { area=Shrike.Areas.ItemRegistrationUI.AreaPortableName.AreaName }))?criteria=' + nametag + '&divMenu=5&divViewOption=3&divAction=adm3&allbody=none&divfooter=footer3';
+                window.location.href = url;
+            });
+
+            function changeStyleButton() {
+                var cont = 1;
+                $(".contanier-Tags").find("button").each(function () {
+                    $(this).attr("id", "buttonAssignTag" + cont);
+                    cont++;
+                });
+            }
+
+
+            var selectedNames = new Array();
+
+            $("#tagAddItem").bind("multiselectbeforeclose", function (event, ui) {
+                
+                var selectTags = $("#tagAddItem").multiselect("getChecked").map(function () {
+                    selectedNames.push(this.title);
+                    return this.value;
+                }).get();
+
+                $("#listCheck1").val(selectTags);
+                var arrselectTags = selectTags;
+                var stringHtml = "";
+                $(".item-carousel").remove();
+
+                for (var i = 0; i < arrselectTags.length; i++) {
+                    stringHtml = stringHtml + "<div onclick='return filterTag();' class='item-carousel'><div style='width:100px'><label class='ellipsis_text' title='" + selectedNames[i] + "'>" + arrselectTags[i] + "</label></div></div>";
+                }
+
+                $("#foo2Item").html(stringHtml);
+
+                $("#foo2Item").carouFredSel({
+                    circular: false,
+                    infinite: false,
+                    auto: false,
+                    prev: {
+                        button: "#foo2_prevItem",
+                        key: "left"
+                    },
+                    next: {
+                        button: "#foo2_nextItem",
+                        key: "right"
+                    },
+                    pagination: "#foo2_pag"
+                });
+                //$(".item-carousel div").ThreeDots({ max_rows: 1 }); 
+            });
+
+            $("#buttonSubmit").click(function () {
+                SaveItemRegistration();
+            });
+
+            function SaveItemRegistration() {
+                $("#SelectedRow").val(null);//check if valid now to reset current selected row if a new item is being created.
+                
+                window.jQuery.validator.unobtrusive.parse("#ItemRegistrationForm");
+
+            var validate = window.jQuery("#ItemRegistrationForm").valid();
+            var validateName = validateItemPassCodeName();
+         
+            if (validate && validateName) {
+                $("#buttonSubmit").unbind('click');
+                var listTag = $("#listCheck1").val();
+                var newNameTag = $("#nameTagCreate").val();
+                var pcName = $("#addPassCodeNameTextbox").val();
+                var newCategoriesTag = $("#categoryTagCreate").val();
+                var passCode = $("#addPassCodeTextbox").val();
+                var itemRegistrationType = $("#selectItemRegistration").val();
+
+                var postData = {
+                    name: pcName, passCode: passCode,
+                    newName: newNameTag,
+                    newCategories: newCategoriesTag,
+                    tags: listTag, itemRegistrationType: itemRegistrationType
+                };
+
+                $.ajax({
+                    url: '@Url.Action("AddItemRegistration", "ItemRegistration", new { area="ItemRegistrationUI" })',
+                    type: 'POST',
+                    data: postData,
+                    success: function (isUnique) {
+                        
+                        if (isUnique == '@Boolean.FalseString') {
+                            alert("Error: The Passcode Must be unique.");
+                        }
+
+                        else {
+                            window.location.href = '@Html.Raw(Url.Action("Index", "ItemRegistration", 
+                        new { ViewBag.divMenu, ViewBag.divViewOption, 
+                            ViewBag.divAction, ViewBag.allbody, ViewBag.divfooter }))';
+                            setTimeout(function () { $('#OncreateItemRegistration').dialog("close"); });
+                        }
+                    }
+
+                });
+            }
+            else {
+                if($("#addPassCodeTextbox").val().length > 0)
+                    alert("Error: The PassCode Must be unique.");
+            }
+        }
+
+
+            function OnFailureAddItem(ajaxContext) {
+                var response = ajaxContext.get_response();
+                var statusCode = response.get_statusCode();
+                alert('Failure: ' + statusCode);
+            }
+
+            function validateTagName(){
+                var name = $("#NameTag").val();
+                var namesArray = $("#nameTagCreate").val().toLowerCase().split(",");
+
+                var validation = true;
+                for (var position = 0; position < namesArray.length; position++) {
+                    if (namesArray[position] == name.toLowerCase()) {
+                        validation = false;
+                        break;
+                    }
+                }
+                return validation;
+            }
+
+            function validateItemPassCodeName() {
+                var validation = true;
+                var name = $("#addPassCodeTextbox").val();
+                $("table.listing-border").find("label.passcode").each(function () {
+                    if ($(this).text().toLowerCase() == name.toLowerCase()) {
+                        validation = false;
+                        return validation;
+                    }
+                });
+                
+                return validation;
+            }
+
+            $("#linkMultiSelectaddItemRegistration").click(function () {
+                var isOpen = $("#tagAddItem").multiselect("isOpen");
+
+                if (!isOpen) {
+                    $("#tagAddItem").next().click();
+                }
+            });
+
+            function updateTextSelection() {
+                var text = $("#buttonMultiSelectaddItemRegistration").children().first().next().text();
+                $("#spanText").text(text);
+            }
+
+            $("#tagAddItem").multiselect({
+                click: function(){
+                    setTimeout("updateTextSelection();", 500);
+                }
+            });
+            
+            function hideMultiSelectShowSelectedButtonsaddItemRegistration() {
+                $("#tagAddItem").next().click();
+            }
+
+    </script>

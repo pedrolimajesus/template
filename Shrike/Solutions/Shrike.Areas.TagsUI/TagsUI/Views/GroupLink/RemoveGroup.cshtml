@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "RemoveGroup";
+    ViewBag.IsAjax = this.Request.IsAjaxRequest();
+    const string formId = "removeGroupLinkForm";
+    var options = new AjaxOptions
+                      {
+                          HttpMethod = "Post",
+                          UpdateTargetId = "group-link-big-container",
+                          OnSuccess = "OnSuccessRemoveGroup",
+                          OnFailure = "OnFailureRemoveGroup"
+                      };
+    
+}
+
+<div class="group-link-big-container">
+    @using (ViewBag.IsAjax
+                              ? Ajax.BeginForm("RemoveGroup", "GroupLink", new { area = Shrike.Areas.TagsUI.AreaPortableName.AreaName }, options, new { id = formId })
+
+                              : Html.BeginForm("RemoveGroup", "GroupLink", new { area = Shrike.Areas.TagsUI.AreaPortableName.AreaName }, FormMethod.Post, new { id = formId }))
+    {
+        <div class="group-link-container">
+            Remove group
+        </div>
+        
+        <div class="group-link-container">
+            @Html.DropDownList("Name", new SelectList(Model, "Id", "Name"), new { id = "group-link" })
+        </div>
+    }
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        window.jQuery.validator.unobtrusive.parse("#removeGroupLinkForm");
+    });
+
+    function RemoveGroup(currentUrl) {
+        var groupId = $("#group-link").val();
+        var postData = { groupId: groupId };
+        var toUrl = '@Url.Action("RemoveGroup", "GroupLink", new { area = Shrike.Areas.TagsUI.AreaPortableName.AreaName })';
+        $.ajax({
+            type: 'POST',
+            url: toUrl,
+            data: postData,
+            success: function (data) {
+                window.location.href = currentUrl;
+            }
+        });
+
+        $("#RemoveGroupLink").dialog("close");
+    }
+
+</script>

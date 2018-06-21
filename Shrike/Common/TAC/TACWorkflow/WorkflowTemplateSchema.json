@@ -1,0 +1,469 @@
+﻿schema	
+{
+  "type": "object",
+  "properties": {
+    "Workspace": {
+      "required": false,
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "KeyAliases": {
+          "required": false,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "AliasKey": {
+                "required": true,
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Key": {
+                "required": true,
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "Inputs": {
+          "required": false,
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "WorkspaceKey": {
+                "required": true,
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Type": {
+                "required": true,
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Description": {
+                "required": false,
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "Optional": {
+                "required": false,
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Name": {
+      "required": true,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Version": {
+      "required": true,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Plugins": {
+      "required": true,
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "Instancename": {
+            "required": true,
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Route": {
+            "required": true,
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "StateMachines": {
+      "required": true,
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "Name": {
+            "required": true,
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "InitialState": {
+            "required": false,
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ActivationTrigger": {
+            "required": false,
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "States": {
+            "required": true,
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "Name": {
+                  "required": true,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "Parent": {
+                  "required": false,
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "EntryActions": {
+                  "required": false,
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "From": {
+                        "required": false,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Worker": {
+                        "required": true,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Route": {
+                        "required": true,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "AutoNextTrigger": {
+                        "required": false,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "ExceptionTrigger": {
+                        "required": false,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "ExitActions": {
+                  "required": false,
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "Worker": {
+                        "required": true,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Route": {
+                        "required": true,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+		     "AutoNextTrigger": {
+                        "required": false,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "ExceptionTrigger": {
+                        "required": false,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "Transitions": {
+                  "required": false,
+                  "type": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "Trigger": {
+                        "required": true,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "Next": {
+                        "required": false,
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "DynamicNextTemplate": {
+                        "required": false,
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "Worker": {
+                            "required": true,
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "Route": {
+                            "required": true,
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      },
+                      "ConditionTemplate": {
+                        "required": false,
+                        "type": [
+                          "object",
+                          "null"
+                        ],
+                        "properties": {
+                          "Worker": {
+                            "required": true,
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "Route": {
+                            "required": true,
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "RetryTemplate": {
+                  "required": false,
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "FailState": {
+                      "required": true,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Count": {
+                      "required": true,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Minimum": {
+                      "required": true,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Maximum": {
+                      "required": true,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Delta": {
+                      "required": true,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "Sleep": {
+                      "required": true,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "RecoveryAction": {
+                      "required": false,
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "From": {
+                          "required": false,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "Worker": {
+                          "required": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "Route": {
+                          "required": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "AutoNextTrigger": {
+                          "required": false,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "ExceptionTrigger": {
+                          "required": false,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Fallthrough": {
+      "required": false,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "AutoSleepSeconds": {
+      "required": true,
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}	

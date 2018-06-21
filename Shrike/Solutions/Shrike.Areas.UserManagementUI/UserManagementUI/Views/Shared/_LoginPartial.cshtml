@@ -1,0 +1,53 @@
+﻿@using System.Web.Mvc.Html
+@using AppComponents
+@using AppComponents.Web
+@using Shrike.DAL.Manager
+@{
+    var role = string.Empty;
+    var userName = string.Empty;
+
+    var user = HttpContext.Current.User as ApplicationUser;
+    if (user != null)
+    {
+        var roleId = user.AccountRoles.FirstOrDefault(ac => !string.IsNullOrEmpty(ac));
+        role = new RoleManager().GetRoleDescriptionById(roleId, Roles.ApplicationName);
+        userName = user.UserName ?? string.Empty;
+    }
+    
+    var config = Catalog.Factory.Resolve<IConfig>();
+    var buildVersion = config["AppBuildVersion"];
+
+    var currentTenancy = Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy;
+
+    currentTenancy = currentTenancy == Tenants.SuperAdmin 
+        ? "Admin Portal" : string.Format("{0} tenancy", currentTenancy);
+        
+}
+@if (Request.IsAuthenticated && userName.Length > 0)
+{
+    <p>
+        @Html.ActionLink(userName, "ChangePassword", "Account", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }, new { @class = "username", title = "Change password" })
+        <br />
+        @Html.Raw(role)
+        <br />
+        @Html.Raw(currentTenancy)
+        <br />
+        @Html.ActionLink("Sign out", "LogOff", "Account", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }, new { })
+        <br />
+        @Html.Raw(buildVersion)
+        
+    </p>
+
+}
+else
+{
+    <ul class="header-menu">
+        <li>@Html.ActionLink("Register", "TakeOwnership", "Account", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }, new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", new { area = Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }, new { id = "loginLink" })</li>
+        <li>
+            <br />@Html.Raw(currentTenancy)
+            <br />@Html.Raw(buildVersion)
+        </li>
+    </ul>
+}
+

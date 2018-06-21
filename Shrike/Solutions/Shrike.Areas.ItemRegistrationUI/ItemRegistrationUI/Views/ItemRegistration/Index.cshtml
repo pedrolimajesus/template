@@ -1,0 +1,244 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using Lok.Unik.ModelCommon.Client
+@using Lok.Unik.ModelCommon.ItemRegistration
+@model IEnumerable<ItemRegistration>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    
+    var itemRegistrationModelNew = new ItemRegistration();
+    string nameCategory = "";
+    string colorCategory = "";
+    int contTag = ViewBag.tags.Count;
+    
+    ViewBag.id = "";
+    var listTag = new List<Tag>();
+    bool band = true;
+    foreach (var tag in Model.SelectMany(itemRegistration => itemRegistration.Tags))
+    {
+        if(listTag.Count ==0)
+        {
+            listTag.Add(tag);
+        }else
+        {
+            if (listTag.Any(tagl => tagl.Value.Equals(tag.Attribute)))
+            {
+                band = false;
+            }
+            if(band)
+            {
+                listTag.Add(tag); 
+            }
+            band = true;
+        }
+    }
+    foreach (var category in ViewBag.Categories)
+    {
+        nameCategory = nameCategory + category.Name + ",";
+        colorCategory = colorCategory + category.Color + ",";
+    }
+
+    var modelListTag = Shrike.Areas.TagsUI.TagsUI.TagUILogic.ToModelTags(listTag);
+}   
+
+<div id="left-container">
+    @Html.Partial("_FilterLayoutPanel")
+</div>
+<div id="central-container">
+    <div class='console-header'>
+        Item Registration
+    </div>
+    <div id="content-OptionItemRegistration" style="display:none;">
+
+    </div>
+   
+    @Html.Partial("~/Areas/ItemRegistrationUI/Views/Shared/_GridItemRegistration.cshtml",Model)
+
+    <div class="content-tab">
+        <div id="user-tab">
+            <ul>
+
+                @Html.Partial("~/Areas/ItemRegistrationUI/Views/Shared/_PanelTabsHead.cshtml")
+
+            </ul>
+
+             @Html.Partial("~/Areas/ItemRegistrationUI/Views/Shared/_PanelTabsContent.cshtml")
+
+        </div>
+    </div>
+</div>
+
+
+<div id="right-container">
+    @Html.Partial("_CommandLayoutPanel")
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+
+        var nameValue;
+        var colorValue;
+        var opValue;
+        var band = true;
+        var id;
+        var bandDisplayAddItemRegistration = false;
+
+        $(document).on("click","table tbody tr", function() {
+
+            var idRow = $(this).find("#row").val();
+            
+            if(idRow==undefined || idRow.trim().length==0) return;
+
+            idRow = idRow.trim();
+
+            band = false;
+
+            $("#content-OptionItemRegistration").empty();
+
+            $("#SelectedRow").val("");
+            $("#NameItem").val("");
+            $("#tagsSelectDelete").val("");
+
+            $("table tbody tr.selectedRow").removeClass("selectedRow");
+
+            id = this.rowIndex;
+            
+            var name = $(this).find(".passcode").first().attr("title");
+            var tag = $(this).find("#tags").attr("title");
+            
+            if (idRow != null && idRow != undefined && idRow.length > 0) {
+                $(this).toggleClass('selectedRow');
+                $("#SelectedRow").val(idRow);
+                $("#NameItem").val(name);
+                $("#tagsSelectDelete").val(tag);
+                LoadNavigatorTabs(tag);
+                $("#content-OptionItemRegistration").css({ "display": "none" });
+                bandDisplayAddItemRegistration = false;
+            }
+        });
+
+        function confirmDeleteItemRegistration() {
+            var id = $("#SelectedRow").val();
+            var postdata = { id: id };
+            $.ajax({
+                url: '@Url.Action("Delete", "ItemRegistration")',
+                type: 'POST',
+                data: postdata,
+                complete: function() {
+                    window.location.href = '@Html.Raw(Url.Action("Index", "ItemRegistration"))';
+                    setTimeout(function() {
+                        $('#mydiv').dialog("close");
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $("#user-tab").tabs();
+
+            if($("table tbody tr input#row").length>0) {
+                $("table tbody tr.selectedRow").removeClass("selectedRow");
+                $("table tbody tr:eq(0)").toggleClass("selectedRow");
+                $("table tbody tr.selectedRow").each(function() {
+                    var idRow = $(this).find("#row").val();
+                    if(idRow.length==0) return;
+                    var name = $(this).find(".passcode").first().attr("title");
+                    var tag = $(this).find("#tags").attr("title");
+                    $("#SelectedRow").val(idRow);
+                    $("#NameItem").val(name);
+                    $("#tagsSelectDelete").val(tag);
+                    LoadNavigatorTabs(tag);
+                });
+
+                $("#content-OptionItemRegistration").css({ "display": "none" });
+            }
+        });
+
+
+        function LoadNavigatorTabs(tags) {
+            var listAllTag = @Html.Raw(Json.Encode(@modelListTag));
+            $("#name-Passcode").text($("#NameItem").val());
+            $('#tabletag').remove();
+            AppendToTags(listAllTag, tags);
+        }
+
+        function AppendToTags(listalltag, tags) {
+            var cont = 0;
+            var valuetag = [];
+            var arrTag = [];
+            if (tags != null) {
+                arrTag = tags.split(";");
+            }
+            for (var i = 0; i < arrTag.length; i++) {
+                if (arrTag[i] != null) {
+                    for (var j = 0; j < listalltag.length; j++) {
+                        if (arrTag[i] == listalltag[j].Name && cont == 0) {
+                            valuetag.push(listalltag[j]);
+                            cont++;
+                            break;
+                        }
+                    }
+                    cont = 0;
+                }
+            }
+            var tablehead = '';
+            var band1 = true;
+            var table = $('<table id="tabletag" class="listing-border"></Table>');
+            tablehead = '<thead><tr class="gridhead"><td>Name</td><td>Category</td><td>Color</td><td>Type</td></tr></thead><tbody>';
+            for (var q = 0; q < valuetag.length; q++) {
+                if (band1) {
+                    tablehead = tablehead + '<tr class="td-dark"><td>' + valuetag[q].Name + '</td><td>' + valuetag[q].Category + '</td><td>' + valuetag[q].Color + '</td><td>' + valuetag[q].Type + '</td></tr>';
+                    band1 = false;
+                } else {
+                    tablehead = tablehead + '<tr class="td-light"><td>' + valuetag[q].Name + '</td><td>' + valuetag[q].Category + '</td><td>' + valuetag[q].Color + '</td><td>' + valuetag[q].Type + '</td></tr>';
+                    band1 = true;
+                }
+            }
+            tablehead = tablehead + '</tbody>';
+            table.append(tablehead);
+            $("#tab2-content").append(table);
+        }
+
+        function ShowMessageError() {
+            alert("There is not found selected Tag(s). Plese try again.");
+        }
+
+        $(".dr-tagger-container").click(function() {
+            $(".tab-container").find("ul li").each(function() {
+                $(this).css({ "background": "#e0e3e5" });
+            });
+            $("#" + $(this).attr("title")).css({ "background": "#F8F8F8" });
+        });
+
+        $(".tab-container").find("ul li").click(function() {
+            $(".tab-container").find("ul li").each(function() {
+
+                $(this).css({ "background": "#e0e3e5" });
+            });
+            $(this).css({ "background": "#F8F8F8" });
+        });
+
+        //Script for loading the content of the AddItemRegistration widget
+
+        function LoadContentAddItemRegistration() {
+
+            var content = $("#content-OptionItemRegistration");
+            if (content.css("display") == 'none') {
+                $.ajax({
+                    url: '@Url.Action("AddItemRegistration", "ItemRegistration")/?t=' + (new Date()).getTime(),
+                    cache: false,
+                    dataType: "html",
+                    success: function(data) {
+                        content.html(data);
+                        content.css({ "display": "block" });
+                    }
+                });
+            } else {
+                content.css({ "display": "none" });
+                content.empty();
+            }
+        }
+    </script>
+}

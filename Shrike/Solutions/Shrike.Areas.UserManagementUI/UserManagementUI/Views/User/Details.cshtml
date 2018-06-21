@@ -1,0 +1,111 @@
+﻿@using System.Web.Mvc.Html
+@using Shrike.DAL.Manager
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.User
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Roles = RoleManager.TenantRoleDescriptions;
+    ViewBag.Roles = Shrike.DAL.Manager.RoleManager.TenantRoleDescriptions;
+}
+<div class="form-container" style="height: 255px;">
+    <fieldset class="group-details-ownerinvitations">
+        <div class="group-title-ownerinvitation">
+            Details User</div>
+        <div class="group-content-ownerinvitation" style="height: 218px;">
+            <div class="content-middle">
+                <div class="list">
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.Username)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.Username)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.FirstName)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.FirstName)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.LastName)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.LastName)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.Email)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.Email)
+                        </div>
+                    </div>
+                    <div class="row-form-new">
+                        <div class="group-details-ownerinvitations" style="margin-right: 17px;">
+                            @{
+                                var listagshow = "Tags : ";
+                                foreach (var tag in Model.Tags)
+                                {
+                                    listagshow += tag.Name + ",";
+                                }
+                            }
+                            <div style="width: 100%; padding-left: 5px;">
+                                <label>@listagshow
+                                </label>
+                            </div>
+                            <div class="button-container" style="padding-left: 130px; padding-bottom: 8px;">
+                                <div onclick="EditTagUser()" class="buttonTag">
+                                    Edit Tag</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-middle">
+                <div class="list">
+                    <div class="row-form-img">
+                        <div class="editor-label">
+                            <label>
+                                Photo:</label>
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>
+                                Roles:</label>
+                        </div>
+                        <div class="editor-field">
+                            <label>@Html.DisplayFor(model => model.Roles)</label>
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.ExpirationTime)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.ExpirationTime)
+                        </div>
+                    </div>
+                    <div class="row-form-new">
+                        <div class="group-details-ownerinvitations" style="margin-right: 17px;">
+                            <div style="width: 100%; padding-left: 5px;">
+                                <label>
+                                    Admin over Tags:
+                                </label>
+                            </div>
+                            <div class="button-container" style="padding-left: 130px; padding-bottom: 8px;">
+                                <div onclick="EditTagUser()" class="buttonTag">
+                                    Edit Tag</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

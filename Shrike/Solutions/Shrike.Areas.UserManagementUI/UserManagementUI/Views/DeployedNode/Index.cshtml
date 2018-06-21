@@ -1,0 +1,188 @@
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using AppComponents
+@using AppComponents.Web
+@using Shrike.DAL.Manager
+@using Shrike.UserManagement.BusinessLogic.Models
+
+@model ApplicationNode
+@{
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    ViewBag.Title = "Index";
+    ViewBag.CurrentTenancy = Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy;
+    ViewBag.id = "";
+
+    var srcImg = "~/Content/Theme/Default/Images/Command/Invitation/details-icon.png";
+
+    List<NodeAlert> eventsList = Model.Alerts;
+    List<NodeMetric> metricsList = Model.Metrics;
+}
+
+<div id="left-container">
+    @Html.Partial("_FilterLayoutPanel")
+</div>
+
+<div id="central-container">
+    <div class='console-header'>
+        Deployment
+    </div>
+    <div id="content-partial">
+    </div>
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <div>
+        <div id="maindata-container" class="two-column-div deploymentContainer">
+            <div class="float-left-container">
+                <img src="@Url.Content(srcImg)"/>
+            </div>
+            <div class="deploymentContainer-inputs">
+                <div class="input-div" >
+                    <div class="input-label">Name</div>
+                    <div class="input-field">
+                        <input class="deployedNode-name" id="MachineName" 
+                            name="MachineName" value="@Model.MachineName" readonly="readonly"/>
+                    </div>
+                </div>
+
+                <div class="input-div" >
+                    <div class="input-label">Type</div>
+                    <div class="input-field">
+                        <input id="ComponentType" name="ComponentType" value="@Model.ComponentType" readonly="readonly"/>
+                    </div>
+                </div>
+
+                <div class="metric-input-div" >
+                    <div class="input-label">Version</div>
+                    <div class="input-field ">
+                        <input id="Version" name="Version" value="@Model.Version" readonly="readonly"/>
+                    </div>
+                </div>
+            
+                <div class="input-div" >
+                    <div class="input-label">Hotfixes</div>
+                    <div class="input-field">
+                        <div class="hotfix-box">
+                            @foreach (var hf in Model.HotfixNames)
+                            {
+                                <a href="#">@hf</a> @("&nbsp")
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+        <div id="logging-info" class="loggingContainer">
+            <h4>Logging </h4>
+            <div>
+                <div id="logging-content">
+                    @Html.Partial("~/Areas/UserManagementUI/Views/DeployedNode/LoggingPartial.cshtml", Model.LoggingConfiguration)
+                </div>
+            </div>
+        </div>
+
+        <div id="metrics">
+            <h4>Metrics</h4>
+            
+            <div class ="content-grid deployednode-scroll-div-container" id ="content-metric-grid">
+                @{
+                    var metricsGrid = new WebGrid(metricsList, rowsPerPage: 20, 
+                        canSort: true, ajaxUpdateContainerId: "content-metric-grid") {SortColumn = (string) ViewBag.LastSortedColumn};
+                    
+                        @metricsGrid.GetHtml(fillEmptyRows:false, tableStyle: "listing-border", headerStyle:"gridhead",
+                        footerStyle:"paging", rowStyle:"td-dark", alternatingRowStyle:"td-light", selectedRowStyle:"webgrid-selected-row",
+                        columns: metricsGrid.Columns(
+                            metricsGrid.Column("DisplayCategory", "Category"),
+                            metricsGrid.Column("MetricName", "Name"),
+                            metricsGrid.Column("Value", "Value")
+                        ))    
+                          
+                        
+                }
+
+            </div>
+
+            
+        </div>
+        
+        <div id="alerts-board">
+            <h4>Alerts</h4>
+
+            <div class="content-grid deployednode-scroll-div-container" id="content-grid">
+                @{
+                    var grid = new WebGrid(eventsList, rowsPerPage: 10,
+                                           canSort: true, ajaxUpdateContainerId: "content-grid") 
+                                           {SortColumn = (string) ViewBag.LastSortedColumn};
+
+                    @grid.GetHtml(fillEmptyRows: false, 
+                                  tableStyle: "listing-border", 
+                                  headerStyle: "gridhead",
+                                  footerStyle: "paging", 
+                                  rowStyle: "td-dark", 
+                                  alternatingRowStyle: "td-light", 
+                                  selectedRowStyle: "webgrid-selected-row",
+                                  columns: grid.Columns(
+                                 
+                                      grid.Column("EventTime", "Date"),
+                                      grid.Column("Detail", "Message", style:"nice-column"),
+                                       grid.Column("Actions", "Actions",
+                                                  format: @<span>
+                                                               <input type="hidden" value ="@item.Id" id ="idSelectedNode"/>
+                                                               <input type="hidden" value="@item.Detail" id="detailSelectedNode"/>
+                                                               <a href="#" onclick="CopyAlertToClipboard('@item.Detail');">Clipboard</a>
+                                                               <a href="#" onclick="DeleteAlert('@item.Id');">Delete</a>
+                                                           </span>)
+                                      
+                                      )
+                         )
+                }
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="right-container">
+    @Html.Partial("_CommandLayoutPanel")
+</div>
+
+<script>
+    $(function () {
+        var icons = {
+            header: "ui-icon-circle-arrow-e",
+            activeHeader: "ui-icon-circle-arrow-s"
+        };
+        $("#metrics").accordion({ collapsible: true, active: false, heightStyle: "content", icons: icons });
+        $("#logging-info").accordion({ collapsible: true, active: false, heightStyle: "content", icons: icons });
+        $("#alerts-board").accordion({ collapsible: true, active: false, heightStyle: "content", icons: icons });
+    });
+
+
+    function CopyAlertToClipboard(detail) {
+
+        prompt("Copy details, then click OK.", detail);
+    }
+    
+    function DeleteAlert(alertId) {
+        var url = '@Html.Raw(Url.Action("DeleteAlert", "DeployedNode"))';
+        var nodeId = '@Model.Id';
+        var params = { "idNode" : nodeId, "idAlert": alertId };
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: params,
+            success: function() {
+                
+                var url = '@Html.Raw(Url.Action("Index", "DeployedNode"))';
+                url = url + "?nodeId=" + nodeId;
+                window.location.href = url;
+            }
+        });
+    }
+</script>
+
+    

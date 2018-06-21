@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AppComponents.Web.DefaultApplicationRoles" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ApplicationUser" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECCAgAAEAACAAAAAACQAAAAQQCCABAICQQgEBAQAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ApplicationUser_ByUserName" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ApplicationUser_ByContactEmail" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ApplicationUser_ByHandle" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ApplicationUser_ByName" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ApplicationUser_ByTenancy" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.WebEntitiesTag" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.BundleSpecificationAttribute" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BundleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.BundleSpec" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAQAAAAAQAAAAQAAAAAAAABMAAAAAAA=</HashCode>
+      <FileName>BundleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.BundleManfest" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>BundleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.BundleManager" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BundleManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.BaseController" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.AbstractRepositoryController&lt;TDataType, TSummaryType, TSummaryPackageType, TSummaryMetadataType, TItemPackageType, TItemMetadataType&gt;" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAACRAQCAACACAAAEAIIAAAAAjAAGA=</HashCode>
+      <FileName>AbstractRepositoryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ContextDisplayNameAttribute" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ContextualDataAnnotationsModelMetadataProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.ContextualDataAnnotationsModelMetadataProvider" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ContextualDataAnnotationsModelMetadataProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.UserNotFoundException" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DocumentUserContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.DocumentUserContext" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAACAAAAAAAAAAQBAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DocumentUserContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AppComponents.Web.WebPermitRoles" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PermitRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.Helpers.HtmlHelpersExtensions" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAIAAIAQAAAAAIAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TACHtmlHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.WebModule" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WebModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppComponents.Web.OwnerInvitation">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OwnerInvitation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="AppComponents.Web.WebLocalization" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AppComponents.Web.RepositoryControllerLocalConfig" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbstractRepositoryController.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

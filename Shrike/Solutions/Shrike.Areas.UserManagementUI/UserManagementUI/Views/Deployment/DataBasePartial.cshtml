@@ -1,0 +1,70 @@
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.DataBase
+@{
+    var srcImg = "~/Content/Theme/Default/Images/Command/Invitation/details-icon.png";
+}
+
+ @using (Ajax.BeginForm("ExecuteDatabaseAction", "Deployment", new { id = "" }, new AjaxOptions
+             {
+                 HttpMethod = "POST",
+                 UpdateTargetId = "db-component",
+                 InsertionMode = InsertionMode.Replace
+             }, new {enctype = "multipart/form-data", id = "formDevices"}))
+ {
+
+        <div id="db-component-input" class="left-div">
+            <div class="float-left-container">
+                <img src="@Url.Content(srcImg)"/>
+            </div>
+            <div class="deploymentContainer-inputs" >
+                <div class="input-div">
+                    <div class="input-label">Database Url </div>
+                    <div class="input-field">
+                        <input class="long-input" id="DatabaseUrl" name="DatabaseUrl" value="@Model.DatabaseUrl"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" value="A" name="Command"  id="dbCommand"/>
+        <div class="right-div button-set ">
+            <input value="Test" type="submit" id="databaseTestButton" onclick="TestDatabase()"/>
+            <input value="Save" type="submit" id="databaseSaveButton" onclick="SaveDataBase()" />
+            <input value="Restore" type="submit" id="databaseRestoreButton" onclick="RestoreDataBase()"/>
+        </div>
+}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var status = '@Model.Status';
+        switch (status) {
+            case 'TestPassed': { alert("Test completed successfully"); } break;
+            case 'TestFailed': { alert("Test failed"); } break;
+            case 'SavePassed': { alert("Saved Completed "); } break;
+            case 'SaveFailed': { alert("Saved failed"); } break;
+            //"Not needed" case 'RestorePassed': { alert("Restore Completed"); } break;
+            case 'RestoreFailed': { alert("Restore failed"); } break;
+            default:
+        }
+    });
+
+
+    function TestDatabase() {
+        $('#dbCommand').val('Test');
+    }
+
+    function RestoreDataBase() {
+        $('#dbCommand').val('Restore');
+    }
+
+    function SaveDataBase() {
+        $('#dbCommand').val('Save');
+    }
+</Script>
+
+
+
+
+
+    

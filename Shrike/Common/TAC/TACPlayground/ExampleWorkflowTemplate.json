@@ -1,0 +1,221 @@
+﻿{
+  "Workspace": {
+    "KeyAliases": [
+      {
+        "AliasKey": "Thingy",
+        "Key": "ItemKey"
+      }
+    ],
+    "Inputs": [
+      {
+        "WorkspaceKey": "Input0",
+        "Type": "stuff",
+        "Description": "test description",
+        "Optional": false
+      },
+      {
+        "WorkspaceKey": "CollectionTest",
+        "Type": "stuff",
+        "Description": "test description",
+        "Optional": false
+      }
+    ]
+  },
+  "Name": "TestWorkflow",
+  "Version": "1.0",
+  "Plugins": [
+    {
+      "Instancename": "sys",
+      "Route": "IntraTalk"
+    },
+    
+    {
+      "Instancename": "Debug",
+      "Route": "DiagnosticWorker"
+    },
+    
+  ],
+  "StateMachines": [
+    {
+      "Name": "TestMachine",
+      "InitialState": "TestInvoke",
+      "ActivationTrigger": "Next",
+      "States": [
+        {
+          "Name": "TestInvoke",
+          "Parent": null,
+          "EntryActions": [
+            {
+              "From": null,
+              "Worker": "Debug",
+              "Route": "DiagnosticWorker\/DiagnosticInvoke\/{config(testkey)}\/{workspace(Input0)}",
+              "AutoNextTrigger": null,
+              "ExceptionTrigger": "DumpReport"
+            }
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            {
+              "Trigger": "Next",
+              "Next": "TestGuard",
+              "DynamicNextTemplate": null,
+              "ConditionTemplate": null
+            }
+          ],
+          "RetryTemplate": null
+        },
+        {
+          "Name": "TestGuard",
+          "Parent": null,
+          "EntryActions": [
+            {
+              "From": null,
+              "Worker": "Debug",
+              "Route": "DiagnosticWorker\/DiagnosticInvoke\/{config(testkey)}\/{workspace(Input0)}",
+              "AutoNextTrigger": "Next",
+              "ExceptionTrigger": "DumpReport"
+            }
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            {
+              "Trigger": "Next",
+              "Next": "TestDynamic",
+              "DynamicNextTemplate": null,
+              "ConditionTemplate": {
+                "Worker": "Debug",
+                "Route": "DiagnosticWorker\/DiagnosticGuard\/Test"
+              }
+            }
+          ],
+          "RetryTemplate": null
+        },
+        {
+          "Name": "TestDynamic",
+          "Parent": null,
+          "EntryActions": [
+            {
+              "From": null,
+              "Worker": "Debug",
+              "Route": "DiagnosticWorker\/DiagnosticInvoke\/{config(testkey)}\/{workspace(Input0)}",
+              "AutoNextTrigger": "Next",
+              "ExceptionTrigger": "DumpReport"
+            }
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            {
+              "Trigger": "Next",
+              "Next": null,
+              "DynamicNextTemplate": {
+                "Worker": "Debug",
+                "Route": "DiagnosticWorker\/DiagnosticDecide\/Test"
+              },
+              "ConditionTemplate": null
+            }
+          ],
+          "RetryTemplate": null
+        },
+        {
+          "Name": "Approve",
+          "Parent": null,
+          "EntryActions": [
+            {
+              "From": null,
+              "Worker": "sys",
+              "Route": "IntraTalk\/LoadNextItem\/CollectionTest\/ItemKey\/Load\/NoMore",
+              "AutoNextTrigger": "Next",
+              "ExceptionTrigger": "DumpReport"
+            }
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            {
+              "Trigger": "Load",
+              "Next": "Loaded",
+              "DynamicNextTemplate": null,
+              "ConditionTemplate": null
+            },
+            {
+              "Trigger": "NoMore",
+              "Next": "NoMore",
+              "DynamicNextTemplate": null,
+              "ConditionTemplate": null
+            }
+          ],
+          "RetryTemplate": null
+        },
+        {
+          "Name": "Loaded",
+          "Parent": null,
+          "EntryActions": [
+            {
+              "From": null,
+              "Worker": "sys",
+              "Route": "IntraTalk\/UnpackJsonProperties\/ItemKey",
+              "AutoNextTrigger": null,
+              "ExceptionTrigger": "DumpReport"
+            },
+            {
+              "From": null,
+              "Worker": "Debug",
+              "Route": "DiagnosticWorker\/DiagnosticInvoke\/{workspace(Thingy)}",
+              "AutoNextTrigger": "Next",
+              "ExceptionTrigger": null
+            }
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            {
+              "Trigger": "Next",
+              "Next": "Approve",
+              "DynamicNextTemplate": null,
+              "ConditionTemplate": null
+            }
+          ],
+          "RetryTemplate": null
+        },
+        {
+          "Name": "NoMore",
+          "Parent": null,
+          "EntryActions": [
+            
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            
+          ],
+          "RetryTemplate": null
+        },
+        {
+          "Name": "DumpReport",
+          "Parent": null,
+          "EntryActions": [
+            
+          ],
+          "ExitActions": [
+            
+          ],
+          "Transitions": [
+            
+          ],
+          "RetryTemplate": null
+        }
+      ]
+    }
+  ],
+  "Fallthrough": "TestMachine",
+  "AutoSleepSeconds": 600
+}

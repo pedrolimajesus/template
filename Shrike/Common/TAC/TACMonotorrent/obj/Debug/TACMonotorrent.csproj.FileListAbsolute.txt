@@ -1,0 +1,21 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\TACMonotorrent.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\TACMonotorrent.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACMonotorrent.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACMonotorrent.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.pdb
+F:\New folder\workspace\Shrike\bin\Debug\TACMonotorrent.dll
+F:\New folder\workspace\Shrike\bin\Debug\TACMonotorrent.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.dll
+F:\New folder\workspace\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.pdb
+C:\Shared\Shrike\bin\Debug\TACMonotorrent.dll
+C:\Shared\Shrike\bin\Debug\TACMonotorrent.pdb
+C:\Shared\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.dll
+C:\Shared\Shrike\Common\TAC\TACMonotorrent\obj\Debug\TACMonotorrent.pdb

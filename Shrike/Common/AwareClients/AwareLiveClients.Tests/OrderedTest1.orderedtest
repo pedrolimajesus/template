@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="OrderedTest1" storage="c:\dev\lsi\projects\blackhawk\trunk\common\awareclients\awareliveclients.tests\orderedtest1.orderedtest" id="0ebfc571-194e-4bb8-9a75-b21520e6a108" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="edf64976-683e-464f-5860-d21ca017d99f" name="GetDeviceState" storage="bin\debug\awareliveclients.tests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

@@ -1,0 +1,66 @@
+﻿<#@ assembly name="System.Core" #>
+<#@ assembly name="$(TargetDir)TAC.dll" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="AppComponents" #>
+<#@ import namespace="AppComponents.Extensions.EnumerableEx" #>
+<#@ import namespace="AppComponents.Dynamic" #>
+<#@ import namespace="AppComponents.Dynamic.Lambdas" #>
+<#@ import namespace="AppComponents.Dynamic.Projection" #>
+
+<#+
+
+
+public class StaticTypeProjectionTemplate : Template
+{
+	public IEnumerable<TypeProjection> Projections;
+
+	public override string TransformText()
+	{
+
+#>
+											namespace $rootnamespace$
+											{
+<#
+		var projections = Projections.EmptyIfNull();
+		foreach(var tp in projections)
+		{
+#>
+												public interface I<#= tp.Name #>
+												{
+
+
+<#
+
+		foreach(var mp in tp.Specification)
+		{
+
+
+
+		}
+
+
+#>
+												} // interface
+
+
+
+<#
+
+
+		}
+
+
+#>
+											} // namespace
+
+
+
+<#
+        
+	}
+}
+#>

@@ -1,0 +1,7 @@
+﻿{
+"Subject" : "Lo-K Systems Test SMTP Server : {0}",
+"Content" : "<h1>Hello {1}!</h1>
+This is an email test.
+Test performed at {2} UTC-0
+"
+}

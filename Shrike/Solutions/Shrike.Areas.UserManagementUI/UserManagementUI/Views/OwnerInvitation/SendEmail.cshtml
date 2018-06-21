@@ -1,0 +1,75 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@model Shrike.UserManagement.BusinessLogic.Models.OwnerInvitationModel
+@{
+    ViewBag.Title = "SendEmail";
+    ViewBag.id = Model.SentTo;
+
+    var timeZoneService = AppComponents.Catalog.Factory.Resolve<Shrike.TimeZone.Contracts.ITimeZoneService>();
+}
+
+<div id="content-SendEmail">
+    @using (Html.BeginForm("SendEmail", "OwnerInvitation", FormMethod.Post))
+    {
+        <fieldset class="group-details-ownerinvitations">
+            <div class="group-title-ownerinvitation"> Send Invitation Email</div>
+            <div class="group-content-ownerinvitation" style="height: 150px;padding-left: 0">
+                <div class="list">
+                    @Html.Hidden("SelectedRow", Model.Id)
+                    <div class="table-Owner">
+                        <div class="thead-Owner">
+                            <div class="th-Owner"><label>Tenancy</label></div>
+                            <div class="tr-Owner"><label id="tenancy">@Html.DisplayFor(send => Model.Tenancy)</label></div>
+                        </div>
+                        <div class="thead-Owner">
+                            <div class="th-Owner"><label>Send To Email</label></div>
+                            <div class="tr-Owner"><label id="sentto">@Html.DisplayFor(send => Model.SentTo)</label></div>
+                        </div>
+                        <div class="thead-Owner">
+                            <div class="th-Owner"><label>@Html.DisplayNameFor(model => model.DateSent)</label></div>
+                            <div class="tr-Owner">@(timeZoneService.ConvertUtcToLocal(Model.DateSent, "MM/dd/yyyy HH:mm:ss"))</div>
+                        </div>
+                        <div class="thead-Owner">
+                            <div class="th-Owner"><label>Expire in Days</label></div>
+                            <div class="tr-Owner"><label id="expiration">@Html.DisplayFor(send => Model.ExpirationTime)</label></div>
+                        </div>
+                        <div class="thead-Owner">
+                            <div class="th-Owner">@Html.LabelFor(send => Model.Status)</div>
+                            <div class="tr-Owner"><label id="status">@Html.DisplayFor(send => Model.Status)</label></div>
+                        </div>
+                        <div class="thead-Owner">
+                            <div class="th-Owner">@Html.LabelFor(send => Model.ResentTimes)</div>
+                            <div class="tr-Owner"><label id="resentTimes">@Html.DisplayFor(send => Model.ResentTimes)</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="list">
+                        <div class="submit-button">
+                            <input type="submit" value="Send" onclick="sendEmailInvitation(this); return false;" />
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </fieldset>
+    }
+</div>
+
+<script type="text/javascript">
+    var loadingScreenSendEmailId = '';
+    var loadingImageUrl = '@Url.Content("~/Content/Theme/Default/Images/icon-loading.gif")';
+
+    $(document).ready(function () {
+        loadingScreenSendEmailId = 'screenId' + (new Date()).getTime();
+        createOrUpdateLoadingScreen("sending an invitation email...", loadingImageUrl, loadingScreenSendEmailId);
+    });
+
+    function sendEmailInvitation(button) {
+        var form = $("#content-SendEmail form");
+        var caller = $(button);
+
+        submitFormPost(form, caller, "", '', loadingScreenSendEmailId);
+    }
+</script>

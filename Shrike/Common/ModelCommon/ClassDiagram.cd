@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lok.Unik.ModelCommon.Client.Tag" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAACAAIAgAAAAAAAAAAAAIABAQAhAAAACiA=</HashCode>
+      <FileName>Client\Tag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.BitTorrentInfo">
+    <Position X="20" Y="12.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\BitTorrentInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.ContentFile">
+    <Position X="16.75" Y="4.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BIAAEAAAAAAAAAIAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Client\ContentFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransferInfo" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.CompressedContentFile">
+    <Position X="16.5" Y="6.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQABAgEAAAAAAAAAAAAAAAAAAoAAAAAAAAAA=</HashCode>
+      <FileName>Client\CompressedContentFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.FileTransferInfo">
+    <Position X="20" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Client\FileTransferInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.Kiosk" BaseTypeListCollapsed="true">
+    <Position X="23" Y="11.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAoAAIAAAAABAQAAAAAIEAAAQAAAgAAAAA=</HashCode>
+      <FileName>Client\Kiosk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.ManifestRequest">
+    <Position X="22.5" Y="4.25" Width="1.5" />
+    <AssociationLine Name="Items" Type="Lok.Unik.ModelCommon.ManifestItem" FixedToPoint="true">
+      <Path>
+        <Point X="22.5" Y="4.987" />
+        <Point X="22.125" Y="4.987" />
+        <Point X="22.125" Y="6.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAACAQAAAAAAAAAAABAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Manifest\Manifest.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.ManifestResponse">
+    <Position X="24.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manifest\Manifest.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.ManifestItem">
+    <Position X="21.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Manifest\ManifestItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.WindowsInventory">
+    <Position X="19.75" Y="8.25" Width="1.75" />
+    <AssociationLine Name="NetworkConfig" Type="Lok.Unik.ModelCommon.NetworkConfig" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.5" Y="9.5" />
+        <Point X="22.096" Y="9.5" />
+        <Point X="22.096" Y="15.124" />
+        <Point X="26" Y="15.124" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="OSInfo" Type="Lok.Unik.ModelCommon.OSInfo" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="21.5" Y="8.312" />
+        <Point X="24" Y="8.312" />
+        <Point X="24" Y="8" />
+        <Point X="26.75" Y="8" />
+        <Point X="26.75" Y="4.724" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="DeviceInfo" Type="Lok.Unik.ModelCommon.DeviceInfo" FixedFromPoint="true">
+      <Path>
+        <Point X="21.5" Y="9.062" />
+        <Point X="22.25" Y="9.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAADAAAAAAA=</HashCode>
+      <FileName>Inventory\WindowsInventory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NetworkConfig" />
+      <Property Name="OSInfo" />
+      <Property Name="DeviceInfo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.DeviceInfo">
+    <Position X="22.25" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAQAAAEAAA=</HashCode>
+      <FileName>Inventory\DeviceInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.NetworkConfig">
+    <Position X="26" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAQAAAAAAAAAAAAAAAAAAACAAAAAAIACAAA=</HashCode>
+      <FileName>Inventory\NetworkConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.OSInfo">
+    <Position X="26" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAQACAAgAAAAAAA=</HashCode>
+      <FileName>Inventory\OSInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Info.ServerInfo">
+    <Position X="13" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAABAAEAAAAAAIAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Info\ServerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Info.ProviderInfo">
+    <Position X="14" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Info\ProviderInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Command.CommandSet">
+    <Position X="11" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAABAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command\CommandSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.Device">
+    <Position X="24.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAoAAAAAAAABCQAAAAAIEAAAQAAAgAAAAA=</HashCode>
+      <FileName>Client\Device.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.SchedulePlan">
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\SchedulePlan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Triggers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.TriggerInfo">
+    <Position X="13.75" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAACAAAIAAAA=</HashCode>
+      <FileName>Client\Trigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="JobDetailsInfo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.ApplicationManifestItem">
+    <Position X="19.75" Y="4.25" Width="2.25" />
+    <InheritanceLine Type="Lok.Unik.ModelCommon.ManifestItem" FixedFromPoint="true">
+      <Path>
+        <Point X="21.562" Y="6.75" />
+        <Point X="21.562" Y="5.891" />
+        <Point X="20.875" Y="5.891" />
+        <Point X="20.875" Y="5.516" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\ApplicationManifestItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.User" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAEAAIgAAACAEAAAABAAEAAAAA=</HashCode>
+      <FileName>Client\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.Application" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IQACgAAAAABgAAAAAAABAAQAEAAAAEAAAAgAAAAAAAA=</HashCode>
+      <FileName>Client\Application.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ConfigurationTemplateFile" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="DeploymentFiles" />
+      <Property Name="ContentFiles" />
+      <Property Name="Tags" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.ApplicationDeploymentFile" Collapsed="true">
+    <Position X="19.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAIAAAAIAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Client\ApplicationDeploymentFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.AuthCode" Collapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\AuthCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.ConfigurationTemplateFile">
+    <Position X="13.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\ConfigurationTemplateFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.FilterTag" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAIAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Client\FilterTag.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.Mobile">
+    <Position X="25.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Client\Mobile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.TagCategory" Collapsed="true">
+    <Position X="32" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Client\TagCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.GroupLink">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAABAAAAAAAAAAAAAAQAAAAEAAAACAAAAAgAAAA=</HashCode>
+      <FileName>Client\GroupLink.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GroupOne" />
+      <Property Name="GroupTwo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Lok.Unik.ModelCommon.Client.Tenant" Collapsed="true">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAgACAAAACAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Tenant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Lok.Unik.ModelCommon.Interfaces.IApplication">
+    <Position X="16.25" Y="12" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAACgAAAAABgAAAAAAABAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IApplication.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lok.Unik.ModelCommon.Interfaces.IDevice">
+    <Position X="14" Y="12" Width="1.5" />
+    <InheritanceLine Type="Lok.Unik.ModelCommon.Interfaces.ITaggableEntity" FixedToPoint="true">
+      <Path>
+        <Point X="16" Y="11.231" />
+        <Point X="16" Y="11.625" />
+        <Point X="15.25" Y="11.625" />
+        <Point X="15.25" Y="12" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Inventory" Type="Lok.Unik.ModelCommon.WindowsInventory" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.75" Y="12" />
+        <Point X="14.75" Y="9.188" />
+        <Point X="18.1" Y="9.188" />
+        <Point X="18.1" Y="8.992" />
+        <Point X="18.667" Y="8.992" Type="JumpStart" />
+        <Point X="18.833" Y="8.992" Type="JumpEnd" />
+        <Point X="19.75" Y="8.992" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAoAAAAAAAABCQAAAAAIAAAAQAAAgAAAAA=</HashCode>
+      <FileName>Interfaces\IDevice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Inventory" />
+      <Property Name="ServerInfo" />
+      <Property Name="ProviderInfo" />
+      <Property Name="CommandSet" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Lok.Unik.ModelCommon.Interfaces.IContentFile">
+    <Position X="20" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BIAAEAAAAAAAAAIAAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IContentFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TransferInfo" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Lok.Unik.ModelCommon.Interfaces.IFileTransferInfo" Collapsed="true">
+    <Position X="28.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFileTransferInfo.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Lok.Unik.ModelCommon.Interfaces.ITaggableEntity">
+    <Position X="15.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITaggableEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Lok.Unik.ModelCommon.Client.ExecutionEnvironment" Collapsed="true">
+    <Position X="30.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Client\ApplicationDeploymentFile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Lok.Unik.ModelCommon.Client.TagType" Collapsed="true">
+    <Position X="32" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAoAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Client\Tag.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Lok.Unik.ModelCommon.Client.CategoryColor" Collapsed="true">
+    <Position X="28.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAAAAgAAABAAAAAAAAAAAAAAAAAAADAAAAA=</HashCode>
+      <FileName>Client\TagCategory.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

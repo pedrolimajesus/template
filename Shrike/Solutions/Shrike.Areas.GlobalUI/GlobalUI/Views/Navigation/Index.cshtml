@@ -1,0 +1,45 @@
+﻿@using AppComponents.Web
+@{
+    ViewBag.Title = "Index";
+    var cont = 1;
+    var currentUser = ViewBag.RoleItem.Role;
+    const string focusNavigation = "~/Content/Theme/Default/Images/Navigation/footer.png";
+}
+<div id="footer">
+    <div style="text-align: center">
+        @if (ViewBag.RoleItem != null && ViewBag.Title != null)
+        {
+            foreach (var item in ViewBag.RoleItem.NavigationItems)
+            {
+                var footerId = "footer" + cont;
+                var imgid = "img" + cont;
+                var pid = "p" + cont;
+                var controller = item.ViewItems[0].ControllerName;
+                var area = item.ViewItems[0].AreaName;
+                var action = item.ViewItems[0].ActionName;
+                //var link = Url.Content("~/" + Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy + "/" + area + "/" + controller + "/" + action);
+                var link = Url.Action(action,controller, new { Area = area});
+            <div class="footer-item">
+                @{
+                    if (!controller.Equals(ViewBag.CurrentController))
+                    {
+                        <div class="footer-box" id="@footerId"  onclick="location.href='@link'">
+                            <img src="@Url.Content(item.ImageSrc)" title="@item.Title" id = "@imgid" />
+                            <p class="footer-box-users" id="@pid">@item.Title</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="footer-box" id="@footerId" style="background: url('@Url.Content(focusNavigation)');" onclick="location.href='@link'">
+                            <img src="@Url.Content(item.ImageSrc)" title="@item.Title" id = "@imgid" />
+                            <p class="footer-box-users" id="@pid">@item.Title</p>
+                        </div>
+                    }
+                }
+                
+            </div>
+                cont++;
+            }
+        }
+    </div>
+</div>

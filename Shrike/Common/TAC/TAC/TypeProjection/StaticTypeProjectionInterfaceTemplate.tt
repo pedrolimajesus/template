@@ -1,0 +1,14 @@
+﻿<#+
+// <copyright file="StaticTypeProjectionInterfaceTemplate.tt" company="">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+
+public class StaticTypeProjectionInterfaceTemplate : Template
+{
+	public override string TransformText()
+	{
+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

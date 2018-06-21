@@ -1,0 +1,162 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using AppComponents
+
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.DeploymentObj
+@{
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    ViewBag.Title = "Deployment";
+    ViewBag.CurrentTenancy = Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy;
+    ViewBag.id = "";
+    List<ApplicationNode> appNodesList = ViewBag.AppNodeList;
+    var timeZoneService = AppComponents.Catalog.Factory.Resolve<Shrike.TimeZone.Contracts.ITimeZoneService>();
+}
+
+<div id="left-container">
+    @Html.Partial("_FilterLayoutPanel")
+</div>
+
+<div id="central-container">
+    <div class='console-header'>
+        @ViewBag.Title
+    </div>
+    <div id="content-partial">
+    </div>
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <div>
+        <div id="db-component" class="two-column-div deploymentContainer border-container">
+            @Html.Partial("~/Areas/UserManagementUI/Views/Deployment/DataBasePartial.cshtml", Model.Database)
+        </div>
+
+        <div id="email-component" class="two-column-div deploymentContainer border-container">
+            @Html.Partial("~/Areas/UserManagementUI/Views/Deployment/EmailServerPartial.cshtml", Model.EmailServer)
+        </div>
+
+        <div id="filestore-component" class="two-column-div deploymentContainer border-container">
+            @Html.Partial("~/Areas/UserManagementUI/Views/Deployment/FileStorePartial.cshtml", Model.FileStore)
+        </div>
+
+        <div class="contend-owner-grid-Report scroll-div-container" id="content-grid">
+
+            @{
+                var grid = new WebGrid(appNodesList, rowsPerPage: 7,
+                    canSort: true, ajaxUpdateContainerId: "content-grid") { SortColumn = (string)ViewBag.LastSortedColumn };
+
+                    @grid.GetHtml(fillEmptyRows: true, tableStyle: "listing-border", headerStyle: "gridhead",
+                    footerStyle: "paging", rowStyle: "td-dark", alternatingRowStyle: "td-light", selectedRowStyle: "webgrid-selected-row",
+                    columns: grid.Columns(
+                        grid.Column("ComponentType", "ComponentType"),
+                        grid.Column("MachineName", "Name"),
+                        grid.Column("State", "Active"),
+                        grid.Column("LastPing", "Last Ping", format: @<text>@{
+                            var toShow = timeZoneService.ConvertUtcToLocal(item.LastPing, "MM/dd/yyyy HH:mm:ss");
+                        }
+                        @toShow
+                        </text>),
+
+                        grid.Column("Version", "Version"),
+                        grid.Column("InstallDate", "Install date", format:@<text>@{
+                            var toShow = timeZoneService.ConvertUtcToLocal(item.InstallDate, "d");
+                        }
+                        @toShow
+                        </text>),
+
+                        grid.Column("Actions", "Actions",
+                            format: @<text><span>
+                                <input type="hidden" value="@item.Id" id="idSelectedNode" />
+                                <a href="#" onclick="InActiveteView('@item.Id'); return false;">Toggle Active</a>
+                                <a href="#" onclick="GoToView('@item.Id'); return false;">View</a>
+                                <a href="#" onclick="DeleteNode('@item.Id'); return false;">Delete</a>
+                            </span></text>
+)
+)
+)
+            }
+        </div>
+
+    </div>
+
+</div>
+<div id="right-container">
+    @Html.Partial("_CommandLayoutPanel")
+</div>
+
+<div id="testEmailSender" title="Test Email Sender" hidden="hidden">
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            if ($("table tbody tr input#idSelectedNode").length > 0) {
+                $("table tbody tr.selectedRow").removeClass("selectedRow");
+                $("table tbody tr:eq(0)").addClass("selectedRow");
+                $("table tbody tr.selectedRow").each(function () {
+                    var name = $(this).find("#idSelectedNode").val().trim();
+                    $("#SelectedRow").val(name);
+                });
+            }
+
+            $(document).on("click", "table tbody tr", onComponentsGridRowClick);
+        });        
+
+        function onComponentsGridRowClick() {
+            var idNode = $(this).find("#idSelectedNode").val();
+
+            if (idNode != undefined && idNode.trim().length > 0) {
+                $("table tbody tr.selectedRow").removeClass("selectedRow");
+                $(this).toggleClass('selectedRow');
+                //var datasent = $(this).find("#dataSent").text();
+                $("#SelectedRow").val(idNode);
+                //SelectedItemAction();
+            }
+        }
+
+        function GoToView(nodeId) {
+            var url = '@Html.Raw(Url.Action("Index", "DeployedNode"))';
+            url = url + "?nodeId=" + nodeId;
+            window.location.href = url;
+        }
+
+        function DeleteNode(nodeId) {
+
+            var url = '@Html.Raw(Url.Action("DeleteNode", "DeployedNode"))';
+            var params = "idNode=" + nodeId;
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: params,
+                success: function (data) {
+                    var boolJavascript = new Boolean(data.state);
+                    if (boolJavascript == true) {
+                        alert('Succeeded');
+                        var urlDeployment = '@Html.Raw(Url.Action("Index", "Deployment"))';
+                        window.location.href = urlDeployment;
+
+                    } else {
+                        alert('Failed');
+                    }
+                }
+            });
+
+        }
+
+        function InActiveteView(nodeId) {
+            var url = '@Html.Raw(Url.Action("ToggleNodeActive", "DeployedNode"))';
+            var params = 'idNode=' + nodeId;
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: params,
+                success: function (data) {
+                    var msg = new Boolean(data.status);
+                    var urlDeployment = '@Html.Raw(Url.Action("Index", "Deployment"))';
+                    window.location.href = urlDeployment;
+                }
+            });
+        }
+
+
+    </script>
+}

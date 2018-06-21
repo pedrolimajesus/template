@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9960BE7-13D4-4C15-B9D0-73825B20C76B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lok.Control.Common.ProxyCommon</RootNamespace>
+    <AssemblyName>ProxyModelCommon</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\DeviceHealth.cs" />
+    <Compile Include="Interfaces\DeviceHealthState.cs" />
+    <Compile Include="Interfaces\DeviceInfo.cs" />
+    <Compile Include="Interfaces\DeviceRegistrationRequest.cs" />
+    <Compile Include="Interfaces\IControlApi.cs" />
+    <Compile Include="Interfaces\ProxyDevicesDigest.cs" />
+    <Compile Include="Interfaces\ProxyRegistrationRequest.cs" />
+    <Compile Include="Interfaces\ProxyRequest.cs" />
+    <Compile Include="Interfaces\ServerResponse.cs" />
+    <Compile Include="Interfaces\RegistrationRecord.cs" />
+    <Compile Include="Interfaces\StoredFileMetadata.cs" />
+    <Compile Include="Interfaces\UploadFileMetadata.cs" />
+    <Compile Include="LookData\LookPerson.cs" />
+    <Compile Include="LookData\TimePeriod.cs" />
+    <Compile Include="MoveData\BorderEvent.cs" />
+    <Compile Include="MoveData\DwellType.cs" />
+    <Compile Include="MoveData\DirectionType.cs" />
+    <Compile Include="MoveData\DwellEvent.cs" />
+    <Compile Include="MoveData\EventType.cs" />
+    <Compile Include="MoveData\FaloServerDigest.cs" />
+    <Compile Include="MoveData\HotspotEvent.cs" />
+    <Compile Include="LookData\LookDeviceDigest.cs" />
+    <Compile Include="MoveData\MoveDeviceDigest.cs" />
+    <Compile Include="MoveData\PersonTrack.cs" />
+    <Compile Include="MoveData\Position.cs" />
+    <Compile Include="MoveData\ProxyEventDigest.cs" />
+    <Compile Include="ProxyInfo\FaloServerInfo.cs" />
+    <Compile Include="ProxyInfo\IProxyInfo.cs" />
+    <Compile Include="ProxyInfo\LookDeviceInfo.cs" />
+    <Compile Include="ProxyInfo\ManagedDeviceInfo.cs" />
+    <Compile Include="ProxyInfo\MaskColor.cs" />
+    <Compile Include="ProxyInfo\MoveBorderInfo.cs" />
+    <Compile Include="ProxyInfo\MoveDeviceInfo.cs" />
+    <Compile Include="ProxyInfo\MoveHotspotInfo.cs" />
+    <Compile Include="ProxyInfo\Point.cs" />
+    <Compile Include="ProxyInfo\ProxyInfo.cs" />
+    <Compile Include="ProxyInfo\ProxyManifest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyInfo\ProxySettings.cs" />
+    <Compile Include="ViewsReportEntities\DeviceViewEntity.cs" />
+    <Compile Include="ViewsReportEntities\FacilityReportAnalysis.cs" />
+    <Compile Include="ViewsReportEntities\FacilitySpecification.cs" />
+    <Compile Include="ViewsReportEntities\FacilityViewEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TAC\TAC\TACCore.csproj">
+      <Project>{3d3466a2-cb2c-4c01-9bc1-575717db58e4}</Project>
+      <Name>TACCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,8 @@
+﻿@{
+    var controllerMain = ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue;
+ }
+
+<div style="margin: 0 auto 0 auto;width: 100%;">@Html.Action("Index", "Navigation", new {  area = Shrike.Areas.GlobalUI.AreaPortableName.AreaName } )</div>
+
+
+

@@ -1,0 +1,184 @@
+﻿@using System.Web.Mvc
+@*@using System.Web.Mvc.Ajax*@
+@using System.Web.Mvc.Html
+@using Shrike.DAL.Manager
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.User
+@{
+    const string FormId = "editUserForm";
+    ViewBag.IsAjax = this.Request.IsAjaxRequest();
+    ViewBag.Title = "Edit User";
+    this.Layout = ViewBag.IsAjax ? string.Empty : "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    ViewBag.Roles = RoleManager.TenantRoleDescriptions;
+
+    //var options = new AjaxOptions
+    //{
+    //    HttpMethod = "Post",
+    //    UpdateTargetId = "divEditUserForm",
+    //    OnSuccess = "OnSuccessEditUser",
+    //    OnFailure = "OnFailureEditUser"
+    //};
+}
+
+@if (!ViewBag.IsAjax)
+{
+    <div class="console-header">@ViewBag.Title</div>
+}
+
+<div class="divNewOwnerInvitation" style="height: 290px;">
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { id = FormId, enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => Model.Id)
+        @Html.HiddenFor(model => Model.Roles)
+        @Html.Hidden("type", "user")
+        
+        <fieldset class="group-details-ownerinvitations">
+            <legend>&nbsp;</legend>
+            <div class="group-title-ownerinvitation">Edit User</div>
+            <div class="group-content-ownerinvitation" style="height: 218px;">
+                <div class="content-middle">
+                    <div class="list">
+                        
+
+                        <div class="row-form">
+                            <div class="editor-label">
+                                <label>@Html.DisplayNameFor(model => model.Username)</label>
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Username)
+                            </div>
+                        </div>
+                        
+                        
+
+                        <div class="row-form">
+                            <div class="editor-label">
+                                <label>@Html.DisplayNameFor(model => model.FirstName)</label>
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.FirstName)
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                <label>@Html.DisplayNameFor(model => model.LastName)</label>
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.LastName)
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Email)
+                            </div>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.Email)
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+                        <div class="row-form-new">
+                            <div class="group-details-ownerinvitations" style="margin-right: 17px;">
+                                @{
+                                    var listagshow = "Tags : ";
+                                    if (Model.Tags != null)
+                                    {
+                                        listagshow = this.Model.Tags.Aggregate(listagshow, (current, tag) => current + (tag.Name + ","));
+                                    }
+                                }
+                                <div style="width: 100%; padding-left: 5px;">
+                                    <label>@listagshow </label>
+                                </div>
+                                <div class="button-container" style="padding-left: 130px; padding-bottom: 8px;">
+                                    <div onclick="EditTagUser()" class="buttonTag">Edit Tag</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-middle">
+                    <div class="list">
+                        <div class="row-form-new" style="height: 70px;">
+                            <div class="editor-label">
+                                <label>Avatar</label></div>
+                            <div class="editor-field">
+                                <div class="RunScript-content-input-file" style="width: 0px; height: 0px; overflow: hidden;">
+                                    <input type="file" id="fileUpload01" name="files" size="23" class="input-file" value="" />
+                                </div>
+                                <div class="RunScript-content" style="width: 92%">
+                                    <label id="nameFile01" style="width: 50%; overflow: hidden;">File selected...</label>
+                                    <div class="buttonFile" id="buttonFile01">
+                                        <label>Browse</label></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.Roles)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                                    var tempRoleList = string.Empty;
+                                    foreach (var role in Model.Roles)
+                                    {
+                                        if (role.Contains("/"))
+                                        {
+                                            tempRoleList += role.Remove(0, role.LastIndexOf('/') + 1) + ", ";
+                                        }
+                                        else
+                                        {
+                                            tempRoleList += role + ", ";
+                                        }
+                                    }
+
+                                    if (tempRoleList.Length > 0)
+                                    {
+                                        tempRoleList = tempRoleList.Remove(tempRoleList.Length - 2);
+                                    }
+
+                                    if (!string.IsNullOrEmpty(tempRoleList))
+                                    {
+                                        <label style="width: 200px;">@tempRoleList</label>
+                                    }
+                                    else
+                                    {
+                                        <label style="width: 200px;">@Model.RoleInvitation</label>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <div class="editor-label">
+                            </div>
+                            <div class="editor-field">
+                            </div>
+                        </div>
+                        <div class="row-form-new">
+
+                            <div class="group-details-ownerinvitations" style="margin-right: 17px;">
+                                <div style="width: 100%; padding-left: 5px;">
+                                    <label>Admin over Tags: </label>
+                                </div>
+                                <div class="button-container" style="padding-left: 130px; padding-bottom: 8px;">
+                                    <div class="buttonTag">Edit Tag</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="row-form-new">
+            <div class="list">
+                <div class="submit-button">
+                    <input type="submit" value="Update User" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+<div id="dialog-editTag" title=" Assign Tags" style="display: none" hidden="true">
+</div>

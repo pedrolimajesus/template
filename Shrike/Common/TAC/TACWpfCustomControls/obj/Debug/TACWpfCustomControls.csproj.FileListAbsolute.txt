@@ -1,0 +1,61 @@
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.g.cs
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.g.cs
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.lref
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.baml
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.baml
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.g.resources
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.Properties.Resources.resources
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csproj.GenerateResource.Cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.g.cs
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.g.cs
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.lref
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.baml
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.baml
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.g.resources
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.Properties.Resources.resources
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csproj.GenerateResource.Cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.dll
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.g.cs
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.g.cs
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.cache
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.lref
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.baml
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.baml
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.g.resources
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.Properties.Resources.resources
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csproj.GenerateResource.Cache
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.dll
+F:\New folder\workspace\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.pdb
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.dll
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\bin\Debug\TACWpfCustomControls.pdb
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.g.cs
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.g.cs
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.cache
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls_MarkupCompile.lref
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxEx.baml
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\ListBoxWrapper.baml
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.g.resources
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.Properties.Resources.resources
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csproj.GenerateResource.Cache
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.dll
+C:\Shared\Shrike\Common\TAC\TACWpfCustomControls\obj\Debug\TACWpfCustomControls.pdb

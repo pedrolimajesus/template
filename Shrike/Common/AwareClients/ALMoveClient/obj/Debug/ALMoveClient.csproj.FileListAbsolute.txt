@@ -1,0 +1,21 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\AwareLiveMoveClient.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\AwareLiveMoveClient.pdb
+C:\Global InSight\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\ALMoveClient.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\AwareLiveMoveClient.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\AwareLiveMoveClient.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\ALMoveClient.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.pdb
+F:\New folder\workspace\Shrike\bin\Debug\AwareLiveMoveClient.dll
+F:\New folder\workspace\Shrike\bin\Debug\AwareLiveMoveClient.pdb
+F:\New folder\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\ALMoveClient.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.pdb
+C:\Shared\Shrike\bin\Debug\AwareLiveMoveClient.dll
+C:\Shared\Shrike\bin\Debug\AwareLiveMoveClient.pdb
+C:\Shared\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\ALMoveClient.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\ALMoveClient.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.dll
+C:\Shared\Shrike\Common\AwareClients\ALMoveClient\obj\Debug\AwareLiveMoveClient.pdb

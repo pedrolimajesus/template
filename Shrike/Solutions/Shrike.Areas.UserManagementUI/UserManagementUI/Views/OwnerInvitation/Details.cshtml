@@ -1,0 +1,165 @@
+﻿@using System.Web.Mvc.Html
+@model Shrike.UserManagement.BusinessLogic.Models.OwnerInvitationModel
+@{
+    ViewBag.Title = "Details";
+    ViewBag.id = Model.SentTo;
+    //var categoryFilter = ViewBag.criteria;
+
+    Layout = "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    var timeZoneService = AppComponents.Catalog.Factory.Resolve<Shrike.TimeZone.Contracts.ITimeZoneService>();
+}
+<div id="left-right-container">
+    <div class='console-header-details'>
+        Details
+    </div>
+    <div id="div-add-device-form">
+        <div class='console-header show'>
+            <label>Details Invitation</label>
+        </div>
+        <div id="divDetailsContainer" class="show-content show">
+            <div id="content-details">
+                <fieldset class="createDevice-container-details">
+                    <legend class="hide">Invitation</legend>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.SentTo)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.SentTo)
+                            @Html.Hidden("SelectedRow", Model.Id)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.Tenancy)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.Tenancy)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.AuthorizationCode)</label>
+                            <br />
+                        </div>
+                        <div class="editor-field" style="height: 40px;">
+                            @* @Html.DisplayFor(model => model.AuthorizationCode)*@
+                            @{
+                                var authorization1 = string.Empty;
+                                var authorization2 = string.Empty;
+                                var cont = 0;
+                                if (!string.IsNullOrEmpty(Model.AuthorizationCode))
+                                {
+                                    foreach (var s in Model.AuthorizationCode)
+                                    {
+                                        if (cont < 56)
+                                        {
+                                            authorization1 = authorization1 + s;
+                                        }
+                                        else
+                                        {
+                                            authorization2 = authorization2 + s;
+                                        }
+                                        cont++;
+                                    }
+                                }
+                            }
+                            <label>@authorization1</label><br />
+                            <label>@authorization2</label>
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.DateSent)</label>
+                        </div>
+                        <div class="editor-field">
+                            @(timeZoneService.ConvertUtcToLocal(Model.DateSent, "MM/dd/yyyy HH:mm:ss"))
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.AcceptingUserName)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.AcceptingUserName)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.ExpirationTime)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.ExpirationTime)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.Status)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.Status)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="editor-label">
+                            <label>@Html.DisplayNameFor(model => model.ResentTimes)</label>
+                        </div>
+                        <div class="editor-field">
+                            @Html.DisplayFor(model => model.ResentTimes)
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class='console-header hide'>
+            <label>
+                Email Content</label>
+        </div>
+        <div class="show-content hide" style="display: none;">
+            <fieldset class="group-details-ownerinvitations">
+                <legend class="hide"></legend>
+                @if (!string.IsNullOrEmpty(Model.EmailContent))
+                {
+                    <div class="group-title-ownerinvitation">@Html.DisplayNameFor(model => model.EmailContent)</div>
+                    <div class="group-content-ownerinvitation">@Html.Raw(Model.EmailContent)</div>
+                }
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div id="right-container">
+    @*@Html.Partial("_CommandLayoutPanel")*@
+    <div id="action-menu">
+        <div id="action-content">
+            <div class="action-header">Actions</div>
+            <div class="action-option" onclick="goBackToIndex();">
+                <div class="action-option-icon">
+                    <img alt="Back" src='@Url.Content("~/Content/Theme/Default/Images/left.png")'/>
+                </div>
+                <div class="action-option-title">Back to Index</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).on("click", ".console-header", function () {
+        var component = $(".console-header");
+        component.toggleClass("hide");
+        component.toggleClass("show");
+
+        var first = $("#divDetailsContainer");
+        var second = first.next().next();
+
+        first.toggle('slow');
+        second.toggle('slow');
+        first.toggleClass('hide');
+        first.toggleClass('show');
+        second.toggleClass('hide');
+        second.toggleClass('show');
+    });
+
+    function goBackToIndex() {
+        window.location = '@Url.Action("Index")';
+    }
+</script>

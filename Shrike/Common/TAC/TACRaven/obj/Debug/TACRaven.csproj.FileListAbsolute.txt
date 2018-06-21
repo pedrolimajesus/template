@@ -1,0 +1,29 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\TACRaven.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\TACRaven.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\AppComponents.AssResource.resources
+C:\Global InSight\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csproj.GenerateResource.Cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACRaven.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACRaven.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\AppComponents.AssResource.resources
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csproj.GenerateResource.Cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.pdb
+F:\New folder\workspace\Shrike\bin\Debug\TACRaven.dll
+F:\New folder\workspace\Shrike\bin\Debug\TACRaven.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\AppComponents.AssResource.resources
+F:\New folder\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csproj.GenerateResource.Cache
+F:\New folder\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.dll
+F:\New folder\workspace\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.pdb
+C:\Shared\Shrike\bin\Debug\TACRaven.dll
+C:\Shared\Shrike\bin\Debug\TACRaven.pdb
+C:\Shared\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\TAC\TACRaven\obj\Debug\AppComponents.AssResource.resources
+C:\Shared\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csproj.GenerateResource.Cache
+C:\Shared\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.dll
+C:\Shared\Shrike\Common\TAC\TACRaven\obj\Debug\TACRaven.pdb

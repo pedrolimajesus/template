@@ -1,0 +1,350 @@
+﻿@using System.Web.Optimization
+@{
+    var categoryFilter = ViewBag.CategoryFilter;
+    var categorySelected = ViewBag.CategorySelected;
+    var showCategory = ViewBag.ShowModel;
+    var categoryTag = ViewBag.Identifier;
+
+    var timeCategories = Enum.GetNames(typeof(Lok.Unik.ModelCommon.Aware.TimeCategories));
+}
+
+<div style="margin: 0 auto 0 auto;width: 100%;">@Html.Action("Index", "Filter", new { area = "GlobalUI" })</div>
+
+<script type="text/javascript">
+
+    /*********LoadFilters**********/
+
+    function RestrictAccordionMenu(id)
+    {
+        $('h3.tag-filter-content-title').each(function(){
+            var title = $(this);
+            if(title.attr("identif")==id)
+            {
+                title.click();
+            }
+        });
+    }
+
+    function LoadFilters() {
+        var data = @Html.Raw(Json.Encode(@ViewBag.TagFilters));
+        if(data != null) {
+            // Firstly. Clean data from other request.
+            $(".tag-filter-content").empty();
+            // Load TAG FILTERS
+
+            if ($.browser.safari == true) {
+                LoadTagFitlersInSafari(data);
+            } else {
+                LoadTagFilters(data);
+            }
+            optionSelected();
+
+            $("#tag-filter-accordion").accordion();
+            // DISPLAY MENU
+            $("#accordion-data").css("display", "block");
+        }
+        else {
+            var currentController = '@ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue';
+            if(currentController == "OwnerInvitation" || currentController == "User") {
+                $(".tag-filter-content").empty();
+                // Load TAG FILTERS
+
+                if ($.browser.safari == true) {
+                    LoadFiltersTimeInSafari(currentController);
+                } else {
+                    LoadFiltersTime(currentController);
+                }
+                optionSelected();
+
+                $("#tag-filter-accordion").accordion();
+                // DISPLAY MENU
+                $("#accordion-data").css("display", "block");
+            }
+        }
+    }
+
+    function LoadFiltersTimeInSafari(currentController) {
+        if(currentController=="ContentManagerReport") return;// In the Reports Logs View the Time Filter should not be shown
+        var options = @Html.Raw(Json.Encode(timeCategories));
+        if(currentController != "DeviceRegistration" && currentController != "OpsTenantOwnerReport" && currentController != "AdministrationReport") {
+            $("#tag-filter-accordion").append($('<h3></h3>').attr("id", "filter-title-" + 0).attr("class", "tagfilter-content-title").text("Time").attr("identif","Time"));
+            $("#tag-filter-accordion").append($('<div></div>').attr("id", 0).attr("class", "tag-filter-content").attr("identif","Time"));
+            $("#filter-title-0").css({"border-top-left-radius":"0px","border-top-right-radius":"0px" });
+            for(var k = 0 ; k < options.length ; k++) {
+                var random = (Math.random()*(999999999999999999)).toString() + k.toString();
+                $("#" + 0).append($('<input type="radio" id="radio-button-time-'+random +'" name="tag-filter-group-time"><span><label for="radio-button-time-'+random +'">' + options[k] + '</label></span><br>')
+                        .attr('class', 'tag-filter-radio-button')
+                        .attr('value', options[k]));
+            }
+        }
+    }
+
+    function LoadFiltersTime(currentController) {
+        if(currentController=="ContentManagerReport") return;// In the Reports Logs View the Time Filter should not be shown
+        var options = @Html.Raw(Json.Encode(timeCategories));
+
+        if(currentController != "DeviceRegistration" && currentController != "OpsTenantOwnerReport" && currentController != "AdministrationReport") {
+            $("#tag-filter-accordion").append($('<h3></h3>').attr("id", "filter-title-" + 0).attr("class", "tagfilter-content-title").text("Time").attr("identif","Time"));
+            $("#tag-filter-accordion").append($('<div></div>').attr("id", 0).attr("class", "tag-filter-content").attr("identif","Time"));
+            $("#filter-title-0").css({"border-top-left-radius":"0px","border-top-right-radius":"0px" });
+
+            for(var y = 0 ; y < options.length ; y++) {
+                var random = Math.random()*(999999999999999999);
+                $("#" + 0).append($('<input type="radio" id="radio-button-time-'+random + y +'" name="tag-filter-group-time"><label for="radio-button-time-'+random + y+'"></label><br/>')
+                        .attr('class', 'tag-filter-radio-button')
+                        .attr('value', options[y])
+                        .text(options[y]));
+            }
+        }
+    }
+
+    function optionSelected() {
+
+        var criteria = '@ViewBag.criteria';
+
+        $("input[type=radio]").each(function () {
+            var radioButtonValue = $(this).val();
+
+            if(criteria == radioButtonValue) {
+                $(this).attr('checked', true);
+            }
+        });
+    }
+
+    function LoadTagFilters(data) {
+        var currentController = '@ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue';
+        LoadFiltersTime(currentController);
+        if(data!= null) {
+            for (var i = 0; i < data.length; i++) {
+                var divFromTab = "filter-option-" + i;
+                $("#tag-filter-accordion").append($('<h3></h3>').attr("id", "filter-title-" + i).attr("class", "tag-filter-content-title").text(data[i].Category).attr("identif",data[i].Category));
+                $("#tag-filter-accordion").append($('<div></div>').attr("id", divFromTab).attr("class", "tag-filter-content").attr("identif",data[i].Category));
+
+                for (var j = 0; j < data[i].TagFilterValues.length; j++) {
+                    var id = data[i].TagFilterValues[j].Id;
+
+                    $("#" + divFromTab).append($('<input type="radio" name="tag-filter-group" id="'+id+'" ><label for="'+id+'"></label><br>')
+                            .attr('class', "tag-filter-radio-button")
+                            .attr('value', id)
+                            .text(data[i].TagFilterValues[j].Value));
+                }
+            }
+        }
+    }
+
+    function LoadTagFitlersInSafari(data) {
+
+        var currentController = '@ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue';
+        LoadFiltersTimeInSafari(currentController);
+
+        if(data!= null) {
+            for (var i = 0; i < data.length; i++) {
+                var divFromTab = "filter-option-" + i;
+
+                $("#tag-filter-accordion").append($('<h3></h3>').attr("id", "filter-title-" + i).attr("class", "tag-filter-content-title").text(data[i].Category).attr("identif",data[i].Category));
+                $("#tag-filter-accordion").append($('<div></div>').attr("id", divFromTab).attr("class", "tag-filter-content").attr("identif",data[i].Category));
+
+                for (var j = 0; j < data[i].TagFilterValues.length; j++) {
+                    var random = Math.random()*(999999999999999999);
+                    $("#" + divFromTab).append($('<input type="radio" name="tag-filter-group" id="'+random+j+'" ><span for="'+random+j+'"> ' + data[i].TagFilterValues[j].Value + ' </span><br>')
+                            .attr('class', "tag-filter-radio-button")
+                            .attr('value', data[i].TagFilterValues[j].Id));
+                }
+            }
+        }
+    }
+
+    $(document).on("change",'input[type="radio"][name="tag-filter-group-time"]', filterTimeEventHandler);
+
+    function filterTimeEventHandler(){
+
+        var time = $(this).val();
+        var currentController = '@ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue';
+
+        var url = '@Html.Raw(Url.Action("Index","Controller_Name",new { kind = "time" }))';
+        //var link = '@Url.Content("~/" + Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy + "/" + @ViewContext.RouteData.DataTokens["area"].ToString() + "/" + @ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue + "/Index")';
+        url = url.replace("time",time).replace("Controller_Name",currentController);
+        //link = link +"?kind="+time;
+        //alert("current Url: "+url + " area: "+currentArea);
+        window.location.href = url;
+    }
+
+    function TagFilter() {
+
+        var taggableEntity = { User: "User", Device: "Device", DeviceRegistration: "DeviceRegistration", Alert: "Alert", Application: "Application", OperatorDeviceAlert : "OpsAdminsitratorDeviceAlert"};
+
+        $(document).on("change",'input:radio[name="tag-filter-group"]', function() {
+
+            // TODO:
+            // Filter WebGrid.
+
+            var tagFilter = $(this).val();
+            var tag = $('input[name=tag-filter-group]:checked').val();
+
+            var currentController = '@ViewContext.Controller.ValueProvider.GetValue("Controller").RawValue';
+
+            var criteria = {criteria: tagFilter};
+
+            var category = $('.filter-by-category-select-op option:selected').text();
+
+            var categorySelected = '';
+
+            var identif;
+            if (tag != null && tag.length > 0 && tag != undefined)
+                identif = $('input[name=tag-filter-group]:checked').parent().attr("identif");
+            else
+                identif = '';
+
+            var showModel = $('#action1').css('display') == 'block';
+            //alert("Current Controller "+currentController);
+            switch (currentController) {
+
+                case taggableEntity.User:
+                    $.ajax({
+                        url: '@Url.Action("Index", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName })',
+                        type: 'GET',
+                        dataType: "json",
+                        data : criteria,
+                        complete:
+                            window.location.href = '@Html.Raw(Url.Action("Index", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))?criteria=' +
+                                tagFilter + '&page=1&categorySelected=' + categorySelected + '&categoryTag=' + identif + '&showModel=' + showModel+'&categoryFilter='+category
+                    });
+                    break;
+
+                case taggableEntity.Device:
+                    $.ajax({
+                        url: '@Url.Action("Index", "Device")',
+                        type: 'GET',
+                        dataType: "json",
+                        data : criteria,
+                        complete:
+                            window.location.href = '@Html.Raw(Url.Action("Index", "Device"))?criteria=' +
+                                tagFilter + '&categorySelected=' + categorySelected + '&categoryTag=' + identif + '&showModel=' + showModel+'&categoryFilter='+category
+                    });
+                    break;
+
+                case taggableEntity.DeviceRegistration:
+                    $.ajax({
+                        url: '@Url.Action("Index", "DeviceRegistration")',
+                        type: 'GET',
+                        dataType: "json",
+                        data : criteria,
+                        complete:
+                            window.location.href = '@Html.Raw(Url.Action("Index", "DeviceRegistration"))?criteria=' +
+                                tagFilter + '&categorySelected=' + categorySelected + '&categoryTag=' + identif + '&showModel=' + showModel+'&categoryFilter='+category
+                    });
+                    break;
+
+                case taggableEntity.OperatorDeviceAlert:
+                    $.ajax({
+                        url: '@Url.Action("Index", "OpsTenantOwnerDeviceAlert")',
+                        type: 'GET',
+                        dataType: "json",
+                        data : criteria,
+                        complete:
+                            window.location.href = '@Html.Raw(Url.Action("Index", "OpsAdminsitratorDeviceAlert"))?criteria=' +
+                                tagFilter + '&categorySelected=' + categorySelected + '&categoryTag=' + identif + '&showModel=' + showModel+'&categoryFilter='+category
+                    });
+                    break;
+
+                default:
+                    //...
+                    break;
+            }
+        });
+    }
+    /**********Time Filter*********/
+
+
+
+    /******************************/
+
+    function mouseclickFooter() {
+        var idFooter = '@ViewBag.divFooter';
+        $('#' + idFooter).css({"background":"url('../../../Content/images/footer.png')"});
+    }
+
+    $(document).ready(function() {
+        LoadFilters();
+        mouseclickFooter();
+        LoadData();
+    });
+
+    function LoadData() {
+
+        var category_filter = '@categoryFilter';
+
+        if (category_filter != null && category_filter.length > 0 && category_filter != undefined) {
+            $("#select_filter_by_category").find('option').each(function () {
+                if ($(this).val() == category_filter) {
+                    $(this).attr('selected', 'selected');
+                    //$("#select_filter_by_category").val($(this).val());
+                }
+            });
+            $("#select_filter_by_category").val(category_filter);
+        }
+
+        var category_selected = '@categorySelected';
+
+        if (category_selected != null && category_selected.length > 0 && category_selected != undefined) {
+            $('div.tag-filter-content').find('input[type="radio"]').each(function () {
+                if ($(this).val() == category_selected) {
+                    $(this).attr('checked', 'true');
+                    //RestrictAccordionMenu("Model");
+                }
+            });
+        }
+
+        var show_category = '@showCategory';
+        if (show_category != null && show_category.length > 0) {
+            if (show_category == 'true') {
+                $("#action1").css("display", "block");
+                $("#rp2").css("display", "block");
+            }
+            else {
+                $("#action1").css("display", "none");
+                $("#rp2").css("display", "none");
+            }
+        }
+        else
+        {
+            $("#action1").css("display", "none");
+            $("#rp2").css("display", "none");
+        }
+
+        var category_tag = '@categoryTag';
+        if (category_tag != null && category_tag.length > 0 && category_tag != undefined) {
+            RestrictAccordionMenu(category_tag);
+        }
+    }
+
+    function showAll() {
+
+        var type = $("#type").val();
+
+        var url = "";
+        if (type == "user") {
+            url = '@Html.Raw(Url.Action("Index", "User", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))';
+        }
+        if (type == "device") {
+            url = '@Html.Raw(Url.Action("Index", "Device"))';
+        }
+        if (type == "deviceRegistration") {
+            url = '@Html.Raw(Url.Action("Index", "DeviceRegistration"))';
+        }
+        if (type == "alert") {
+            url = '@Html.Raw(Url.Action("Index", "OpsTenantOwnerAlert"))';
+        }
+        if (type == "owner") {
+            url = '@Html.Raw(Url.Action("Index", "OwnerInvitation", new { area=Shrike.Areas.UserManagementUI.AreaPortableName.AreaName }))';
+        }
+        if (type == "schedule") {
+            url = '@Html.Raw(Url.Action("Index", "ContentManagerSchedulePlan"))';
+        }
+        if (type == 'deviceAlert') {
+            url = '@Html.Raw(Url.Action("Index", "OpsAdminsitratorDeviceAlert"))';
+        }
+        location.href = url;
+    }
+
+</script>

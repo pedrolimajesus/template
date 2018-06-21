@@ -1,0 +1,175 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using AppComponents.Web
+@model Shrike.UserManagement.BusinessLogic.Models.OwnerInvitationModel
+@{
+    ViewBag.Title = "Create";
+    ViewBag.CurrentTenancy = Shrike.Tenancy.DAL.Managers.TenantManager.CurrentTenancy;
+    ViewBag.IsOwner = ViewBag.CurrentTenancy == Tenants.SuperAdmin;
+    ViewBag.id = "";
+
+    const string formId = "createInvitationForm";
+
+    this.Layout = this.IsAjax ? null : "~/Views/Shared/_ShrikePartialLayout.cshtml";
+    if (TempData["MessageError"] != null)
+    {
+    <div id="messageTempData" hidden="hidden">@TempData["MessageError"]</div>
+    } 
+}
+
+<div class="divNewOwnerInvitation">
+    @using (Html.BeginForm("Create", "OwnerInvitation", FormMethod.Post, new { id = formId, enctype = "multipart/form-data" }))
+    {
+        <fieldset class="group-details-ownerinvitations">
+            <legend class="hide">&nbsp;</legend>
+            <div class="group-title-ownerinvitation">
+                Create an Invitation
+            </div>
+            <div class="group-content-ownerinvitation" style="height: 210px;">
+                @Html.ValidationSummary(true)
+                <div class="list">
+                    <div class="row-form-new" id="div1">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.SentTo)
+                        </div>
+                        <div class="editor-field">
+                            <div class="block-textfield">
+                                @Html.EditorFor(model => model.SentTo)
+                                <div id="errorMessage"></div>
+                                @Html.ValidationMessageFor(model => model.SentTo)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-form-new" id="div2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Tenancy)
+                        </div>
+                        <div class="editor-field">
+                            <div class="block-textfield">
+                                @Html.EditorFor(model => model.Tenancy)
+                                @Html.ValidationMessageFor(model => model.Tenancy)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-form-new" id="div3">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.ExpirationTime)
+                        </div>
+                        <div class="editor-field">
+                            <div class="block-textfield">
+                                @Html.TextBoxFor(model => model.ExpirationTime, new { @MaxLength = "2", @Type="number" })
+                                @Html.ValidationMessageFor(model => model.ExpirationTime)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-form-new" id="div4">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Status)
+                        </div>
+                        <div class="editor-field">
+                            <label>New</label>
+                        </div>
+                    </div>
+
+                    <div class="submit-button" id="send">
+                        <input type="submit" value="Create" onclick="validateInvitation(this);"/>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    }
+</div>
+<script type="text/javascript">
+    var loadingScreenCreateId = '';
+    var loadingImageUrl = '@Url.Content("~/Content/Theme/Default/Images/icon-loading.gif")';
+
+    $(document).ready(initCreateFunction);
+
+    function initCreateFunction() {
+        $("#SentTo").css({
+            border: "1px solid #D5D5D5",
+            "background-color": "#FFFFFF"
+        });
+
+        var messageTempData = $("#messageTempData").text();
+
+        if (messageTempData != null && messageTempData != "") {
+            $("#errorMessage").text(messageTempData);
+
+            $("#errorMessage").css({
+                color: "#CD0A0A",
+                "font-size": "11px",
+                "margin-top": "1px"
+            });
+
+            $("#SentTo").css({
+                border: "1px solid #CD0A0A",
+                "background-color": "#FEF1EC"
+            });
+
+            $("#SentTo").live("keyup, click", function() {
+                if ($(this).attr("value") == "") {
+                    $(this).css({
+                        border: "1px solid #CD0A0A",
+                        "background-color": "#FEF1EC"
+                    });
+                } else {
+                    $(this).css({
+                        border: "1px solid #D5D5D5",
+                        "background-color": "#FFFFFF"
+                    });
+                }
+
+            });
+        }
+
+        $("#SentTo").live("keyup, click", function () {
+            $(this).css({
+                border: "1px solid #D5D5D5",
+                "background-color": "#FFFFFF"
+            });
+
+            $("#errorMessage").attr("hidden", "hidden");
+        });
+
+        loadingScreenCreateId = 'screenId' + (new Date()).getTime();
+        createOrUpdateLoadingScreen("creating a new tenant...", loadingImageUrl, loadingScreenCreateId);
+    };
+
+    function validateInvitation(caller) {
+        var formId = "#@formId";
+
+        window.jQuery.validator.unobtrusive.parse(formId);
+        var form = $(formId);
+
+        if (form.valid()) {
+            submitFormPost(form, caller, "", '', loadingScreenCreateId);
+        } else {
+            $("#SentTo").live("focusout,mouseup", function() {
+                if ($("#SentTo") == "") {
+                    $(this).css({
+                        border: "1px solid #CD0A0A",
+                        "background-color": "#FEF1EC"
+                    });
+                }
+            });
+
+            $("#SentTo").live("keyup, click", function() {
+                if ($(this).attr("value") == "") {
+                    $(this).css({
+                        border: "1px solid #CD0A0A",
+                        "background-color": "#FEF1EC"
+                    });
+                } else {
+                    $(this).css({
+                        border: "1px solid #D5D5D5",
+                        "background-color": "#FFFFFF"
+                    });
+                }
+            });
+        }
+    }
+</script>

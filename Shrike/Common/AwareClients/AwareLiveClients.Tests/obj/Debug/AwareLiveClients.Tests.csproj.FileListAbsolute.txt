@@ -1,0 +1,54 @@
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\OrderedTest1.orderedtest
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.pdb
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.pdb
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.pdb
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\OrderedTest1.orderedtest
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.pdb
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\OrderedTest1.orderedtest
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.pdb
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.pdb
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.pdb
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.xml
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.pdb
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\OrderedTest1.orderedtest
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveClients.Tests.pdb
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveLookClient.pdb
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\AwareLiveMoveClient.pdb
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.dll
+C:\Shared\Shrike\Common\AwareClients\AwareLiveClients.Tests\obj\Debug\AwareLiveClients.Tests.pdb

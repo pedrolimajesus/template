@@ -1,0 +1,21 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\TACWpf.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\TACWpf.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACWpf.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TACWpf.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.pdb
+F:\New folder\workspace\Shrike\bin\Debug\TACWpf.dll
+F:\New folder\workspace\Shrike\bin\Debug\TACWpf.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.dll
+F:\New folder\workspace\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.pdb
+C:\Shared\Shrike\bin\Debug\TACWpf.dll
+C:\Shared\Shrike\bin\Debug\TACWpf.pdb
+C:\Shared\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.dll
+C:\Shared\Shrike\Common\TAC\TACWpf\obj\Debug\TACWpf.pdb

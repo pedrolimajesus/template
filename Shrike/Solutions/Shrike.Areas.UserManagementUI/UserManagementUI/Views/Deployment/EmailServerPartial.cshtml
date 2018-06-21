@@ -1,0 +1,193 @@
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.EmailServer
+
+@{
+    const string srcImg = "~/Content/Theme/Default/Images/Command/Invitation/details-icon.png";
+}
+
+@using (Ajax.BeginForm("ExecuteEmailServerAction", "Deployment", null, new AjaxOptions
+ {
+     HttpMethod = "POST",
+     UpdateTargetId = "email-component",
+     InsertionMode = InsertionMode.Replace,
+     OnSuccess = "parseFormForUnobtrusiveValidation();"
+ }, new { enctype = "multipart/form-data", id = "formEmailTest" }))
+{
+    <div class="left-div">
+        <div class="float-left-container">
+            <img src="@Url.Content(srcImg)" alt="send email"/>
+        </div>
+
+        <div class="deploymentContainer-inputs">
+            <div class="input-div">
+                <div class="input-label">SMTP Server</div>
+                <div class="input-field">
+                    @Html.TextBoxFor(m => m.SmtpServer, new { @class = "long-input left" })
+                    @Html.ValidationMessageFor(m => m.SmtpServer, "*")
+                </div>
+            </div>
+            <div class="input-div float-left-container">
+                <div class="input-label">Port</div>
+                <div class="input-field">
+                    @Html.TextBoxFor(m => m.Port, new { @class = "number-input left", @type = "number" })
+                    @Html.ValidationMessageFor(m => m.Port, "*")
+                </div>
+            </div>
+            <div class="input-div float-right-container">
+                <div class="input-field right-check">
+                    @Html.CheckBoxFor(m => m.IsSsl)
+                    Use SSL
+                </div>
+            </div>
+        </div>
+
+        <div class="deploymentContainer-inputs" style="padding-left: 20px">
+            <div class="input-div">
+                <div class="input-label">Reply Address</div>
+                <div class="input-field">
+                    @Html.TextBoxFor(m => m.ReplyAddress, new { @type = "email", @class = "left" })
+                    @Html.ValidationMessageFor(m => m.ReplyAddress, "*")
+                </div>
+            </div>
+        </div>
+
+        <div class="deploymentContainer-inputs" style="padding-left: 20px">
+            <div class="input-div">
+                <div class="input-label">Username</div>
+                <div class="input-field">
+                    @Html.TextBoxFor(m => m.Username, new { @class = "left" })
+                    @Html.ValidationMessageFor(m => m.Username, "*")
+                </div>
+            </div>
+            <div class="input-div float-left-container">
+                <div class="input-label">Password</div>
+                <div class="input-field">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "left", @type = "password" })
+                    @Html.ValidationMessageFor(m => m.Password, "*")
+                </div>
+            </div>
+
+            <div class="input-div float-right-container">
+                <div class="input-field right-check">
+                    @Html.CheckBox("pass-display", new { onchange = "ToggleCheckbox();" })
+                    Display Value
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-div button-set">
+        <input type="hidden" value="A" name="emCommand" id="emCommand" />
+        @Html.HiddenFor(m => m.Status, Model.Status)
+        <input value="Test" class="submit-button" type="button" id="emailTestButton" onclick="TestEmailServer();" />
+        <input value="Save" type="submit" id="emailSaveButton" onclick="SaveEmailServer();" />
+        <input value="Restore" type="submit" id="emailRestoreButton" onclick="RestoreEmailServer();" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var status = '@Model.Status';
+        switch (status) {
+            case 'TestPassed': { alert("Test completed successfully"); } break;
+            case 'TestFailed': { alert("Test failed"); } break;
+            case 'SavePassed': { alert("Saved Completed "); } break;
+            case 'SaveFailed': { alert("Saved failed"); } break;
+                //"Not needed" case 'RestorePassed': { alert("Restore Completed"); } break;
+            case 'RestoreFailed': { alert("Restore failed"); } break;
+            default:
+                break;
+        }
+    });
+
+    function parseFormForUnobtrusiveValidation() {
+        window.jQuery.validator.unobtrusive.parse("#formEmailTest");
+    }
+
+    function ToggleCheckbox() {
+        if ($('#pass-display').is(':checked')) {
+            $('#Password').prop('type', 'text');
+
+        } else {
+            $('#Password').prop('type', 'password');
+        }
+    }
+
+    function TestEmailServer() {
+        $('#emCommand').val('Test');
+
+        parseFormForUnobtrusiveValidation();
+
+        var form = $("#formEmailTest");
+        var testValuesValid = form.valid();
+
+        if (!testValuesValid) {
+            alert("check your input settings");
+            return;
+        }
+
+        var replyAddress = $("#ReplyAddress").val();
+        var isSsl = $("input[name=IsSsl][type=checkbox]").is(":checked");
+
+        var testEmailServer = {
+            SmtpServer: $("#SmtpServer").val(),
+            Port: $("#Port").val(),
+            IsSsl: isSsl,
+            Username: $("#Username").val(),
+            Password: $("#Password").val(),
+            ReplyAddress: replyAddress,
+            TestEmailAddress: $("#TestEmailAddress").val()
+        };
+
+        var url = '@Html.Raw(Url.Action("TestEmailServer", "Deployment"))';
+
+        $("#testEmailSender").dialog({
+            modal: true,
+            resizable: false,
+            width: 440,
+            height: 200,
+            open: function () {
+                $(this).load(url),
+                window.jQuery.validator.unobtrusive.parse("#testEmail-form");
+                $(this).dialog("option", "position", { my: "left-top", at: "left+600 top+400", of: window });
+                $(this).dialog({
+                    buttons: {
+                        "Send": function () {
+                            if (window.ValidateForm()) {
+                                testEmailServer.TestEmailAddress = $("#TestEmailAddress").val();
+
+                                $.ajax({
+                                    url: url,
+                                    type: 'POST',
+                                    data: testEmailServer,
+                                    success: function (test) {
+                                        $("#testEmailSender").dialog("close");
+
+                                        if (test == '@Boolean.FalseString') {
+                                            alert("Test failed");
+                                        } else {
+                                            alert("Test completed successfully");
+                                        }
+                                    }
+                                });
+
+                            }
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function RestoreEmailServer() {
+        $('#emCommand').val('Restore');
+    }
+
+    function SaveEmailServer() {
+        $('#emCommand').val('Save');
+    }
+</script>
+

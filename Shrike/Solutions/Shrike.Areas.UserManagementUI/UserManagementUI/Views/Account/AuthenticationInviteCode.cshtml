@@ -1,0 +1,42 @@
+﻿@model Shrike.UserManagement.BusinessLogic.Models.AuthenticationInviteCodeModel
+
+@{
+    ViewBag.Title = "Authentication Invite Code";
+    Layout = "~/Areas/UserManagementUI/Views/Shared/_AccountPartialLayout.cshtml";
+}
+<hgroup class="title">
+    <div class="message-info-header">
+            <h1>@ViewBag.Title.</h1>
+    </div>
+
+    <h3 class="message-info-subheader">
+        Use this form to accept an invitation to admin the current customer site.</h3>
+</hgroup>
+
+<p class="message-info">
+    Fill the authentication code for accepting administration of the current customer site.
+</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <fieldset class="take-owner-ship-code">
+        <legend class="subtitle-container">Authentication code</legend>
+        <ol>
+            <li>
+                <div class="rowform">
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.AuthenticationCode)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.AuthenticationCode)
+                        @Html.ValidationMessageFor(m => m.AuthenticationCode, "*")
+                    </div>
+                </div>
+            </li>
+        </ol>
+        <p>
+            <input type="submit" value="Accept Administration" />
+        </p>
+    </fieldset>
+}

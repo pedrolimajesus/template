@@ -1,0 +1,43 @@
+﻿@using System.Web.Optimization
+@using AppComponents.Web
+@model Shrike.UserManagement.BusinessLogic.Models.TakeOwnerShipModel
+@{
+    ViewBag.Title = "Take Ownership";
+    Layout = "~/Areas/UserManagementUI/Views/Shared/_AccountPartialLayout.cshtml";
+}
+
+<hgroup class="title">
+    <div class="message-info-header">
+        <h1>@ViewBag.Title.</h1>
+    </div>
+    <h3 class="message-info-subheader">Use this form to take ownership of the site.</h3>
+</hgroup>
+
+<p class="message-info">
+    Fill the pass code for taking ownership.
+</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+    <fieldset class="take-owner-ship-code">
+        <legend class="subtitle-container">Take ownership pass code</legend>
+        <ol>
+            <li>
+                <div class="editor-label">
+                    @Html.LabelFor(m => m.PassCode)
+                </div>
+                <div class ="editor-field">
+                    @Html.EditorFor(m => m.PassCode)
+                    @Html.ValidationMessageFor(m => m.PassCode, "*")
+                </div>
+            </li>
+        </ol>
+        <div class="submit-button">
+            <input type="submit" value="Take Ownership" />
+        </div>
+    </fieldset>
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

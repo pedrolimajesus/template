@@ -1,0 +1,9 @@
+﻿{
+"Subject" : "Lo-K Systems Customer Invitation: {0}",
+"Content": "<div>
+<h1>Hello {1}!</h1>
+<p>Use the following link in order to start using Lo-K Systems for your business</p>
+<p><label style='color:blue'>{2}</label></p>
+Or you can register on the system as a user using the following form: <br/><label style='color:blue'>{3}</label><br/>
+Then you can use this code after registering: <label style='color:green'>{4}</label><br/><br/><span style='color:red'>If you are viewing this as the inviting user do not follow the links they are intended for the invited user.</label></div>"
+}

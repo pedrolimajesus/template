@@ -1,0 +1,29 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\ModelCommon.dll.config
+C:\Global InSight\workspace\Shrike\bin\Debug\ModelCommon.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\ModelCommon.pdb
+C:\Global InSight\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csproj.App.config
+C:\Global InSight\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.dll
+C:\Global InSight\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\ModelCommon.dll.config
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\ModelCommon.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\ModelCommon.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csproj.App.config
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.pdb
+F:\New folder\workspace\Shrike\bin\Debug\ModelCommon.dll.config
+F:\New folder\workspace\Shrike\bin\Debug\ModelCommon.dll
+F:\New folder\workspace\Shrike\bin\Debug\ModelCommon.pdb
+F:\New folder\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csproj.App.config
+F:\New folder\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.dll
+F:\New folder\workspace\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.pdb
+C:\Shared\Shrike\bin\Debug\ModelCommon.dll.config
+C:\Shared\Shrike\bin\Debug\ModelCommon.dll
+C:\Shared\Shrike\bin\Debug\ModelCommon.pdb
+C:\Shared\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csproj.App.config
+C:\Shared\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.dll
+C:\Shared\Shrike\Common\ModelCommon\obj\Debug\ModelCommon.pdb

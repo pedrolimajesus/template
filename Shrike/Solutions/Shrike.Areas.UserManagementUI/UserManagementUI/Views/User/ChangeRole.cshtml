@@ -1,0 +1,60 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Shrike.DAL.Manager
+@model Shrike.Areas.UserManagementUI.UserManagementUI.Models.User
+@{
+    ViewBag.Title = "ChangeRole";
+    
+    //cannot change to the same role
+    var currentRole = Model.Roles.First().ToLowerInvariant();
+    var roles = RoleManager.TenantRoleDescriptions;
+    var roles1 = roles.Keys.Where(roleId => !roleId.Equals(currentRole, StringComparison.InvariantCultureIgnoreCase)).ToDictionary(roleId => roleId, roleId => roles[roleId]);
+
+    ViewBag.Roles = roles1;
+}
+
+<div id="CreateOwnerInvitation">
+    <div class="divNewOwnerInvitation">
+        @using (Html.BeginForm("ChangeRole", "User", FormMethod.Post, new { id = "form-change-role" }))
+        {
+            @Html.ValidationSummary(true)
+                        
+            @Html.Hidden("CurrentRole", currentRole)
+            @Html.HiddenFor(m => m.Email)
+            @Html.HiddenFor(m => m.Id)
+
+            <fieldset class="group-details-roles">
+                <legend>&nbsp;</legend>
+                <div class="group-title-ownerinvitation">
+                    Change User Role
+                </div>
+                <div class="group-content-ownerinvitation" style="height: 170px;">
+                    <div class="list">
+                        <div class="row-form-new">
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.Roles)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(m => m.Roles, new SelectList(ViewBag.Roles, "Key", "Value", currentRole))
+                            </div>
+                        </div>
+                        <div class="row-form-new">
+                            <div class="submit-button" id="send">
+                                <input type="submit" value="Change" id="invite-user-submit" onclick="setTimeout('ValidateInviteUser(this);', 500); return false;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+    
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    function ValidateInviteUser() {
+        window.jQuery.validator.unobtrusive.parse("#form-change-role");
+        if (window.jQuery("#form-change-role").valid()) {
+            window.jQuery('#form-change-role').submit();
+        }
+    }
+</script>

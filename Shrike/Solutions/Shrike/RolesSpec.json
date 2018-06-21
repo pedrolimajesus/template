@@ -1,0 +1,22 @@
+﻿{
+"RoleSpecs":[
+	{
+		"Id":"SuperAdmin",
+		"Name":"SuperAdmin", 
+		"Description":"System-wide administrator",
+		"Type":"Owner"
+	},
+	{
+		"Id":"TenantOwner",
+		"Name":"TenantOwner", 
+		"Description":"This is the owner of a tenant, it administers users and roles asignment for a tenant",		
+		"Type":"Tenant"
+	},
+	{
+		"Id":"User",
+	    "Name":"User", 
+		"Description":"Default user role",
+		"Type":"Tenant"
+	}
+]
+}

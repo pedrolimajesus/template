@@ -1,0 +1,80 @@
+﻿
+@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@using AppComponents
+@using AppComponents.Web
+@using Shrike.DAL.Manager
+
+@model AppComponents.LoggingConfiguration
+@{
+    
+    
+}
+
+
+@using (Ajax.BeginForm("ExecuteLoggingAction", "DeployedNode", new { id = "" }, new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "logging-content",
+    InsertionMode = InsertionMode.Replace
+}, new { enctype = "multipart/form-data", id = "formDevices", style = "height:90px" }))
+{
+    
+    <div class="input-div" >
+        <div class="input-label">LogFile:</div>
+        <div class="input-field">
+            <input class="logging-input" id="File" name="File" value="@Model.File"/>
+        </div>
+    </div>
+    
+    <div class="input-div" >
+        <div class="input-label">Filter:</div>
+        <div class="input-field">
+            <input class="logging-input" id="ClassFilter" name="ClassFilter" value="@Model.ClassFilter"/>
+        </div>
+    </div>
+
+    <div class="input-div float-left-container" >
+        <div class="input-label">Level:</div>
+        <div class="input-field">
+            @Html.RadioButtonFor(m=>m.LogLevel, 0)  @Html.Label("None")
+            @Html.RadioButtonFor(m=>m.LogLevel, 1)  @Html.Label("Error")
+            @Html.RadioButtonFor(m=>m.LogLevel, 2)  @Html.Label("Warning")
+            @Html.RadioButtonFor(m=>m.LogLevel, 3)  @Html.Label("Verbose")
+        </div>
+    </div>
+   
+    <div class="logging-button-set">
+        <input type="hidden" value="@ViewBag.ApplicationNode" name="applicationNode"  id="applicationNode"/>
+        <input type="hidden" value="" name="command"  id="command"/>
+        <input value="Save" type="submit" id="SaveButton" onclick="SaveEmailServer()" />
+        <input value="Restore" type="submit" id="RestoreButton" onclick="RestoreEmailServer()"/>
+    </div>
+    
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var status = '@ViewBag.Status';
+        switch (status) {
+            case 'TestPassed': { alert("Test completed successfully"); } break;
+            case 'TestFailed': { alert("Test failed"); } break;
+            case 'SavePassed': { alert("Saved Completed "); } break;
+            case 'SaveFailed': { alert("Saved failed"); } break;
+            //"Not needed" case 'RestorePassed': { alert("Restore Completed"); } break;
+            case 'RestoreFailed': { alert("Restore failed"); } break;
+            default:
+        }
+    });
+
+    function RestoreEmailServer() {
+        $('#command').val('Restore');
+    }
+
+    function SaveEmailServer() {
+        $('#command').val('Save');
+    }
+
+</script>
+

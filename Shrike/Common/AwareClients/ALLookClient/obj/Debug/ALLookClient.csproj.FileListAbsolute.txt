@@ -1,0 +1,19 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\AwareLiveLookClient.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\AwareLiveLookClient.pdb
+C:\Global InSight\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.dll
+C:\Global InSight\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\AwareLiveLookClient.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\AwareLiveLookClient.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\ALLookClient.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.pdb
+F:\New folder\workspace\Shrike\bin\Debug\AwareLiveLookClient.dll
+F:\New folder\workspace\Shrike\bin\Debug\AwareLiveLookClient.pdb
+F:\New folder\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\ALLookClient.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.dll
+F:\New folder\workspace\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.pdb
+C:\Shared\Shrike\bin\Debug\AwareLiveLookClient.dll
+C:\Shared\Shrike\bin\Debug\AwareLiveLookClient.pdb
+C:\Shared\Shrike\Common\AwareClients\ALLookClient\obj\Debug\ALLookClient.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.dll
+C:\Shared\Shrike\Common\AwareClients\ALLookClient\obj\Debug\AwareLiveLookClient.pdb

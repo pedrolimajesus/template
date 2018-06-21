@@ -1,0 +1,21 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\ModelCommon.RavenDB.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\ModelCommon.RavenDB.pdb
+C:\Global InSight\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.csprojResolveAssemblyReference.cache
+C:\Global InSight\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.dll
+C:\Global InSight\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\ModelCommon.RavenDB.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\ModelCommon.RavenDB.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.pdb
+F:\New folder\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.dll
+F:\New folder\workspace\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.pdb
+F:\New folder\workspace\Shrike\bin\Debug\ModelCommon.RavenDB.dll
+F:\New folder\workspace\Shrike\bin\Debug\ModelCommon.RavenDB.pdb
+C:\Shared\Shrike\bin\Debug\ModelCommon.RavenDB.dll
+C:\Shared\Shrike\bin\Debug\ModelCommon.RavenDB.pdb
+C:\Shared\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.csprojResolveAssemblyReference.cache
+C:\Shared\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.dll
+C:\Shared\Shrike\Common\ModelCommon.RavenDB\obj\Debug\ModelCommon.RavenDB.pdb

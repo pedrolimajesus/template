@@ -1,0 +1,27 @@
+C:\Global InSight\workspace\Shrike\bin\Debug\TAC.dll
+C:\Global InSight\workspace\Shrike\bin\Debug\TAC.pdb
+C:\Global InSight\workspace\Shrike\Common\TAC\TAC\obj\Debug\AppComponents.Resource.resources
+C:\Global InSight\workspace\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csproj.GenerateResource.Cache
+C:\Global InSight\workspace\Shrike\Common\TAC\TAC\obj\Debug\TAC.dll
+C:\Global InSight\workspace\Shrike\Common\TAC\TAC\obj\Debug\TAC.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TAC.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\bin\Debug\TAC.pdb
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csprojResolveAssemblyReference.cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\obj\Debug\AppComponents.Resource.resources
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csproj.GenerateResource.Cache
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\obj\Debug\TAC.dll
+C:\Users\pedro.lima\Project\workspace\Shrike\Common\TAC\TAC\obj\Debug\TAC.pdb
+F:\New folder\workspace\Shrike\bin\Debug\TAC.dll
+F:\New folder\workspace\Shrike\bin\Debug\TAC.pdb
+F:\New folder\workspace\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csprojResolveAssemblyReference.cache
+F:\New folder\workspace\Shrike\Common\TAC\TAC\obj\Debug\AppComponents.Resource.resources
+F:\New folder\workspace\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csproj.GenerateResource.Cache
+F:\New folder\workspace\Shrike\Common\TAC\TAC\obj\Debug\TAC.dll
+F:\New folder\workspace\Shrike\Common\TAC\TAC\obj\Debug\TAC.pdb
+C:\Shared\Shrike\bin\Debug\TAC.dll
+C:\Shared\Shrike\bin\Debug\TAC.pdb
+C:\Shared\Shrike\Common\TAC\TAC\obj\Debug\AppComponents.Resource.resources
+C:\Shared\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csproj.GenerateResource.Cache
+C:\Shared\Shrike\Common\TAC\TAC\obj\Debug\TACCore.csproj.CoreCompileInputs.cache
+C:\Shared\Shrike\Common\TAC\TAC\obj\Debug\TAC.dll
+C:\Shared\Shrike\Common\TAC\TAC\obj\Debug\TAC.pdb
